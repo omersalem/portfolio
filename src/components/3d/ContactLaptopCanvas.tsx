@@ -25,9 +25,11 @@ export const ContactLaptopCanvas: React.FC = () => {
 
       // 1. Scene & Camera Setup
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-      camera.position.set(0, 1.7, 5.1);
-      camera.lookAt(0, 0.25, 0);
+      const baseCameraZ = 6.0;
+      const initialAspect = width / height;
+      const camera = new THREE.PerspectiveCamera(38, initialAspect, 0.1, 100);
+      camera.position.set(0, 1.30, initialAspect < 1 ? baseCameraZ / Math.max(initialAspect, 0.6) : baseCameraZ);
+      camera.lookAt(0, 0.28, 0);
 
       renderer = new THREE.WebGLRenderer({
         canvas,
@@ -153,7 +155,7 @@ export const ContactLaptopCanvas: React.FC = () => {
 
       // 6. Assemble 3D Laptop
       const laptopGroup = new THREE.Group();
-      laptopGroup.scale.set(0.92, 0.92, 0.92);
+      laptopGroup.scale.set(0.68, 0.68, 0.68);
 
       // ================= BASE CHASSIS =================
       const baseGroup = new THREE.Group();
@@ -272,15 +274,15 @@ export const ContactLaptopCanvas: React.FC = () => {
       // ================= ORBITAL CHROME RINGS & PARTICLES =================
       const ringGroup = new THREE.Group();
 
-      // Outer sweeping chrome orbital ring
-      const orbitRing1Geo = new THREE.TorusGeometry(2.7, 0.016, 32, 120);
+      // Outer sweeping chrome orbital ring (compactly framing the laptop)
+      const orbitRing1Geo = new THREE.TorusGeometry(1.82, 0.014, 32, 120);
       const orbitRing1 = new THREE.Mesh(orbitRing1Geo, polishedChromeMaterial);
       orbitRing1.rotation.x = Math.PI * 0.38;
       orbitRing1.rotation.y = Math.PI * 0.12;
       ringGroup.add(orbitRing1);
 
       // Inner electric orange accent ring
-      const orbitRing2Geo = new THREE.TorusGeometry(2.2, 0.01, 32, 100);
+      const orbitRing2Geo = new THREE.TorusGeometry(1.45, 0.010, 32, 100);
       const orangeRingMat = new THREE.MeshBasicMaterial({ color: 0xff5500 });
       const orbitRing2 = new THREE.Mesh(orbitRing2Geo, orangeRingMat);
       orbitRing2.rotation.x = Math.PI * 0.58;
@@ -288,20 +290,20 @@ export const ContactLaptopCanvas: React.FC = () => {
       ringGroup.add(orbitRing2);
 
       // Floating Mirror Chrome Spheres
-      const sphereGeo = new THREE.SphereGeometry(0.18, 32, 32);
+      const sphereGeo = new THREE.SphereGeometry(0.14, 32, 32);
       const sphereMesh = new THREE.Mesh(sphereGeo, polishedChromeMaterial);
-      sphereMesh.position.set(2.4, 0.9, -0.5);
+      sphereMesh.position.set(1.62, 0.68, -0.35);
       ringGroup.add(sphereMesh);
 
-      const sphereGeo2 = new THREE.SphereGeometry(0.12, 24, 24);
+      const sphereGeo2 = new THREE.SphereGeometry(0.09, 24, 24);
       const sphereMesh2 = new THREE.Mesh(sphereGeo2, polishedChromeMaterial);
-      sphereMesh2.position.set(-2.2, -0.4, 0.6);
+      sphereMesh2.position.set(-1.50, -0.28, 0.38);
       ringGroup.add(sphereMesh2);
 
       laptopGroup.add(ringGroup);
 
       // Floor Shadow Plane
-      const shadowGeo = new THREE.PlaneGeometry(4.4, 3.4);
+      const shadowGeo = new THREE.PlaneGeometry(3.3, 2.5);
       const shadowCanvas = document.createElement('canvas');
       shadowCanvas.width = 256;
       shadowCanvas.height = 256;
@@ -322,13 +324,13 @@ export const ContactLaptopCanvas: React.FC = () => {
       });
       const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
       shadowMesh.rotation.x = -Math.PI / 2;
-      shadowMesh.position.set(0, -0.85, 0);
+      shadowMesh.position.set(0, -0.58, 0);
       scene.add(shadowMesh);
 
       // Initial resting pose: classic 3/4 hero presentation angle
       laptopGroup.rotation.y = -0.35;
       laptopGroup.rotation.x = 0.18;
-      laptopGroup.position.set(0, -0.05, 0);
+      laptopGroup.position.set(0, 0.02, 0);
       scene.add(laptopGroup);
 
       // 7. Pointer Parallax Tracking
@@ -339,8 +341,8 @@ export const ContactLaptopCanvas: React.FC = () => {
 
       const handlePointerMove = (e: PointerEvent) => {
         const rect = container.getBoundingClientRect();
-        targetMouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.35;
-        targetMouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.22;
+        targetMouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.22;
+        targetMouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.15;
       };
       window.addEventListener('pointermove', handlePointerMove, { passive: true });
 
@@ -364,7 +366,9 @@ export const ContactLaptopCanvas: React.FC = () => {
         if (!container || !renderer) return;
         const newWidth = container.clientWidth;
         const newHeight = container.clientHeight;
-        camera.aspect = newWidth / newHeight;
+        const aspect = newWidth / newHeight;
+        camera.aspect = aspect;
+        camera.position.z = aspect < 1 ? baseCameraZ / Math.max(aspect, 0.6) : baseCameraZ;
         camera.updateProjectionMatrix();
         renderer.setSize(newWidth, newHeight);
       };
@@ -522,21 +526,21 @@ export const ContactLaptopCanvas: React.FC = () => {
         }
 
         // 1. Gentle Floating Levitation
-        laptopGroup.position.y = -0.05 + Math.sin(elapsedTime * 1.1) * 0.08;
+        laptopGroup.position.y = 0.02 + Math.sin(elapsedTime * 1.1) * 0.06;
 
         // 2. Continuous Slow 3D Precession (Yaw & Pitch)
-        // Pivots between -0.55 rad and -0.15 rad (around -0.35 rad)
-        const targetRotY = -0.35 + Math.sin(elapsedTime * 0.4) * 0.2;
-        const targetRotX = 0.18 + Math.cos(elapsedTime * 0.6) * 0.035;
-        const targetRotZ = Math.sin(elapsedTime * 0.75) * 0.025;
+        // Pivots between -0.50 rad and -0.20 rad (around -0.35 rad)
+        const targetRotY = -0.35 + Math.sin(elapsedTime * 0.4) * 0.15;
+        const targetRotX = 0.18 + Math.cos(elapsedTime * 0.6) * 0.025;
+        const targetRotZ = Math.sin(elapsedTime * 0.75) * 0.020;
 
         // 3. Pointer Parallax Drift with Smooth Inertia
         currentMouseX += (targetMouseX - currentMouseX) * 0.05;
         currentMouseY += (targetMouseY - currentMouseY) * 0.05;
 
-        laptopGroup.rotation.y = targetRotY + currentMouseX * 0.6;
-        laptopGroup.rotation.x = targetRotX + currentMouseY * 0.4;
-        laptopGroup.rotation.z = targetRotZ - currentMouseX * 0.1;
+        laptopGroup.rotation.y = targetRotY + currentMouseX * 0.5;
+        laptopGroup.rotation.x = targetRotX + currentMouseY * 0.35;
+        laptopGroup.rotation.z = targetRotZ - currentMouseX * 0.08;
 
         // 4. Subtle Lid Breathing (-0.32 rad base)
         lidGroup.rotation.x = -0.32 + Math.sin(elapsedTime * 0.8) * 0.01;
@@ -546,8 +550,8 @@ export const ContactLaptopCanvas: React.FC = () => {
         orbitRing2.rotation.z = -elapsedTime * 0.18;
 
         // 6. Floating Mirror Chrome Spheres
-        sphereMesh.position.y = 0.9 + Math.sin(elapsedTime * 1.4) * 0.08;
-        sphereMesh2.position.y = -0.4 + Math.cos(elapsedTime * 1.2) * 0.06;
+        sphereMesh.position.y = 0.68 + Math.sin(elapsedTime * 1.4) * 0.07;
+        sphereMesh2.position.y = -0.28 + Math.cos(elapsedTime * 1.2) * 0.05;
 
         // 7. Dynamic Pulsing Underglow
         orangeUnderglow.intensity = 6.0 + Math.sin(elapsedTime * 2.0) * 1.5;
@@ -611,9 +615,28 @@ export const ContactLaptopCanvas: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/3] sm:aspect-[1/1] max-w-[540px] xl:max-w-[620px] mx-auto flex items-center justify-center pointer-events-auto"
+      className="relative w-full aspect-square max-w-[500px] xl:max-w-[560px] mx-auto flex items-center justify-center pointer-events-auto rounded-2xl border border-chrome-border/60 bg-chrome-surface/25 backdrop-blur-sm p-3 sm:p-5 overflow-hidden shadow-2xl group transition-all duration-300 hover:border-chrome-orange/40"
       aria-hidden="true"
     >
+      {/* Precision CAD Frame Corner Markers */}
+      <div className="absolute top-3 left-3 text-[10px] font-mono text-chrome-orange/60 pointer-events-none select-none flex items-center space-x-1">
+        <span>┌</span>
+        <span>SYS_CONSOLE_3D</span>
+      </div>
+      <div className="absolute top-3 right-3 text-[10px] font-mono text-neutral-400 pointer-events-none select-none flex items-center space-x-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-chrome-orange animate-pulse" />
+        <span>INTERACTIVE</span>
+        <span>┐</span>
+      </div>
+      <div className="absolute bottom-3 left-3 text-[10px] font-mono text-neutral-600 pointer-events-none select-none flex items-center space-x-1">
+        <span>└</span>
+        <span>ROTATE_DRAG</span>
+      </div>
+      <div className="absolute bottom-3 right-3 text-[10px] font-mono text-neutral-600 pointer-events-none select-none flex items-center space-x-1">
+        <span>PARALLAX_ACTIVE</span>
+        <span>┘</span>
+      </div>
+
       {/* Background Architectural Glow */}
       <div className="absolute inset-0 bg-radial-gradient from-chrome-orange/15 via-transparent to-transparent pointer-events-none blur-3xl opacity-60" />
 
