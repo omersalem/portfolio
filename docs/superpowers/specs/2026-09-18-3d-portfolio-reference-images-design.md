@@ -10,6 +10,7 @@ Create five coordinated 16:9 reference images that Omer Salem can give to Gemini
 - A consistent high-fidelity visual system across all five images.
 - Each image must be usable as a direct website-design reference, not as abstract mood art.
 - A consolidated Markdown handoff at `output/portfolio-reference-images/motion-notes.md` containing a short motion note for each image so Gemini can translate the static composition into restrained 3D animation.
+- A responsive implementation handoff at `output/portfolio-reference-images/responsive-notes.md` explaining how Gemini should adapt every screen to mobile, tablet, laptop, and wide desktop layouts.
 - Final files live in the workspace under `output/portfolio-reference-images/`.
 - Filenames: `01-hero.png`, `02-client-work.png`, `03-engineering-core.png`, `04-visual-cv.png`, and `05-contact.png`.
 
@@ -118,6 +119,24 @@ Create five coordinated 16:9 reference images that Omer Salem can give to Gemini
 - Store motion guidance in `output/portfolio-reference-images/motion-notes.md` with headings matching the five numbered PNG filenames.
 - Store the final structured image-generation prompts in `output/portfolio-reference-images/prompts.md`.
 
+## Responsive Website Behavior
+
+The five 1920×1080 images define the wide-desktop art direction, but the website Gemini creates from them must remain fully usable and visually intentional on all common screen sizes.
+
+- Target checks: 360×800 mobile, 768×1024 tablet, 1440×900 laptop/desktop, and 1920×1080 wide desktop.
+- Navigation: show the full horizontal navigation on desktop; collapse it into a clearly labeled menu button on mobile and narrow tablet widths.
+- Typography: use fluid sizing with safe minimum and maximum values. Headings may wrap into more lines on mobile but must never overflow or become cropped.
+- Hero: desktop uses a left/right split. On mobile, place the headline first and the 3D portrait below it. Keep the primary call to action visible without requiring excessive scrolling.
+- Client work: desktop uses overlapping 3D browser slabs. Tablet uses a two-column grid. Mobile uses a single-column stack or accessible horizontal carousel with visible controls.
+- Engineering core: desktop distributes capability labels around the central object. Mobile places the 3D core above a simple vertical capability list.
+- Visual CV: desktop uses an editorial split layout. Mobile stacks the introduction followed by four clearly separated capability groups.
+- Contact: desktop places the chrome object beside the call to action. Mobile prioritizes the call to action and contact links, moving the decorative 3D object below or into a non-obstructive background layer.
+- Touch targets must be at least 44×44 CSS pixels, with comfortable spacing and no hover-only essential interactions.
+- Decorative 3D must never block text, navigation, buttons, or scrolling.
+- Respect `prefers-reduced-motion`: stop continuous rotation and parallax, remove camera drift, and replace animated transitions with short fades.
+- Use a static optimized image fallback when WebGL or high-performance 3D is unavailable. The website must remain complete and navigable without 3D rendering.
+- Responsive guidance for each numbered screen must be summarized in `responsive-notes.md` alongside the final images.
+
 ## Acceptance Criteria
 
 - All five images clearly belong to the same premium Monolithic Chrome design system.
@@ -128,6 +147,8 @@ Create five coordinated 16:9 reference images that Omer Salem can give to Gemini
 - The CV image makes no unsupported biographical claims.
 - The contact image gives a clear next action and includes the verified GitHub identity.
 - Every image offers obvious depth layers that Gemini can animate with 3D motion.
+- The responsive handoff defines a clear, buildable layout for all five sections at mobile, tablet, desktop, and wide-desktop sizes.
+- Essential content and calls to action remain usable with reduced motion or without WebGL/3D support.
 
 ## Verification
 
@@ -136,3 +157,4 @@ Create five coordinated 16:9 reference images that Omer Salem can give to Gemini
 - Confirm the hero placeholder is fully faceless and visibly labeled **YOUR PORTRAIT HERE**.
 - Confirm project names and URLs match the supplied sources.
 - Confirm no sensitive infrastructure details appear in the artwork.
+- Review the responsive handoff against 360×800, 768×1024, 1440×900, and 1920×1080 targets, including reduced-motion and static-fallback behavior.
