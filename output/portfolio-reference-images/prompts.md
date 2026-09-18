@@ -1,0 +1,75 @@
+# Portfolio Reference Image Prompts
+
+These prompts define five coordinated reference screens for Omer Salem, **Computer Engineer**. The portfolio sells websites to business customers and differentiates Omer through hardware and infrastructure expertise. For each screen, use `ui-mockup` to generate the full-screen composition reference. Use `stylized-concept` only when generating the supporting scene art that will sit behind or beside the deterministic interface layer. Both uses share the same art direction and spatial layout.
+
+Generated scene art must not attempt small interface text. Composite the exact copy, navigation, project names, URLs, labels, and calls to action later in HTML/CSS so spelling and hierarchy remain deterministic. The shared navigation text on every finished screen is exactly `WORK / ENGINEERING / PROFILE / CONTACT`.
+
+## 1. 01 Hero
+
+- **Use case:** `ui-mockup` for the complete portfolio screen; `stylized-concept` for the faceless mannequin, orbital ring, and architectural background only.
+- **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Keep essential subjects inside generous safe margins and preserve clean responsive crop zones.
+- **Scene/backdrop:** A black-to-charcoal editorial stage built from a strict architectural grid, deep matte planes, a faint horizon, and subtle metallic reflections. The atmosphere is premium, quiet, and spatial rather than futuristic or game-like.
+- **Subject:** A completely faceless polished-chrome mannequin bust on the right, encircled by one thin chrome orbital ring. The bust is a neutral placeholder, not a portrait. It must have a smooth blank head with no eyes, eye sockets, eyebrows, nose, nostrils, mouth, ears, skin, hair, facial planes, gender cues, ethnicity cues, age cues, expression, or recognizable human identity. Reserve a clear label area near the bust for the later composited text `YOUR PORTRAIT HERE`. Gemini must replace only this labeled mannequin layer when Omer later supplies a portrait; the grid, lighting, type, and orbital ring remain unchanged.
+- **Style/materials:** Monolithic Chrome: matte black slabs, smoked charcoal, mirror-polished liquid chrome, precise hard-surface edges, restrained electric-orange signal details, oversized editorial typography zones, no decorative noise.
+- **Composition:** Asymmetric 12-column feel. Reserve the left 52–56% for copy, with clear zones for `OMER SALEM — COMPUTER ENGINEER`, the oversized headline `WEBSITES ENGINEERED TO SELL.`, `Design. Development. Infrastructure.`, and `VIEW SELECTED WORK`. Keep the faceless bust and orbital ring in the right 40–44%. Separate foreground type plane, middle portrait plane, and background architecture for shallow parallax.
+- **Lighting:** Architectural studio lighting: narrow white rim light around the chrome silhouette, soft top light, controlled black reflections, and one dim orange edge reflection. High contrast without crushed detail.
+- **Color:** Predominantly black and charcoal; neutral silver chrome; electric orange limited to one CTA/signal accent; white/off-white reserved for later typography.
+- **Text handling:** Generate scene art without words, letters, logos, pseudo-text, or small text. Preserve quiet copy-safe negative space. Composite all exact copy and the shared navigation later; do not ask the image model to render it.
+- **Constraints:** The mannequin must remain completely featureless and unmistakably synthetic. No invented face or likeness of Omer. No person, photograph, skin, portrait, or identity cues. No watermark. Preserve clear separation between copy and portrait layers. The screen must still communicate when the portrait layer is replaced or absent.
+- **Avoid:** green circuitry; blue/purple gaming neon; cyberpunk city imagery; cartoon 3D; glossy toy styling; crowded dashboard panels; excessive glassmorphism; lens-flare clutter; stock-photo people; anatomical facial features; masks with eye or mouth openings; celebrity resemblance; fake awards; fake testimonials; watermarks.
+
+## 2. 02 Client Work
+
+- **Use case:** `ui-mockup` for the complete client-work screen; `stylized-concept` for the chrome stage, depth rails, and empty browser-slab forms only.
+- **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Allow the layered card cluster to flatten cleanly into responsive grids.
+- **Scene/backdrop:** A dark charcoal editorial gallery with a receding floor grid, subtle chrome rails, and a black architectural void. It should feel like a premium product display for shipped websites.
+- **Subject:** Five distinct browser slabs layered in controlled 3D depth. Each slab has a credible browser-panel silhouette and a large uninterrupted capture area where the real supplied site screenshot will be inserted later. The five real captures must become the card faces; generic generated websites are not acceptable substitutes.
+- **Style/materials:** Matte black browser frames, fine chrome edges, subtle depth shadows, small electric-orange focus marks, and restrained reflections. The surrounding frame stays visually unified while each real site capture retains its recognizable color identity.
+- **Composition:** Reserve the upper-left region for the oversized headline `SOLD. LAUNCHED. WORKING.` and the shared navigation. Arrange five slabs across the lower and right two-thirds with readable overlap: one lead card, two mid-depth cards, and two back cards. Preserve visible areas for every project. Exact later-composited project labels and URLs are: `Almalaki Store — https://almalakistore.ps/`; `Bazaria Council — https://bazariacouncil.pages.dev/`; `handmade.ps — https://handmade.ps/`; `Pistachio — https://postachio.pages.dev/`; `Lama Home — https://lamastorev2.pages.dev/`.
+- **Lighting:** Soft overhead gallery light, thin white edge lights on slab profiles, restrained orange glints on active depth rails, and readable shadows that clarify Z-order.
+- **Color:** Black and charcoal environment; silver chrome framing; restrained electric-orange selection accents; authentic site colors only inside the supplied captures.
+- **Text handling:** Generate no interface text, fake URLs, browser labels, pseudo-copy, or tiny glyphs. Create clean card faces and label rails for later compositing. Composite the exact headline, navigation, names, URLs, and real site captures afterward.
+- **Constraints:** All five projects must have a visible, usable card. Browser slabs must look like real interface panels rather than abstract rectangles. Do not invent conversion rates, revenue, visitor counts, awards, review scores, client quotes, or any other metric. Do not modify or fabricate the five real site identities.
+- **Avoid:** fake website screenshots; illegible microtext; invented metrics; logos not present in the supplied captures; green circuitry; gaming neon; cartoon browsers; cluttered dashboards; excessive glassmorphism; chaotic overlap; unreadable perspective; fake awards; testimonials; watermarks.
+
+## 3. 03 Engineering Core
+
+- **Use case:** `ui-mockup` for the complete engineering screen; `stylized-concept` for the infrastructure core and connected node field only.
+- **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Keep the central core and label anchors inside safe margins for later responsive rearrangement.
+- **Scene/backdrop:** A black architectural chamber containing a single precision-engineered infrastructure core—part motherboard, part server backplane, part routing fabric—surrounded by sparse, orderly nodes.
+- **Subject:** One central black-and-liquid-chrome core with six abstract connection paths. Orange energy appears as restrained signal pulses traveling through machined channels. The visual should suggest networks, security appliances, servers, virtualization, storage, backup, discovery, and automation without drawing a literal or real topology.
+- **Style/materials:** Monolithic Chrome with bead-blasted black metal, graphite fins, mirror chrome connectors, dark glass used sparingly, and narrow electric-orange signal lines. Enterprise engineering, not science fiction.
+- **Composition:** Place the core slightly right of center, with a stable left-side headline zone for `BEYOND THE BROWSER.` and a supporting label zone for `MNE BRAIN V2 — AI-NATIVE INFRASTRUCTURE BRAIN`. Provide six clean callout anchors around—but never over—the core for later compositing: `Networks and routing`; `Cisco, FortiGate, F5, and security`; `Windows and Linux servers`; `VMware and virtualization`; `Storage and backup`; `Infrastructure discovery and automation`.
+- **Lighting:** Directional white top light, cool-neutral rim reflections on chrome, deep charcoal shadows, and low-intensity orange light emitted only from signal channels.
+- **Color:** Nearly black, graphite, neutral silver chrome, warm white text zones, and minimal electric orange. No green status-light field.
+- **Text handling:** Generate scene art with no labels, terminal output, numbers, topology annotations, pseudo-code, or small text. Composite the exact headline, descriptor, navigation, and six high-level capability labels later.
+- **Constraints:** Keep the representation conceptual and high level. Do not show real network diagrams, IP addresses, internal addresses, hostnames, credentials, usernames, passwords, keys, ministry topology, private configuration, customer data, terminal contents, or identifiable facilities. Vendor names appear only in later composited approved labels.
+- **Avoid:** green circuitry; hacker imagery; matrix rain; gaming neon; cyberpunk rooms; literal government/ministry diagrams; readable CLI screens; rack-dashboard clutter; excessive glassmorphism; cartoon components; weapon-like hardware; fake certifications; watermarks.
+
+## 4. 04 Visual CV
+
+- **Use case:** `ui-mockup` for the complete visual-CV screen; `stylized-concept` for the small chrome bridge object and subtle background relief only.
+- **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Preserve generous margins and a clear editorial reading order.
+- **Scene/backdrop:** A deliberate warm off-white interruption in the dark sequence, using a paper-like architectural field, faint grid lines, and sparse graphite rules. No dark full-screen background on this screen.
+- **Subject:** A small abstract liquid-chrome bridge object in the margin joins two disciplined visual zones: digital products and physical infrastructure. It is supporting sculpture, not a hero that competes with the capability list.
+- **Style/materials:** High-fashion editorial layout, warm off-white substrate, near-black typography zones, silver chrome sculpture, precise graphite lines, and one restrained electric-orange marker.
+- **Composition:** Reserve a large upper-left zone for `ONE MIND. TWO WORLDS.`. Use a balanced editorial split or four-module grid for later-composited capability groups: `Website design and full-stack development`; `E-commerce and customer-facing platforms`; `AI, automation, and technical knowledge systems`; `Hardware, networking, security, servers, and virtualization`. Keep the chrome bridge object in the outer right or lower margin, never behind text.
+- **Lighting:** Soft daylight-like key light with crisp but gentle object shadow, controlled chrome reflection, and no dramatic colored glow. The off-white field must retain texture and tonal separation.
+- **Color:** Warm off-white dominant; graphite and near-black structure; neutral chrome; electric orange used once as an index or divider accent.
+- **Text handling:** Generate no résumé text, labels, dates, credentials, decorative pseudo-type, or small text. Preserve exact modular text zones and composite the approved headline, navigation, and capability groups later.
+- **Constraints:** This is a capability-based visual CV only. Do not invent or imply employers, job titles beyond Computer Engineer, employment dates, degrees, institutions, certifications, awards, years of experience, timelines, rankings, client counts, or biographical milestones.
+- **Avoid:** conventional résumé templates; timeline graphics; fake headshots; seals or badges; fake employers; unsupported education; certification logos; dense icon grids; dashboard styling; green circuitry; gaming neon; cartoon 3D; excessive glassmorphism; watermarks.
+
+## 5. 05 Contact
+
+- **Use case:** `ui-mockup` for the complete contact/conversion screen; `stylized-concept` for the chrome torus or sphere and architectural backdrop only.
+- **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Keep the CTA and contact slots in a protected foreground region.
+- **Scene/backdrop:** A near-black closing stage with a charcoal wall/floor intersection, a restrained orange horizon cut, and a single monumental chrome object floating or resting in the right half.
+- **Subject:** One polished liquid-chrome torus or sphere with a precise machined opening, subtle orange reflection, and no logo. The object conveys completion, continuity, and engineering precision without becoming a product or mascot.
+- **Style/materials:** Monolithic Chrome: matte charcoal architecture, mirror liquid chrome, narrow electric-orange accents, editorial scale, and ample negative space.
+- **Composition:** Reserve the left 55–60% for later-composited conversion copy: `YOUR NEXT WEBSITE STARTS HERE.`, `Built with design clarity and an engineer's precision.`, `LET'S BUILD`, and `github.com/omersalem`. Reserve two visible, clearly separated contact slots labeled later as `WHATSAPP` and `EMAIL`. Place the chrome object on the right or partially behind the background plane; it must never obstruct copy or controls.
+- **Lighting:** Focused white rim light and soft overhead key on the chrome form, deep charcoal falloff, and a subtle orange bounce aligned with the CTA zone.
+- **Color:** Black and charcoal dominant; silver chrome; off-white typography zones; one restrained electric-orange CTA accent.
+- **Text handling:** Generate scene art without words, email addresses, phone numbers, handles, logos, pseudo-text, or small text. Composite the exact navigation, headline, supporting copy, CTA, GitHub identity, and the two placeholder labels later.
+- **Constraints:** Do not invent an email address, WhatsApp number, phone number, social handle, QR code, office address, availability claim, testimonial, or response-time promise. `github.com/omersalem` is the only verified identity string and must be added in the deterministic interface layer.
+- **Avoid:** invented contact details; fake forms populated with data; generic social icons; stock people; fake testimonials; awards; green circuitry; blue/purple gaming neon; cartoon objects; excessive glassmorphism; busy particle fields; watermarks.
