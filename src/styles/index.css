@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-black: #08090A;
+  --bg-charcoal: #111215;
+  --bg-card: #16181D;
+  --border-subtle: #242730;
+  --border-highlight: #3D4250;
+  --accent-orange: #FF5500;
+  --accent-orange-light: #FF7733;
+  --cv-offwhite: #F4F1EA;
+  --cv-dark: #141416;
+  --cv-border: #DCD7CC;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* When prefers-reduced-motion is active or reduced effects toggled */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background-color: var(--bg-black);
+    color: #FFFFFF;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Architectural Layout Container matching exact responsive spec */
+  .layout-container {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .layout-container {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .layout-container {
+      padding-left: 64px;
+      padding-right: 64px;
+    }
+  }
+
+  /* Accessible interactive touch target */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Chrome edge highlight */
+  .chrome-panel {
+    background: linear-gradient(180deg, rgba(28, 30, 36, 0.8) 0%, rgba(18, 19, 23, 0.95) 100%);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.07) inset, 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Subtle noise background overlay */
+  .monolithic-noise {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #242730;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3D4250;
+}
