@@ -2,6 +2,8 @@ import React from 'react';
 import { CAPABILITY_GROUPS, CAREER_TIMELINE, CORE_METRICS, TECH_SKILL_CATEGORIES } from '../../data/portfolioData';
 import { Layers, CheckCircle2, Briefcase, Globe2, Bot, Shield, Terminal, Award } from 'lucide-react';
 import { CVBridgeCanvas } from '../3d/CVBridgeCanvas';
+import { MetricCard3D } from '../cards/MetricCard3D';
+import { DisciplineCard3D } from '../cards/DisciplineCard3D';
 
 export const VisualCVSection: React.FC = () => {
   return (
@@ -31,20 +33,7 @@ export const VisualCVSection: React.FC = () => {
         {/* 1. Core Career Metrics Strip */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {CORE_METRICS.map((metric, i) => (
-            <div
-              key={i}
-              className="bg-white/90 p-5 rounded-lg border border-cv-border shadow-xs hover:border-neutral-800 transition-all duration-200"
-            >
-              <div className="text-2xl sm:text-3xl font-display font-extrabold text-cv-dark mb-1 tracking-tight">
-                {metric.value}
-              </div>
-              <div className="text-xs font-mono font-bold text-chrome-orange uppercase tracking-wider mb-1">
-                {metric.label}
-              </div>
-              <div className="text-[11px] font-sans text-neutral-600 leading-tight">
-                {metric.subtext}
-              </div>
-            </div>
+            <MetricCard3D key={i} metric={metric} index={i} />
           ))}
         </div>
 
@@ -111,41 +100,8 @@ export const VisualCVSection: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {CAPABILITY_GROUPS.map((group) => (
-                  <div
-                    key={group.id}
-                    className="bg-white/90 backdrop-blur-sm p-6 rounded-lg border border-cv-border hover:border-neutral-800 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-3 pb-2 border-b border-cv-border/60">
-                        <span className="text-xs font-mono font-bold text-chrome-orange">
-                          {group.number}
-                        </span>
-                        <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">
-                          CAPABILITY DOMAIN
-                        </span>
-                      </div>
-
-                      <h4 className="text-base sm:text-lg font-mono font-bold text-cv-dark mb-2 leading-snug">
-                        {group.title}
-                      </h4>
-
-                      <p className="text-xs sm:text-sm font-sans text-neutral-600 leading-relaxed mb-4">
-                        {group.description}
-                      </p>
-                    </div>
-
-                    <div>
-                      <ul className="space-y-1.5 pt-3 border-t border-cv-border/40">
-                        {group.highlights.map((item, idx) => (
-                          <li key={idx} className="flex items-start space-x-2 text-xs font-sans text-neutral-700">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-chrome-orange shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                {CAPABILITY_GROUPS.map((group, idx) => (
+                  <DisciplineCard3D key={group.id} group={group} index={idx} />
                 ))}
               </div>
             </div>
