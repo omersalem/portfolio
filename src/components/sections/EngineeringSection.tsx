@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { INFRASTRUCTURE_NODES } from '../../data/portfolioData';
 import { EngineeringCoreCanvas } from '../3d/EngineeringCoreCanvas';
+import { InfrastructureCard3D } from '../cards/InfrastructureCard3D';
 import { Cpu, ShieldCheck } from 'lucide-react';
 
 export const EngineeringSection: React.FC = () => {
@@ -70,48 +71,14 @@ export const EngineeringSection: React.FC = () => {
                 const isActive = activeNodeIndex === index;
 
                 return (
-                  <div
+                  <InfrastructureCard3D
                     key={node.id}
-                    onMouseEnter={() => setActiveNodeIndex(index)}
-                    onMouseLeave={() => setActiveNodeIndex(null)}
-                    onFocus={() => setActiveNodeIndex(index)}
-                    onBlur={() => setActiveNodeIndex(null)}
-                    tabIndex={0}
-                    className={`chrome-panel p-5 rounded-lg transition-all duration-200 cursor-default focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none flex flex-col justify-between ${
-                      isActive
-                        ? 'border-chrome-orange bg-chrome-charcoal shadow-orange-glow -translate-y-1'
-                        : 'hover:border-neutral-500'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-mono text-chrome-orange font-bold">
-                          {node.number}
-                        </span>
-                        <div className="w-1.5 h-1.5 rounded-full bg-chrome-orange/70" />
-                      </div>
-
-                      <h3 className="text-sm sm:text-base font-mono font-bold text-white mb-2 leading-snug">
-                        {node.label}
-                      </h3>
-
-                      <p className="text-xs font-sans text-neutral-400 leading-relaxed mb-4">
-                        {node.description}
-                      </p>
-                    </div>
-
-                    {/* Verified Technology Badges */}
-                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-chrome-border/40">
-                      {node.technologies.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 text-[10px] font-mono text-neutral-300 bg-black/50 border border-chrome-border/50 rounded"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                    node={node}
+                    index={index}
+                    isActive={isActive}
+                    onActivate={() => setActiveNodeIndex(index)}
+                    onDeactivate={() => setActiveNodeIndex(null)}
+                  />
                 );
               })}
             </div>
