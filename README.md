@@ -21,6 +21,7 @@ This portfolio website is engineered around the **Monolithic Chrome** visual lan
 - **Section 1: Hero Gyroscopic 3D Engine**:
   - Genuine WebGL Three.js dual-ring gyroscopic orbital system with liquid chrome mirror materials and molten-orange inner core rim.
   - Authentic high-resolution portrait cutout layered at true 3D spatial depth ($Z = +0.1$) with 100% unobstructed facial features and smooth pointer parallax.
+  - Credentials pill: `Ministry of National Economy (Ramallah) • 7 Yrs • Firewalls • Active Directory • AI Agents`.
   - Floating mirror chrome satellites orbiting on 3D Lissajous paths and 70 cosmic stardust particles.
 
 - **Section 2: Selected Client Work (3D Interactive Cards)**:
@@ -32,14 +33,25 @@ This portfolio website is engineered around the **Monolithic Chrome** visual lan
     - [Pistachio](https://postachio.pages.dev/) — Gourmet pastry & dessert storefront
     - [Lama Home](https://lamastorev2.pages.dev/) — Curated home accessories platform
 
-- **Section 3: Engineering Core (MNE Brain v2)**:
-  - 3D interactive machined core with 6 signal conduits illustrating enterprise infrastructure capabilities: Routing & Switching, Security & Firewalls (Cisco, FortiGate, F5), Windows & Linux Servers, VMware Virtualization, Enterprise Storage & Backup, and Automation.
+- **Section 3: Engineering Core (Government-Grade Infrastructure & AI)**:
+  - Direct operational ownership at the **Ministry of National Economy in Ramallah**:
+    - **Perimeter Firewalls & Security**: FortiGate NGFW, F5 BIG-IP (WAF/LTM), Cisco FMC & FTD, Sophos Security.
+    - **Core Networking**: Cisco Core Switches, Catalyst/Nexus fabrics, enterprise routers, VLAN/OSPF/BGP.
+    - **Enterprise Microsoft**: Active Directory Domain Services (AD DS), Group Policy (GPO), Exchange Server (DAG), and Microsoft SCCM.
+    - **AI & Automation**: Autonomous agent skills, execution loops, and MNE Brain v2 digital twin.
+  - 3D interactive machined core with 6 radial conduits and live signal pulse telemetry.
 
-- **Section 4: Visual CV**:
-  - Editorial tonal chapter break in warm off-white (`#F4F1EA`) with an interactive 3D Bridge Sculpture bridging digital product design with enterprise systems engineering.
+- **Section 4: Visual CV, Career Timeline & Technology Matrix**:
+  - Editorial tonal chapter break in warm off-white (`#F4F1EA`) with 4 core metrics (`8+ Years Experience`, `7 Years MNE Ramallah`, `Bilingual Arabic/English`, `Two Worlds Unified`).
+  - **Career Milestones**:
+    - *Ministry of National Economy (MNE), Ramallah* (7 Years | 2019 – Present) — Lead for Firewalls, Core Networks, Active Directory & Enterprise Services.
+    - *Kuwait* (1 Year | 2018 – 2019) — Enterprise Systems Engineer.
+  - **Enterprise & Modern Technology Matrix**: 6 categorized domains (Perimeter, Networks, Microsoft Identity, AI Systems, Web Design, Languages).
+  - **AI Agent Systems Deep Dive**: Specialized architecture covering Agent Skills, Autonomous Execution Loops, Context Window Budgeting, and Multi-Agent Fleets.
+  - **Interactive 3D Bridge Sculpture**: Upgraded Three.js dual-ring gyroscopic nexus connecting digital products with enterprise infrastructure.
 
-- **Section 5: Contact & 3D Engineering Laptop**:
-  - Procedural 3D Space Black Engineering Laptop with physical keycaps, live animated oscilloscope waveform, and real-time telemetry terminal screen.
+- **Section 5: Contact & 3D Space Black Engineering Laptop**:
+  - Procedural 3D Space Black Engineering Laptop with physical keycaps, live animated oscilloscope waveform, and real-time MNE Ramallah telemetry stream.
   - Active verified channels: WhatsApp (`+970 599 228 979`), Email (`omersalem@mne.gov.ps`), and GitHub (`github.com/omersalem`).
 
 ---

@@ -34,9 +34,21 @@ export const EngineeringSection: React.FC = () => {
             MNE BRAIN V2 — AI-NATIVE INFRASTRUCTURE BRAIN
           </div>
 
-          <p className="text-neutral-400 font-mono text-sm sm:text-base leading-relaxed">
-            High-converting digital products require more than surface design. Omer engineers platforms grounded in enterprise hardware, mission-critical networks, hardened security, and automated server infrastructure.
+          <p className="text-neutral-400 font-mono text-sm sm:text-base leading-relaxed mb-4">
+            At the <strong>Ministry of National Economy (MNE) in Ramallah</strong>, Omer has served for 7 years as Computer Engineer with direct operational responsibility for perimeter firewalls, enterprise core networks, and Active Directory. Digital platforms built by Omer inherit the uncompromising reliability, high-availability clustering, and zero-trust security of national-scale systems.
           </p>
+
+          {/* Core Hardware & Security Stack Pills */}
+          <div className="flex flex-wrap gap-2 pt-2">
+            {['FortiGate NGFW', 'F5 BIG-IP (WAF/LTM)', 'Cisco FMC & FTD', 'Cisco Core Switches', 'Active Directory (AD DS/GPO)', 'Exchange Server', 'SCCM', 'Sophos Security', 'AI Autonomous Loops'].map((tech) => (
+              <span
+                key={tech}
+                className="px-2.5 py-1 text-[11px] font-mono text-neutral-300 bg-chrome-charcoal/90 border border-chrome-border/80 rounded"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* 
@@ -65,26 +77,40 @@ export const EngineeringSection: React.FC = () => {
                     onFocus={() => setActiveNodeIndex(index)}
                     onBlur={() => setActiveNodeIndex(null)}
                     tabIndex={0}
-                    className={`chrome-panel p-5 rounded-lg transition-all duration-200 cursor-default focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none ${
+                    className={`chrome-panel p-5 rounded-lg transition-all duration-200 cursor-default focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none flex flex-col justify-between ${
                       isActive
                         ? 'border-chrome-orange bg-chrome-charcoal shadow-orange-glow -translate-y-1'
                         : 'hover:border-neutral-500'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-mono text-chrome-orange font-bold">
-                        {node.number}
-                      </span>
-                      <div className="w-1.5 h-1.5 rounded-full bg-chrome-orange/70" />
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-mono text-chrome-orange font-bold">
+                          {node.number}
+                        </span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-chrome-orange/70" />
+                      </div>
+
+                      <h3 className="text-sm sm:text-base font-mono font-bold text-white mb-2 leading-snug">
+                        {node.label}
+                      </h3>
+
+                      <p className="text-xs font-sans text-neutral-400 leading-relaxed mb-4">
+                        {node.description}
+                      </p>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-mono font-bold text-white mb-2 leading-snug">
-                      {node.label}
-                    </h3>
-
-                    <p className="text-xs font-sans text-neutral-400 leading-relaxed">
-                      {node.description}
-                    </p>
+                    {/* Verified Technology Badges */}
+                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-chrome-border/40">
+                      {node.technologies.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-0.5 text-[10px] font-mono text-neutral-300 bg-black/50 border border-chrome-border/50 rounded"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 );
               })}

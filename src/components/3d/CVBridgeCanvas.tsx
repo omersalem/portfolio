@@ -90,6 +90,8 @@ export const CVBridgeCanvas: React.FC = () => {
       // Accent Electric Orange Sphere at Connection Apex
       const sphereMat = new THREE.MeshStandardMaterial({
         color: 0xff5500,
+        emissive: 0xff5500,
+        emissiveIntensity: 0.8,
         roughness: 0.2,
         metalness: 0.3,
       });
@@ -98,7 +100,41 @@ export const CVBridgeCanvas: React.FC = () => {
       sphere.position.set(0.85, 0.38, 0);
       sculptureGroup.add(sphere);
 
+      // Gyroscopic Liquid Chrome Ring around Apex
+      const ringGeo = new THREE.TorusGeometry(0.38, 0.02, 24, 64);
+      const ringMesh = new THREE.Mesh(ringGeo, chromeMat);
+      ringMesh.position.set(0.85, 0.38, 0);
+      ringMesh.rotation.x = Math.PI * 0.35;
+      ringMesh.rotation.y = Math.PI * 0.2;
+      sculptureGroup.add(ringMesh);
+
+      // Outer Molten Orange Accent Ring
+      const orangeRingGeo = new THREE.TorusGeometry(0.52, 0.012, 24, 64);
+      const orangeRingMesh = new THREE.Mesh(orangeRingGeo, sphereMat);
+      orangeRingMesh.position.set(0.85, 0.38, 0);
+      orangeRingMesh.rotation.x = -Math.PI * 0.25;
+      orangeRingMesh.rotation.y = Math.PI * 0.4;
+      sculptureGroup.add(orangeRingMesh);
+
+      // Orbiting Energy Satellite traversing the Bridge
+      const satelliteGeo = new THREE.SphereGeometry(0.065, 24, 24);
+      const satelliteMesh = new THREE.Mesh(satelliteGeo, chromeMat);
+      sculptureGroup.add(satelliteMesh);
+
       scene.add(sculptureGroup);
+
+      // Pointer Parallax
+      let targetMouseX = 0;
+      let targetMouseY = 0;
+      let currentMouseX = 0;
+      let currentMouseY = 0;
+
+      const handlePointerMove = (e: PointerEvent) => {
+        const rect = container.getBoundingClientRect();
+        targetMouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.3;
+        targetMouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.2;
+      };
+      window.addEventListener('pointermove', handlePointerMove, { passive: true });
 
       // Visibility
       const observer = new IntersectionObserver(
@@ -126,7 +162,7 @@ export const CVBridgeCanvas: React.FC = () => {
       };
       window.addEventListener('resize', handleResize);
 
-      // Animation Loop: Turns 2-3° over 10-14 seconds and eases back
+      // Animation Loop
       let clock = new THREE.Clock();
 
       const animate = () => {
@@ -135,9 +171,24 @@ export const CVBridgeCanvas: React.FC = () => {
         if (!isVisible) return;
 
         const elapsedTime = clock.getElapsedTime();
-        // 2.5 degrees = 0.0436 rad, period 12s
-        const angle = Math.sin((elapsedTime * Math.PI * 2) / 12) * 0.044;
-        sculptureGroup.rotation.y = angle;
+
+        // Smooth Parallax
+        currentMouseX += (targetMouseX - currentMouseX) * 0.05;
+        currentMouseY += (targetMouseY - currentMouseY) * 0.05;
+
+        // Base oscillation + pointer tilt
+        const baseAngle = Math.sin((elapsedTime * Math.PI * 2) / 12) * 0.044;
+        sculptureGroup.rotation.y = baseAngle + currentMouseX * 0.35;
+        sculptureGroup.rotation.x = currentMouseY * 0.25;
+
+        // Animate Gyroscopic Rings around Apex
+        ringMesh.rotation.z = elapsedTime * 0.4;
+        orangeRingMesh.rotation.z = -elapsedTime * 0.5;
+
+        // Orbiting Satellite traversing bridge curve
+        const t = (Math.sin(elapsedTime * 0.8) + 1) / 2; // 0 to 1
+        const pt = curve.getPoint(t);
+        satelliteMesh.position.set(pt.x, pt.y + 0.05, pt.z);
 
         if (renderer) {
           renderer.render(scene, camera);
@@ -148,6 +199,7 @@ export const CVBridgeCanvas: React.FC = () => {
 
       return () => {
         cancelAnimationFrame(animationFrameId);
+        window.removeEventListener('pointermove', handlePointerMove);
         window.removeEventListener('resize', handleResize);
         document.removeEventListener('visibilitychange', handleVisibilityChange);
         observer.disconnect();
@@ -156,6 +208,10 @@ export const CVBridgeCanvas: React.FC = () => {
         slab2Geo.dispose();
         bridgeGeo.dispose();
         sphereGeo.dispose();
+        ringGeo.dispose();
+        orangeRingGeo.dispose();
+        satelliteGeo.dispose();
+
         stoneMat.dispose();
         chromeMat.dispose();
         sphereMat.dispose();

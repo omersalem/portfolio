@@ -412,7 +412,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         // Header Title
         sCtx.fillStyle = '#9ca3af';
         sCtx.font = 'bold 15px monospace';
-        sCtx.fillText('OMER SALEM // SYSTEM MONITOR — MNE BRAIN V2', 115, 32);
+        sCtx.fillText('OMER SALEM // MNE RAMALLAH // INFRA & WEB BRAIN', 115, 32);
 
         // Status Badge
         sCtx.fillStyle = 'rgba(255, 85, 0, 0.18)';
@@ -426,28 +426,29 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.fillText('● STATUS: ONLINE', 840, 31);
 
         // Left Column: Semantic Telemetry & Engineering Identity
-        sCtx.font = '16px monospace';
+        sCtx.font = '15px monospace';
         const lines = [
-          { text: '> INITIALIZING OMER SALEM CORE...', color: '#6b7280' },
+          { text: '> INITIALIZING MNE RAMALLAH NODE...', color: '#6b7280' },
           { text: 'const engineer = "OMER SALEM";', color: '#ff5500' },
-          { text: 'const role = "COMPUTER ENGINEER";', color: '#e5e7eb' },
-          { text: 'const mission = "WEBSITES ENGINEERED TO SELL";', color: '#ffffff' },
-          { text: 'infra_capabilities: [', color: '#9ca3af' },
-          { text: '  "CISCO NETWORKS", "FORTIGATE FIREWALLS",', color: '#d1d5db' },
-          { text: '  "F5 BIG-IP WAF", "VMWARE VIRTUALIZATION"', color: '#d1d5db' },
+          { text: 'const org = "MINISTRY OF NATIONAL ECONOMY";', color: '#e5e7eb' },
+          { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#ffffff' },
+          { text: 'firewalls_perimeter: [', color: '#9ca3af' },
+          { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff7733' },
+          { text: '  "CISCO FMC & FTD", "SOPHOS SECURITY"', color: '#ff7733' },
           { text: '];', color: '#9ca3af' },
-          { text: 'frontend_stack: ["REACT 18", "THREE.JS", "TS"];', color: '#ff7733' },
-          { text: 'cluster_latency: "0.2ms" | uptime: "99.999%"', color: '#34d399' },
+          { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#d1d5db' },
+          { text: 'network_fabric: ["CISCO CORE SWITCH", "ROUTERS"];', color: '#d1d5db' },
+          { text: 'ai_systems: ["AGENT SKILLS", "LOOPING", "CONTEXT"];', color: '#34d399' },
           { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#ff5500' },
         ];
 
-        let startY = 95;
+        let startY = 92;
         lines.forEach((l, idx) => {
           sCtx.fillStyle = l.color;
           if (idx === lines.length - 1 && Math.sin(time * 6) < 0) {
-            sCtx.fillText(l.text.replace('_', ' '), 35, startY + idx * 28);
+            sCtx.fillText(l.text.replace('_', ' '), 35, startY + idx * 27);
           } else {
-            sCtx.fillText(l.text, 35, startY + idx * 28);
+            sCtx.fillText(l.text, 35, startY + idx * 27);
           }
         });
 
@@ -462,7 +463,7 @@ export const ContactLaptopCanvas: React.FC = () => {
 
         sCtx.fillStyle = '#ff5500';
         sCtx.font = 'bold 13px monospace';
-        sCtx.fillText('REALTIME FREQUENCY & PACKET FLOW', 605, 112);
+        sCtx.fillText('REALTIME FIREWALL & PACKET FLOW', 605, 112);
 
         // Animated Waveform
         sCtx.strokeStyle = '#ff5500';
@@ -493,13 +494,13 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.strokeRect(35, 420, 950, 195);
 
         sCtx.fillStyle = '#ffffff';
-        sCtx.font = 'bold 22px monospace';
-        sCtx.fillText('PROVEN PERFORMANCE. ARCHITECTURAL RIGOR.', 65, 470);
+        sCtx.font = 'bold 21px monospace';
+        sCtx.fillText('GOVERNMENT-GRADE RELIABILITY. COMMERCIAL SPEED.', 65, 468);
 
         sCtx.fillStyle = '#9ca3af';
-        sCtx.font = '15px monospace';
-        sCtx.fillText('Modern commerce & digital platforms engineered for velocity, high security & uptime.', 65, 510);
-        sCtx.fillText('Direct connection: omersalem@mne.gov.ps • +970 599 228 979', 65, 550);
+        sCtx.font = '14px monospace';
+        sCtx.fillText('Ministry of National Economy (7 yrs) • Kuwait (1 yr) • Firewalls • Active Directory • AI Agents', 65, 506);
+        sCtx.fillText('Direct connection: omersalem@mne.gov.ps • +970 599 228 979', 65, 546);
 
         screenTexture.needsUpdate = true;
       };

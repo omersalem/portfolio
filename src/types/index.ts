@@ -27,6 +27,29 @@ export interface InfrastructureNode {
   number: string;
   label: string;
   description: string;
+  technologies: string[];
+}
+
+export interface CareerTimelineItem {
+  id: string;
+  role: string;
+  organization: string;
+  location: string;
+  duration: string;
+  period: string;
+  responsibilities: string[];
+  technologies: string[];
+}
+
+export interface TechSkillCategory {
+  category: string;
+  skills: string[];
+}
+
+export interface CoreMetric {
+  value: string;
+  label: string;
+  subtext: string;
 }
 
 export interface EffectSettings {

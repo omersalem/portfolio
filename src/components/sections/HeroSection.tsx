@@ -46,9 +46,19 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* 2. Professional Title in Spaced Electric-Orange Caps */}
-            <div className="mb-4">
+            <div className="mb-3">
               <span className="text-sm sm:text-base font-mono font-bold tracking-[0.25em] text-chrome-orange uppercase">
                 COMPUTER ENGINEER
+              </span>
+            </div>
+
+            {/* Ministry & Experience Credential Badge */}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="px-2.5 py-1 text-xs font-mono text-neutral-300 bg-chrome-charcoal border border-chrome-border/80 rounded">
+                Ministry of National Economy (Ramallah) • 7 Yrs
+              </span>
+              <span className="px-2.5 py-1 text-xs font-mono text-chrome-orange bg-chrome-orange/10 border border-chrome-orange/30 rounded">
+                Firewalls • Active Directory • AI Agents
               </span>
             </div>
 

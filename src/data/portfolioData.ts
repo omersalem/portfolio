@@ -1,4 +1,4 @@
-import { Project, NavItem, CapabilityGroup, InfrastructureNode } from '../types';
+import { Project, NavItem, CapabilityGroup, InfrastructureNode, CareerTimelineItem, TechSkillCategory, CoreMetric } from '../types';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'WORK', href: '#work' },
@@ -62,40 +62,129 @@ export const PROJECTS: Project[] = [
 
 export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
   {
-    id: 'networks',
+    id: 'cisco-core',
     number: '01',
-    label: 'Networks and routing',
-    description: 'Enterprise switching, resilient BGP/OSPF routing topologies, VLAN segmentation, and deterministic multi-site traffic flows.',
+    label: 'Cisco Core Switches & Enterprise Routing',
+    description: 'Enterprise network backbone architecture utilizing Cisco Core Switches, Catalyst & Nexus fabrics, distribution layers, resilient VLAN segmentation, and deterministic OSPF/BGP routing topologies.',
+    technologies: ['Cisco Core Switch', 'Catalyst & Nexus', 'Enterprise Routers', 'VLAN / OSPF / BGP'],
   },
   {
-    id: 'security',
+    id: 'firewalls-waf',
     number: '02',
-    label: 'Cisco, FortiGate, F5, and security',
-    description: 'High-availability firewalls, ASM/WAF application defense policies, SSL inspection, IPsec VPN tunneling, and zero-trust edge posture.',
+    label: 'Next-Gen Firewalls & Perimeter Security',
+    description: 'Direct operational responsibility for perimeter firewalls, deep packet inspection, threat prevention, SSL inspection, high-availability clustering, and Web Application Firewall defense.',
+    technologies: ['FortiGate NGFW', 'F5 BIG-IP (WAF/LTM)', 'Cisco FMC & FTD', 'Sophos Security'],
   },
   {
-    id: 'servers',
+    id: 'active-directory',
     number: '03',
-    label: 'Windows and Linux servers',
-    description: 'Production hardening, Active Directory DS/GPO infrastructure, Ubuntu LTS systems, systemd service management, and kernel tuning.',
+    label: 'Active Directory & Enterprise Identity',
+    description: 'Direct responsibility for Active Directory Domain Services (AD DS), enterprise Group Policy Object (GPO) engineering, role-based access control (RBAC), and Kerberos/LDAP identity governance.',
+    technologies: ['Active Directory (AD DS)', 'Group Policy (GPO)', 'Domain Architecture', 'Identity Governance'],
   },
   {
-    id: 'virtualization',
+    id: 'exchange-server',
     number: '04',
-    label: 'VMware and virtualization',
-    description: 'vSphere hypervisor clusters, ESXi host performance, vCenter orchestration, high-availability resource pools, and SAN datastores.',
+    label: 'Microsoft Exchange Server Infrastructure',
+    description: 'Nationwide enterprise messaging architecture, Database Availability Groups (DAG) clustering, secure mail flow transport pipelines, anti-spam hygiene, and TLS encryption compliance.',
+    technologies: ['Exchange Server', 'DAG Clustering', 'Mail Flow Routing', 'TLS & Transport Security'],
   },
   {
-    id: 'storage',
+    id: 'sccm-management',
     number: '05',
-    label: 'Storage and backup',
-    description: 'Redundant block/file storage architectures, snapshot lifecycle scheduling, immutable off-site disaster recovery, and data protection.',
+    label: 'SCCM Endpoint & Patch Management',
+    description: 'Microsoft System Center Configuration Manager (SCCM) for centralized OS deployment, automated security patch pipelines, endpoint compliance, and enterprise software distribution.',
+    technologies: ['Microsoft SCCM', 'OS Imaging & Task Sequences', 'Patch Compliance', 'Asset Automation'],
   },
   {
-    id: 'automation',
+    id: 'ai-agents',
     number: '06',
-    label: 'Infrastructure discovery and automation',
-    description: 'Automated topology discovery, agentic telemetry analysis, self-healing runbooks, PowerShell/CLI orchestration, and AI-native systems.',
+    label: 'AI Autonomous Agents & Infrastructure Automation',
+    description: 'Autonomous multi-agent orchestration, specialized agent skills architecture, execution loops, context window optimization, self-healing diagnostic runbooks, and MNE Brain v2.',
+    technologies: ['Autonomous Agents', 'Skills Architecture', 'Looping & Context Chains', 'MNE Brain v2'],
+  },
+];
+
+export const CAREER_TIMELINE: CareerTimelineItem[] = [
+  {
+    id: 'mne-ramallah',
+    role: 'Computer Engineer (Infrastructure, Security & Systems)',
+    organization: 'Ministry of National Economy (MNE)',
+    location: 'Ramallah, Palestine',
+    duration: '7 Years',
+    period: '2019 – Present',
+    responsibilities: [
+      'Direct operational ownership for enterprise perimeter firewalls (FortiGate, Cisco FMC & FTD, F5 BIG-IP, Sophos), maintaining high availability and zero-trust perimeter defense.',
+      'Comprehensive administration of nationwide Active Directory (AD DS) infrastructure and Group Policy (GPO) enforcement for ministerial endpoints.',
+      'Core enterprise networking management across Cisco Core Switches, Catalyst distribution layers, and secure multi-site routing backbones.',
+      'Operations and continuous availability of Microsoft Exchange Server messaging infrastructure and SCCM automated deployment/patching pipelines.',
+      'Architecting and implementing AI automation, agent skills, and digital twin systems (MNE Brain v2) for autonomous telemetry and runbook execution.',
+    ],
+    technologies: ['FortiGate', 'F5 BIG-IP', 'Cisco FMC & FTD', 'Cisco Core Switches', 'Active Directory', 'Exchange Server', 'SCCM', 'Sophos', 'AI Agents'],
+  },
+  {
+    id: 'kuwait-engineer',
+    role: 'Computer Engineer',
+    organization: 'Enterprise Systems Engineering',
+    location: 'Kuwait',
+    duration: '1 Year',
+    period: '2018 – 2019',
+    responsibilities: [
+      'Enterprise computer systems deployment, server rack installation, network cabling, and hardware lifecycle management.',
+      'Network switching, routing configuration, hardware diagnostics, and end-user access administration.',
+      'Implementation of baseline system security protocols, backup policies, and disaster prevention routines.',
+    ],
+    technologies: ['Network Switching', 'Enterprise Routers', 'Hardware Diagnostics', 'Windows Server', 'Storage & Backup'],
+  },
+];
+
+export const CORE_METRICS: CoreMetric[] = [
+  {
+    value: '8+ Years',
+    label: 'Engineering Experience',
+    subtext: 'Proven enterprise systems & modern web architecture',
+  },
+  {
+    value: '7 Years',
+    label: 'Ministry of National Economy',
+    subtext: 'Ramallah — Firewalls, Core Networks & Active Directory',
+  },
+  {
+    value: 'Bilingual',
+    label: 'English & Arabic',
+    subtext: 'Native Arabic & fluent professional English communication',
+  },
+  {
+    value: 'Full Stack + Infra',
+    label: 'Two Worlds Unified',
+    subtext: 'From Cisco Core & FortiGate to React, Three.js & AI Agents',
+  },
+];
+
+export const TECH_SKILL_CATEGORIES: TechSkillCategory[] = [
+  {
+    category: 'Perimeter & Firewalls',
+    skills: ['FortiGate NGFW', 'F5 BIG-IP (WAF/ASM)', 'Cisco FMC', 'Cisco FTD', 'Sophos Security'],
+  },
+  {
+    category: 'Core Networks & Routing',
+    skills: ['Cisco Core Switches', 'Cisco Routers', 'Catalyst & Nexus', 'VLAN Segmentation', 'OSPF / BGP'],
+  },
+  {
+    category: 'Enterprise Microsoft & Identity',
+    skills: ['Active Directory (AD DS)', 'Group Policy (GPO)', 'Microsoft Exchange Server', 'Microsoft SCCM', 'Windows Server'],
+  },
+  {
+    category: 'AI & Autonomous Agent Systems',
+    skills: ['Agent Skills Architecture', 'Execution Looping', 'Context Window Management', 'Multi-Agent Workflows', 'MNE Brain v2'],
+  },
+  {
+    category: 'Web Design & Implementation',
+    skills: ['React 18 & TypeScript', 'Three.js & WebGL 3D', 'Tailwind CSS', 'Responsive Architecture', 'E-Commerce Platforms'],
+  },
+  {
+    category: 'Languages',
+    skills: ['Arabic (Native)', 'English (Professional Fluent)'],
   },
 ];
 
@@ -103,29 +192,29 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
   {
     id: 'cap-web',
     number: '01',
-    title: 'Website design and full-stack development',
-    description: 'Engineered digital storefronts, corporate platforms, and web applications built with modern architectural foundations, responsive layouts, and meticulous typographic hierarchy.',
-    highlights: ['React & Modern Frameworks', 'Architectural Editorial Design', 'Fluid Responsive Layouts', 'Clean Modular Codebases'],
+    title: 'Website & Application Design and Implementation',
+    description: 'Engineered digital storefronts, corporate platforms, and web applications built with modern architectural foundations, fluid responsive layouts, and meticulous typographic hierarchy.',
+    highlights: ['React 18 & Modern TypeScript', 'Three.js Interactive 3D WebGL', 'Fluid Responsive Layouts', 'Clean Modular Codebases'],
   },
   {
     id: 'cap-ecom',
     number: '02',
-    title: 'E-commerce and customer-facing platforms',
-    description: 'Conversion-oriented commercial platforms engineered for speed, frictionless product discovery, multi-currency purchasing, and seamless checkout pipelines.',
-    highlights: ['Catalog & Filter Architecture', 'Checkout Optimization', 'Mobile PWA Experience', 'Order & Inventory Integration'],
+    title: 'E-Commerce & High-Converting Commercial Platforms',
+    description: 'Conversion-oriented commercial platforms engineered for speed, frictionless product discovery, multi-currency purchasing, and seamless checkout pipelines (proven across 5 live platforms).',
+    highlights: ['Catalog & Filter Architecture', 'Checkout Optimization', 'Mobile PWA Experience', 'Order & WhatsApp Integration'],
   },
   {
     id: 'cap-ai',
     number: '03',
-    title: 'AI, automation, and technical knowledge systems',
-    description: 'Integration of LLMs, agentic operational assistants, automated telemetry diagnostics, and technical knowledge brains designed for deep domain insight.',
-    highlights: ['MNE Brain Architecture', 'Knowledge Graphs & Retrieval', 'Agentic Runbook Execution', 'Operational Scripting'],
+    title: 'AI Systems, Agent Skills, Looping & Context Engineering',
+    description: 'Deep engineering of autonomous AI agents, specialized skill definitions, multi-step execution loops, token-efficient context management, and MNE Brain v2 operational digital twins.',
+    highlights: ['Agent Skills & Customization', 'Autonomous Execution Loops', 'Context Window Optimization', 'Multi-Agent Orchestration'],
   },
   {
     id: 'cap-infra',
     number: '04',
-    title: 'Hardware, networking, security, servers, and virtualization',
-    description: 'End-to-end physical and virtual systems engineering ensuring digital products operate on hardened, secure, redundant, and monitored enterprise infrastructure.',
-    highlights: ['Enterprise Network Fabrics', 'UTM & WAF Policy Hardening', 'Virtual Hypervisors & Storage', 'Disaster Recovery Systems'],
+    title: 'Enterprise Firewalls, Core Networks, Active Directory & Servers',
+    description: 'End-to-end physical and virtual systems engineering: managing FortiGate, F5, Cisco FMC/FTD, Cisco Core Switches, Active Directory, Exchange Server, and SCCM at government scale.',
+    highlights: ['FortiGate & F5 WAF Defense', 'Cisco Core Switching & Routers', 'Active Directory DS & GPO', 'Exchange Server & SCCM'],
   },
 ];
