@@ -14,12 +14,16 @@ These rules translate the five 1920×1080 reference screens into a responsive we
 Implementation-wide rules:
 
 - The content container is `width: min(100% - 2 * side-padding, 1440px)` and centered. Side padding is exactly 20px on mobile, 32px on tablet, and 64px on desktop.
+- At viewport widths of **1024 CSS px and above**, show the full navigation exactly as `WORK / ENGINEERING / PROFILE / CONTACT`. Below **1024 CSS px**, replace it with a clearly labeled `MENU` button.
+- Implement `MENU` as a button with `aria-expanded="false"` and `aria-controls` pointing to the menu panel; set `aria-expanded="true"` while open. On open, move focus to the first navigation link and contain Tab/Shift+Tab focus within the open menu. `Escape` closes the menu and returns focus to the trigger. Selecting a navigation link closes the menu after navigation.
 - Headings use fluid sizing such as `clamp(minimum, viewport-based value, maximum)`, with `overflow-wrap: normal`, controlled line breaks, and sufficient line height. Never hide overflow to mask cropped typography.
 - Use normal document flow for essential content. Absolute positioning is reserved for decoration inside clipped, pointer-inert layers.
 - Decorative 3D uses `pointer-events: none`. It never creates a scroll trap, blocks selection, or changes the reading order.
 - Pointer hover is progressive enhancement. Every hover response has an equivalent visible keyboard-focus state, and required names, URLs, labels, and actions are available without hover.
 - Use semantic landmarks and preserve a logical DOM order: navigation, headline/context, primary action or content, then decorative media.
-- All tap/click targets are at least 44×44 CSS pixels, including the menu button, navigation entries, project links, CTA, WhatsApp placeholder, email placeholder, and GitHub link.
+- All interactive tap/click targets are at least 44×44 CSS pixels, including the menu button, navigation entries, project links, CTA, and GitHub link.
+- Treat decorative 3D canvases and their static fallback images as decorative: set the canvas/container to `aria-hidden="true"`, use `alt=""` on fallback images, and keep both out of the focus order. Give every project link a meaningful accessible name containing its visible project name and destination, such as `View Almalaki Store at almalakistore.ps`; use empty alt text on a linked site capture when the adjacent project name and URL already label the link.
+- `LET'S BUILD` scrolls to the in-page `#contact-options` region and never submits a form. Render `WHATSAPP` and `EMAIL` as visible, non-interactive labeled placeholders without anchors, buttons, `tabindex`, hover states, or focus states until Omer supplies real destinations. Render `github.com/omersalem` as a real link whose exact destination is `https://github.com/omersalem`.
 
 ## 01-hero.png
 
@@ -58,7 +62,7 @@ Implementation-wide rules:
 
 ### 768×1024
 
-- Use a two-column grid with consistent card heights and 24px gaps. Make the fifth card span both columns at the same card height.
+- Use a two-column grid with consistent card heights, 24px gaps, and a 16:10 media area on every card. Place the fifth card on the third row, centered at the same one-column width as the other four cards; it does not span both columns.
 - Keep names and exact URLs persistently visible. No information may require hover.
 - Use negligible perspective and no overlap so touch targets remain predictable.
 
@@ -130,20 +134,20 @@ Implementation-wide rules:
 
 ### 360×800
 
-- Order content as headline, supporting sentence, `LET'S BUILD`, then the labeled `WHATSAPP`, `EMAIL`, and `github.com/omersalem` links/slots.
-- Keep the CTA and contact targets above the decorative chrome object. Place the object below the links in its own clipped media row.
-- Do not render invented values beside `WHATSAPP` or `EMAIL`; the visible labels remain placeholders until Omer supplies details.
+- Order content as headline, supporting sentence, `LET'S BUILD`, then the non-interactive labeled placeholders `WHATSAPP` and `EMAIL`, followed by the real `github.com/omersalem` link to `https://github.com/omersalem`.
+- Keep the CTA, the two placeholder labels, and the GitHub link above the decorative chrome object. Place the object below this contact-options region in its own clipped media row.
+- Do not render invented values beside `WHATSAPP` or `EMAIL`; the visible labels remain non-interactive placeholders until Omer supplies details.
 
 ### 768×1024
 
 - Use a stacked composition with conversion copy and the complete contact group first, followed by the chrome object in its own full-width media region.
-- Make `LET'S BUILD` span the content column at a minimum height of 44px. Use generous separation between the three contact targets.
+- Make `LET'S BUILD` span the content column at a minimum height of 44px and use it to reach the in-page `#contact-options` region without form submission. Use generous separation between the GitHub link and the two non-interactive placeholder labels.
 - Clip the decorative object to its own region so it cannot drift over the CTA during animation.
 
 ### 1440×900
 
-- Use a left/right split with headline, supporting copy, CTA, and contact links on the left and the chrome torus/sphere on the right.
-- Keep the orange CTA the strongest action. GitHub, WhatsApp, and email are secondary but fully visible and keyboard reachable.
+- Use a left/right split with headline, supporting copy, CTA, the two placeholder labels, and the GitHub link on the left and the chrome torus/sphere on the right.
+- Keep the orange CTA the strongest action. The GitHub identity is a secondary, keyboard-reachable link to `https://github.com/omersalem`. WhatsApp and email remain fully visible non-interactive labels outside the tab order.
 - Decorative magnetic motion must not shift layout or move the pointer target away from the user.
 
 ### 1920×1080
@@ -156,6 +160,6 @@ Implementation-wide rules:
 
 - Respect `prefers-reduced-motion: reduce`: stop continuous object rotation, camera drift, parallax, Z-axis card movement, signal travel, light sweeps, magnetic pointer effects, and staggered entrances. Render content in its final position. Use a simple opacity change of 120ms for state clarity.
 - Reduced motion must not remove focus indicators, project names, URLs, capability labels, the portrait placeholder label, navigation, or calls to action.
-- Detect unavailable WebGL, renderer initialization failure, constrained hardware, and explicit data/battery-saving preferences. Replace each 3D scene with an optimized static responsive image (`<picture>`/AVIF/WebP with PNG fallback) that preserves the same crop and contrast-safe zones.
+- Use the optimized static responsive image (`<picture>`/AVIF/WebP with PNG fallback) whenever WebGL initialization fails, the explicit user-facing **Reduced Effects** control is enabled, `prefers-reduced-motion: reduce` matches, or `navigator.connection?.saveData === true`. Do not infer capability from hardware class, battery state, device type, or user-agent strings. The fallback preserves the same crop and contrast-safe zones.
 - Load the static fallback before attempting heavy 3D so the page is complete and stable immediately. Keep semantic copy and controls as HTML above the media layer; never bake essential text into the fallback image.
-- If high-performance 3D is unavailable, disable related pointer listeners and animation loops, reserve the same media aspect ratio to prevent layout shift, and keep every section fully navigable and visually complete.
+- When any fallback condition applies, disable related pointer listeners and animation loops, reserve the same media aspect ratio to prevent layout shift, and keep every section fully navigable and visually complete. Always retain the static fallback in the delivered page even when WebGL initializes successfully.

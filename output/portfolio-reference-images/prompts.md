@@ -1,12 +1,12 @@
 # Portfolio Reference Image Prompts
 
-These prompts define five coordinated reference screens for Omer Salem, **Computer Engineer**. The portfolio sells websites to business customers and differentiates Omer through hardware and infrastructure expertise. For each screen, use `ui-mockup` to generate the full-screen composition reference. Use `stylized-concept` only when generating the supporting scene art that will sit behind or beside the deterministic interface layer. Both uses share the same art direction and spatial layout.
+These prompts define five coordinated reference screens for Omer Salem, **Computer Engineer**. The portfolio sells websites to business customers and differentiates Omer through hardware and infrastructure expertise. For each screen, use `ui-mockup` only as a spatial/layout reference for the full 16:9 frame: it establishes composition, depth, scale, and copy-safe zones but does not render a finished interface. Use `stylized-concept` for isolated supporting scene art that will sit behind or beside the deterministic interface layer. Both uses share the same art direction and spatial layout.
 
-Generated scene art must not attempt small interface text. Composite the exact copy, navigation, project names, URLs, labels, and calls to action later in HTML/CSS so spelling and hierarchy remain deterministic. The shared navigation text on every finished screen is exactly `WORK / ENGINEERING / PROFILE / CONTACT`.
+Every model-generated raster output is text-free scene art or a text-free composition reference only, never a final text-complete UI. The model must not generate words, letters, pseudo-text, navigation, UI labels, URLs, or calls to action at any size. Add the exact copy, shared navigation, project names, URLs, labels, calls to action, real site captures, and accessible interaction semantics deterministically later in HTML/CSS. The shared navigation text on every finished screen is exactly `WORK / ENGINEERING / PROFILE / CONTACT`.
 
 ## 1. 01 Hero
 
-- **Use case:** `ui-mockup` for the complete portfolio screen; `stylized-concept` for the faceless mannequin, orbital ring, and architectural background only.
+- **Use case:** `ui-mockup` for a text-free spatial/layout reference of the hero frame; `stylized-concept` for the faceless mannequin, orbital ring, and architectural background only. All raster output remains scene art only; deterministic HTML/CSS adds every word, navigation item, label, and control later.
 - **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Keep essential subjects inside generous safe margins and preserve clean responsive crop zones.
 - **Scene/backdrop:** A black-to-charcoal editorial stage built from a strict architectural grid, deep matte planes, a faint horizon, and subtle metallic reflections. The atmosphere is premium, quiet, and spatial rather than futuristic or game-like.
 - **Subject:** A completely faceless polished-chrome mannequin bust on the right, encircled by one thin chrome orbital ring. The bust is a neutral placeholder, not a portrait. It must have a smooth blank head with no eyes, eye sockets, eyebrows, nose, nostrils, mouth, ears, skin, hair, facial planes, gender cues, ethnicity cues, age cues, expression, or recognizable human identity. Reserve a clear label area near the bust for the later composited text `YOUR PORTRAIT HERE`. Gemini must replace only this labeled mannequin layer when Omer later supplies a portrait; the grid, lighting, type, and orbital ring remain unchanged.
@@ -20,7 +20,7 @@ Generated scene art must not attempt small interface text. Composite the exact c
 
 ## 2. 02 Client Work
 
-- **Use case:** `ui-mockup` for the complete client-work screen; `stylized-concept` for the chrome stage, depth rails, and empty browser-slab forms only.
+- **Use case:** `ui-mockup` for a text-free spatial/layout reference of the client-work frame; `stylized-concept` for the chrome stage, depth rails, and empty browser-slab forms only. All raster output remains scene art only; deterministic HTML/CSS adds every word, navigation item, project label, URL, control, and real site capture later.
 - **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Allow the layered card cluster to flatten cleanly into responsive grids.
 - **Scene/backdrop:** A dark charcoal editorial gallery with a receding floor grid, subtle chrome rails, and a black architectural void. It should feel like a premium product display for shipped websites.
 - **Subject:** Five distinct browser slabs layered in controlled 3D depth. Each slab has a credible browser-panel silhouette and a large uninterrupted capture area where the real supplied site screenshot will be inserted later. The five real captures must become the card faces; generic generated websites are not acceptable substitutes.
@@ -34,7 +34,7 @@ Generated scene art must not attempt small interface text. Composite the exact c
 
 ## 3. 03 Engineering Core
 
-- **Use case:** `ui-mockup` for the complete engineering screen; `stylized-concept` for the infrastructure core and connected node field only.
+- **Use case:** `ui-mockup` for a text-free spatial/layout reference of the engineering frame; `stylized-concept` for the infrastructure core and connected node field only. All raster output remains scene art only; deterministic HTML/CSS adds every word, navigation item, capability label, and control later.
 - **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Keep the central core and label anchors inside safe margins for later responsive rearrangement.
 - **Scene/backdrop:** A black architectural chamber containing a single precision-engineered infrastructure core—part motherboard, part server backplane, part routing fabric—surrounded by sparse, orderly nodes.
 - **Subject:** One central black-and-liquid-chrome core with six abstract connection paths. Orange energy appears as restrained signal pulses traveling through machined channels. The visual should suggest networks, security appliances, servers, virtualization, storage, backup, discovery, and automation without drawing a literal or real topology.
@@ -48,7 +48,7 @@ Generated scene art must not attempt small interface text. Composite the exact c
 
 ## 4. 04 Visual CV
 
-- **Use case:** `ui-mockup` for the complete visual-CV screen; `stylized-concept` for the small chrome bridge object and subtle background relief only.
+- **Use case:** `ui-mockup` for a text-free spatial/layout reference of the visual-CV frame; `stylized-concept` for the small chrome bridge object and subtle background relief only. All raster output remains scene art only; deterministic HTML/CSS adds every word, navigation item, capability group, and control later.
 - **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Preserve generous margins and a clear editorial reading order.
 - **Scene/backdrop:** A deliberate warm off-white interruption in the dark sequence, using a paper-like architectural field, faint grid lines, and sparse graphite rules. No dark full-screen background on this screen.
 - **Subject:** A small abstract liquid-chrome bridge object in the margin joins two disciplined visual zones: digital products and physical infrastructure. It is supporting sculpture, not a hero that competes with the capability list.
@@ -62,7 +62,7 @@ Generated scene art must not attempt small interface text. Composite the exact c
 
 ## 5. 05 Contact
 
-- **Use case:** `ui-mockup` for the complete contact/conversion screen; `stylized-concept` for the chrome torus or sphere and architectural backdrop only.
+- **Use case:** `ui-mockup` for a text-free spatial/layout reference of the contact/conversion frame; `stylized-concept` for the chrome torus or sphere and architectural backdrop only. All raster output remains scene art only; deterministic HTML/CSS adds every word, navigation item, label, link, and control later.
 - **Format intent:** 16:9 landscape, composed for a final 1920×1080 frame. Keep the CTA and contact slots in a protected foreground region.
 - **Scene/backdrop:** A near-black closing stage with a charcoal wall/floor intersection, a restrained orange horizon cut, and a single monumental chrome object floating or resting in the right half.
 - **Subject:** One polished liquid-chrome torus or sphere with a precise machined opening, subtle orange reflection, and no logo. The object conveys completion, continuity, and engineering precision without becoming a product or mascot.
@@ -71,5 +71,5 @@ Generated scene art must not attempt small interface text. Composite the exact c
 - **Lighting:** Focused white rim light and soft overhead key on the chrome form, deep charcoal falloff, and a subtle orange bounce aligned with the CTA zone.
 - **Color:** Black and charcoal dominant; silver chrome; off-white typography zones; one restrained electric-orange CTA accent.
 - **Text handling:** Generate scene art without words, email addresses, phone numbers, handles, logos, pseudo-text, or small text. Composite the exact navigation, headline, supporting copy, CTA, GitHub identity, and the two placeholder labels later.
-- **Constraints:** Do not invent an email address, WhatsApp number, phone number, social handle, QR code, office address, availability claim, testimonial, or response-time promise. `github.com/omersalem` is the only verified identity string and must be added in the deterministic interface layer.
+- **Constraints:** Do not invent an email address, WhatsApp number, phone number, social handle, QR code, office address, availability claim, testimonial, or response-time promise. In the deterministic interface layer, `LET'S BUILD` targets the in-page `#contact-options` region without form submission; `WHATSAPP` and `EMAIL` are non-interactive labeled placeholders; and `github.com/omersalem` is a real link to `https://github.com/omersalem`.
 - **Avoid:** invented contact details; fake forms populated with data; generic social icons; stock people; fake testimonials; awards; green circuitry; blue/purple gaming neon; cartoon objects; excessive glassmorphism; busy particle fields; watermarks.

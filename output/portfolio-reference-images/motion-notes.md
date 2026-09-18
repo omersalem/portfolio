@@ -2,6 +2,8 @@
 
 Motion is restrained, slow, and nonessential. It may reinforce depth and focus, but all copy, links, controls, project identities, and capability information must be fully understandable in a static frame. Animate only transform and opacity where practical; do not use motion to reveal required information permanently.
 
+Pause every continuous animation loop when its section is outside the viewport and whenever `document.hidden` is `true`. Use `IntersectionObserver` and the Page Visibility API to stop `requestAnimationFrame` work rather than merely hiding it; resume from the preserved state only after both the section and document are visible.
+
 ## 01-hero.png
 
 - **Camera movement:** On entry, use a 900–1200ms shallow camera settle: at most 12px of lateral parallax and less than 1° of perspective change. After the settle, the camera remains essentially locked; pointer movement may drive no more than 4px of depth separation.
@@ -38,6 +40,6 @@ Motion is restrained, slow, and nonessential. It may reinforce depth and focus, 
 
 - **Camera movement:** Use a nearly static camera. A single 700–900ms, 8px pull-back on entry can reveal the closing composition, then stop completely.
 - **Object motion:** Rotate the chrome torus or sphere at one revolution per 32–44 seconds, with no bobbing. A soft orange reflection may travel across its lower edge once every 10–14 seconds.
-- **Hover response:** `LET'S BUILD` may use a subtle magnetic attraction capped at 5px, a 2px lift, and an orange fill/outline transition over 180–220ms. `WHATSAPP`, `EMAIL`, and `github.com/omersalem` use simple underline or border changes shared by pointer hover and keyboard focus.
-- **Duration/tempo:** Calm and confident. Entry completes within 900ms; the conversion controls respond promptly and the decorative object remains slow.
-- **Reduced motion:** Under `prefers-reduced-motion: reduce`, remove pull-back, object rotation, reflection sweep, and magnetic response. Keep the object static and preserve immediate, high-contrast hover/focus states; any fade is 120ms or less.
+- **Hover response:** `LET'S BUILD` may use a subtle magnetic attraction capped at 5px, a 2px lift, and an orange fill/outline transition over 180–220ms; activating it scrolls to the in-page `#contact-options` region and never submits a form. The real `github.com/omersalem` link uses a simple underline or border change shared by pointer hover and keyboard focus. `WHATSAPP` and `EMAIL` remain non-interactive labeled placeholders with no hover, focus, pointer, or keyboard response until real destinations exist.
+- **Duration/tempo:** Calm and confident. Entry completes within 900ms; the CTA and GitHub link respond promptly and the decorative object remains slow.
+- **Reduced motion:** Under `prefers-reduced-motion: reduce`, remove pull-back, object rotation, reflection sweep, and magnetic response. Keep the object static and preserve immediate, high-contrast hover/focus states on the CTA and GitHub link; the two placeholders remain static labels. Any fade is 120ms or less.
