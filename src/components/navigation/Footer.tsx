@@ -34,6 +34,8 @@ export const Footer: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
+                target={item.href.startsWith('#') ? undefined : '_blank'}
+                rel={item.href.startsWith('#') ? undefined : 'noopener noreferrer'}
                 className="touch-target text-xs font-mono tracking-widest text-neutral-400 hover:text-chrome-orange transition-colors focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none"
               >
                 {item.label}

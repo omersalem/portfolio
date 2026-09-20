@@ -1,8 +1,979 @@
-<!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Omer Salem CV</title></head>
-<body style="font-family:Arial;max-width:800px;margin:40px auto;line-height:1.6">
-<h1>Omer Salem</h1><h2>Computer Engineer</h2>
-<p>Infrastructure, security, enterprise systems, and modern web engineering.</p>
-<h3>Experience</h3><ul><li>Enterprise infrastructure and security engineering</li><li>Modern web platforms and deployment</li></ul>
-<h3>Skills</h3><p>React, TypeScript, Three.js, Cisco networking, FortiGate, Active Directory, Exchange Server, SCCM.</p>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omer Salem — Professional CV</title>
+  <meta
+    name="description"
+    content="Professional CV of Omer Salem — Computer Engineer specializing in infrastructure, cybersecurity, enterprise systems, and modern web engineering."
+  />
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-soft: #0b0e13;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-strong: rgba(255, 255, 255, 0.07);
+      --stroke: rgba(255, 255, 255, 0.1);
+      --text: #f3f4f6;
+      --muted: #a1a1aa;
+      --accent: #ff6a00;
+      --accent-soft: rgba(255, 106, 0, 0.18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 106, 0, 0.14), transparent 22%),
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.07), transparent 16%),
+        radial-gradient(circle at 70% 75%, rgba(255, 106, 0, 0.08), transparent 18%),
+        linear-gradient(180deg, #050608 0%, #090c11 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.25;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.3));
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 32px 20px 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(255, 106, 0, 0.8);
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font-weight: 600;
+      transition: 0.2s ease;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 106, 0, 0.55);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #ff7a14 0%, #ff5a00 100%);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.45fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    .hero-card,
+    .panel,
+    .stat,
+    .skill-group,
+    .timeline-item,
+    .project-item,
+    .contact-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card {
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,106,0,0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .name {
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+
+    .title {
+      margin: 18px 0 10px;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 700;
+      color: #f7f7f8;
+    }
+
+    .summary {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 60ch;
+      margin-top: 14px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #f5f5f5;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .meta-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .meta-label {
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .panel-list {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      padding: 22px 18px;
+      text-align: left;
+      transform: perspective(1200px) rotateX(0deg);
+      transition: transform 0.25s ease;
+    }
+
+    .stat:hover {
+      transform: perspective(1200px) rotateX(4deg) translateY(-4px);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      padding: 22px;
+      position: relative;
+    }
+
+    .timeline-item .role {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .timeline-item .company {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item .period {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+
+    .timeline-item ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .skill-group {
+      padding: 22px;
+    }
+
+    .skill-group h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      font-size: 0.9rem;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #f4f4f5;
+    }
+
+    .projects {
+      display: grid;
+      gap: 16px;
+    }
+
+    .project-item {
+      padding: 22px;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      flex-wrap: wrap;
+    }
+
+    .project-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .project-summary {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mini-card p,
+    .mini-card li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .mini-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 20px;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      margin: 0;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .stats,
+      .contact-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        padding: 22px 14px 56px;
+      }
+
+      .hero-card,
+      .panel,
+      .timeline-item,
+      .skill-group,
+      .project-item,
+      .contact-card,
+      .stat {
+        padding: 18px;
+      }
+
+      .stats,
+      .contact-grid,
+      .hero-meta,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .name {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #111;
+      }
+
+      body::before,
+      .topbar,
+      .footer-note {
+        display: none !important;
+      }
+
+      .hero-card,
+      .panel,
+      .stat,
+      .skill-group,
+      .timeline-item,
+      .project-item,
+      .contact-card {
+        box-shadow: none;
+        background: #fff;
+        color: #111;
+        border: 1px solid #ddd;
+      }
+
+      .summary,
+      .project-summary,
+      .panel p,
+      .mini-card p,
+      .mini-card li,
+      .timeline-item ul,
+      .section-header p,
+      .stat-label,
+      .tag,
+      .pill,
+      .contact-card p,
+      .contact-card a {
+        color: #333 !important;
+      }
+
+      .panel-title,
+      .company,
+      .mini-card strong,
+      .contact-card h3,
+      .eyebrow,
+      .stat-number {
+        color: #d45500 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Omer Salem • Professional CV</span>
+      </div>
+      <div class="top-actions">
+        <a class="btn" href="/">Back to Portfolio</a>
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Computer Engineer</div>
+        <h1 class="name">Omer<br />Salem</h1>
+        <div class="title">Infrastructure, Security, Enterprise Systems & Modern Web Engineering</div>
+        <p class="summary">
+          Computer Engineer with strong hands-on experience in enterprise infrastructure,
+          cybersecurity operations, modern web platforms, and technical solution design.
+          Experienced in building secure systems, production-ready websites, and practical
+          engineering solutions that connect business goals with technical execution.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">7+ Years Experience</span>
+          <span class="pill">Ministry of National Economy</span>
+          <span class="pill">Web Platforms</span>
+          <span class="pill">Cybersecurity</span>
+          <span class="pill">Infrastructure</span>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-box">
+            <div class="meta-label">Core Focus</div>
+            <div class="meta-value">Infrastructure • Security • Enterprise Systems • Web Engineering</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Portfolio Strength</div>
+            <div class="meta-value">3D product presentation, full-stack delivery, deployment, and system architecture</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="panel">
+          <div class="panel-title">Professional Profile</div>
+          <h3>Engineering value with technical depth</h3>
+          <p>
+            Combines enterprise IT knowledge with modern web product execution. Delivers
+            infrastructure-driven thinking, secure architecture, and high-end presentation quality.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Key Capabilities</div>
+          <ul class="panel-list">
+            <li>Enterprise infrastructure and systems administration</li>
+            <li>Firewall, Active Directory, and Microsoft environment management</li>
+            <li>React, TypeScript, and premium UI engineering</li>
+            <li>Deployment readiness and technical problem-solving</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Impact Snapshot</h2>
+        <p>Quick overview of the engineering profile, portfolio direction, and delivery scope.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">7+</div>
+          <div class="stat-label">Years of enterprise environment experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Featured portfolio projects with case-study support</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Main capability pillars: Infrastructure, Security, Web, Systems</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Operational mindset for reliability and support readiness</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <div>
+        <div class="section-header">
+          <h2>Professional Experience</h2>
+          <p>Core background that supports both the enterprise engineering profile and the portfolio’s technical direction.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="role">Computer Engineer / Infrastructure & Systems Specialist</div>
+            <div class="company">Ministry of National Economy — Ramallah</div>
+            <div class="period">7 Years</div>
+            <ul>
+              <li>Supported enterprise infrastructure, systems, and operational technology environments.</li>
+              <li>Worked across cybersecurity, identity services, network-connected systems, and service continuity.</li>
+              <li>Handled practical engineering responsibilities involving reliability, administration, and technical troubleshooting.</li>
+              <li>Built a strong foundation in structured system thinking, production discipline, and security-first implementation.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="role">Web Engineering & Digital Platform Development</div>
+            <div class="company">Portfolio & Client Projects</div>
+            <div class="period">Ongoing</div>
+            <ul>
+              <li>Designed and built modern websites and digital experiences for real businesses and organizations.</li>
+              <li>Focused on responsive UX, visual presentation, product clarity, and client-facing conversion flow.</li>
+              <li>Used React and TypeScript to create maintainable interfaces with high-end design quality.</li>
+              <li>Translated technical capability into polished commercial and portfolio-ready products.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header">
+          <h2>Skills Matrix</h2>
+          <p>Grouped to show both enterprise depth and modern frontend capability.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Web Engineering</h3>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML / CSS</span>
+              <span class="tag">Responsive UI</span>
+              <span class="tag">Component Systems</span>
+              <span class="tag">Three.js</span>
+              <span class="tag">Frontend Architecture</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Infrastructure & Systems</h3>
+            <div class="tags">
+              <span class="tag">Cisco Networking</span>
+              <span class="tag">Active Directory</span>
+              <span class="tag">Exchange Server</span>
+              <span class="tag">SCCM</span>
+              <span class="tag">Enterprise Systems</span>
+              <span class="tag">System Administration</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Security</h3>
+            <div class="tags">
+              <span class="tag">FortiGate</span>
+              <span class="tag">Firewall Operations</span>
+              <span class="tag">Identity & Access</span>
+              <span class="tag">Secure Architecture</span>
+              <span class="tag">Operational Hardening</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Delivery Strengths</h3>
+            <div class="tags">
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Deployment Readiness</span>
+              <span class="tag">Technical Communication</span>
+              <span class="tag">System Thinking</span>
+              <span class="tag">Client-Facing Presentation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Selected Project Highlights</h2>
+        <p>Condensed project view aligned with the portfolio case-study system.</p>
+      </div>
+
+      <div class="projects">
+        <div class="project-item">
+          <div class="project-top">
+            <div>
+              <h3>Almalaki Store</h3>
+              <p class="project-summary">Modern commerce experience designed to improve product presentation and customer ordering flow.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <strong>Challenge</strong>
+              <p>Build a modern commerce experience that supports product discovery and customer ordering.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Solution</strong>
+              <p>Designed a responsive storefront with optimized browsing, ordering flow, and deployment-ready frontend architecture.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Architecture</strong>
+              <ul>
+                <li>React frontend</li>
+                <li>Responsive component system</li>
+                <li>Cloud deployment pipeline</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Technology</strong>
+              <p>React, TypeScript, frontend architecture, responsive UI</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-top">
+            <div>
+              <h3>Bazaria Council</h3>
+              <p class="project-summary">Public-facing digital portal for local communication and information delivery.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <strong>Challenge</strong>
+              <p>Create a public digital portal for municipal communication.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Solution</strong>
+              <p>Delivered a clean, accessible web presence focused on information clarity and citizen communication.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Architecture</strong>
+              <ul>
+                <li>Frontend application</li>
+                <li>Static deployment</li>
+                <li>Content-driven pages</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Technology</strong>
+              <p>React, TypeScript, responsive UI, content architecture</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-top">
+            <div>
+              <h3>handmade.ps</h3>
+              <p class="project-summary">Premium storefront concept for handcrafted products with stronger visual merchandising.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <strong>Challenge</strong>
+              <p>Present handcrafted products through a premium digital shopping experience.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Solution</strong>
+              <p>Built a refined storefront structure with better product discovery and stronger visual presentation.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Architecture</strong>
+              <ul>
+                <li>Component-based storefront</li>
+                <li>Responsive product gallery</li>
+                <li>Checkout integration layer</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Technology</strong>
+              <p>React, TypeScript, storefront UI, responsive commerce design</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-top">
+            <div>
+              <h3>Pistachio</h3>
+              <p class="project-summary">Food ordering experience designed around speed, mobile usability, and direct action.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <strong>Challenge</strong>
+              <p>Create a fast ordering experience for food customers.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Solution</strong>
+              <p>Designed a streamlined mobile-friendly interface with clear menu access and fast communication flow.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Architecture</strong>
+              <ul>
+                <li>Menu interface</li>
+                <li>Mobile ordering flow</li>
+                <li>Direct communication channel</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Technology</strong>
+              <p>Responsive UI, action-focused UX, frontend implementation</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-top">
+            <div>
+              <h3>Lama Home</h3>
+              <p class="project-summary">Elegant digital storefront for home accessories with emphasis on clean layout and product clarity.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <strong>Challenge</strong>
+              <p>Develop an elegant home accessories commerce platform.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Solution</strong>
+              <p>Created a refined product presentation experience with clean structure and optimized asset usage.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Architecture</strong>
+              <ul>
+                <li>Product catalog</li>
+                <li>Responsive layout system</li>
+                <li>Optimized asset delivery</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Technology</strong>
+              <p>React, TypeScript, responsive layout, asset optimization</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Contact & Availability</h2>
+        <p>Clear contact paths for recruiters, employers, and clients.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Role Focus</h3>
+          <p>Computer Engineer</p>
+        </div>
+        <div class="contact-card">
+          <h3>Specialization</h3>
+          <p>Infrastructure, Security, Systems, Web Engineering</p>
+        </div>
+        <div class="contact-card">
+          <h3>Portfolio</h3>
+          <a href="/">Open Main Portfolio</a>
+        </div>
+        <div class="contact-card">
+          <h3>Availability</h3>
+          <p>Open to technical opportunities and project collaboration</p>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        This CV is part of the Omer Salem portfolio system and is designed for both screen presentation and PDF export.
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -76,17 +76,21 @@ export const Navbar: React.FC = () => {
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    closeMenu(false);
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      closeMenu(false);
 
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      if (reducedMotion) {
-        element.scrollIntoView({ behavior: 'auto' });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth' });
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        if (reducedMotion) {
+          element.scrollIntoView({ behavior: 'auto' });
+        } else {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       }
+    } else {
+      closeMenu(false);
     }
   };
 
@@ -146,6 +150,8 @@ export const Navbar: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
+                target={item.href.startsWith('#') ? undefined : '_blank'}
+                rel={item.href.startsWith('#') ? undefined : 'noopener noreferrer'}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className="touch-target text-xs font-mono tracking-widest text-neutral-300 hover:text-chrome-orange transition-colors relative py-1 focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none rounded-sm after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-chrome-orange hover:after:w-full after:transition-all"
               >
@@ -197,6 +203,8 @@ export const Navbar: React.FC = () => {
                 key={item.href}
                 ref={idx === 0 ? firstLinkRef : undefined}
                 href={item.href}
+                target={item.href.startsWith('#') ? undefined : '_blank'}
+                rel={item.href.startsWith('#') ? undefined : 'noopener noreferrer'}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className="touch-target text-2xl sm:text-3xl font-mono tracking-widest text-neutral-200 hover:text-chrome-orange transition-colors flex items-center justify-between border-b border-chrome-border/60 pb-4 focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none"
               >

@@ -5,6 +5,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'ENGINEERING', href: '#engineering' },
   { label: 'PROFILE', href: '#profile' },
   { label: 'CONTACT', href: '#contact' },
+  { label: 'CV', href: '/cv.html' },
 ];
 
 export const PROJECTS: Project[] = [
