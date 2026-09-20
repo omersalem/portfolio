@@ -142,6 +142,13 @@ export const ContactSection: React.FC = () => {
                 </span>
               </div>
 
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {["Web Platforms", "Infrastructure", "Security", "Consultation"].map((service) => (
+                  <a key={service} href={`https://wa.me/970599228979?text=${encodeURIComponent(`Hello Omer, I need help with ${service}`)}`} target="_blank" rel="noopener noreferrer" className="p-3 rounded border border-chrome-border bg-chrome-charcoal text-xs font-mono text-neutral-300 hover:border-chrome-orange hover:text-white transition-colors">
+                    {service}
+                  </a>
+                ))}
+              </div>
               <div className="pt-2 flex items-center space-x-2 text-[11px] font-mono text-neutral-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Available for high-performance web engineering and infrastructure consulting.</span>
@@ -158,3 +165,4 @@ export const ContactSection: React.FC = () => {
     </section>
   );
 };
+

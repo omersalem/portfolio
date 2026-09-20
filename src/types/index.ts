@@ -59,3 +59,14 @@ export interface EffectSettings {
   saveData: boolean;
   toggleReducedEffects: () => void;
 }
+
+
+export interface ProjectCaseStudy {
+  projectId: string;
+  challenge: string;
+  solution: string;
+  architecture: string[];
+  technologies: string[];
+  screenshots: string[];
+  results: string[];
+}

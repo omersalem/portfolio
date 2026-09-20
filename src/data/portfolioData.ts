@@ -13,7 +13,7 @@ export const PROJECTS: Project[] = [
     name: 'Almalaki Store',
     url: 'https://almalakistore.ps/',
     displayUrl: 'almalakistore.ps',
-    image: '/references/almalaki-store.png',
+    image: '/references/almalaki-store.webp',
     description: 'Premier confectionery and cake supplies e-commerce platform featuring multi-currency commerce, curated catalog browsing, and mobile app integration.',
     ariaLabel: 'View Almalaki Store at almalakistore.ps',
     tags: ['E-Commerce', 'Bilingual Storefront', 'PWA'],
@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     name: 'Bazaria Council',
     url: 'https://bazariacouncil.pages.dev/',
     displayUrl: 'bazariacouncil.pages.dev',
-    image: '/references/bazaria-council.png',
+    image: '/references/bazaria-council.webp',
     description: 'Official municipal portal providing citizen digital public services, official announcements, community tracking, and civic engagement.',
     ariaLabel: 'View Bazaria Council at bazariacouncil.pages.dev',
     tags: ['Civic Portal', 'Cloudflare Pages', 'Public Services'],
@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     name: 'handmade.ps',
     url: 'https://handmade.ps/',
     displayUrl: 'handmade.ps',
-    image: '/references/handmade-ps.png',
+    image: '/references/handmade-ps.webp',
     description: 'Artisanal digital boutique for handcrafted ceramics, bespoke gifts, and specialty home items with streamlined catalog navigation.',
     ariaLabel: 'View handmade.ps at handmade.ps',
     tags: ['Artisanal Store', 'Design System', 'Direct Checkout'],
@@ -43,7 +43,7 @@ export const PROJECTS: Project[] = [
     name: 'Pistachio',
     url: 'https://postachio.pages.dev/',
     displayUrl: 'postachio.pages.dev',
-    image: '/references/pistachio.png',
+    image: '/references/pistachio.webp',
     description: 'Gourmet dessert and fresh pastry ordering interface engineered with rapid category filtering and WhatsApp direct customer ordering.',
     ariaLabel: 'View Pistachio at postachio.pages.dev',
     tags: ['Gourmet Food', 'Order Flow', 'Responsive Web'],
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     name: 'Lama Home',
     url: 'https://lamastorev2.pages.dev/',
     displayUrl: 'lamastorev2.pages.dev',
-    image: '/references/lama-home.png',
+    image: '/references/lama-home.webp',
     description: 'Curated home accessories and artisanal decor e-commerce store with high-contrast aesthetic imagery and secure shopping flow.',
     ariaLabel: 'View Lama Home at lamastorev2.pages.dev',
     tags: ['Home Accessories', 'Commerce UX', 'Fast Fulfillment'],
@@ -218,3 +218,55 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     highlights: ['FortiGate & F5 WAF Defense', 'Cisco Core Switching & Routers', 'Active Directory DS & GPO', 'Exchange Server & SCCM'],
   },
 ];
+
+
+export const PROJECT_CASE_STUDIES = [
+  {
+    projectId: 'almalaki',
+    challenge: 'Build a modern commerce experience that supports product discovery and customer ordering.',
+    solution: 'Designed a responsive storefront with optimized browsing, ordering flow, and deployment-ready frontend architecture.',
+    architecture: ['React frontend', 'Responsive component system', 'Cloud deployment pipeline'],
+    technologies: ['React', 'TypeScript', 'PWA', 'Cloudflare'],
+    screenshots: ['/references/almalaki-store.webp'],
+    results: ['Improved digital storefront presence', 'Mobile-first customer experience']
+  },
+  {
+    projectId: 'bazaria',
+    challenge: 'Create a public digital portal for municipal communication.',
+    solution: 'Implemented a fast civic website structure focused on accessibility and information delivery.',
+    architecture: ['Frontend application', 'Static deployment', 'Content driven pages'],
+    technologies: ['React', 'Cloudflare Pages', 'TypeScript'],
+    screenshots: ['/references/bazaria-council.webp'],
+    results: ['Fast public access', 'Responsive civic interface']
+  },
+  {
+    projectId: 'handmade',
+    challenge: 'Present handcrafted products through a premium digital shopping experience.',
+    solution: 'Created a visual commerce interface focused on storytelling, product discovery, and mobile usability.',
+    architecture: ['Component based storefront', 'Responsive product gallery', 'Checkout integration layer'],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Responsive UX'],
+    screenshots: ['/references/handmade-ps.webp'],
+    results: ['Premium product presentation', 'Simplified browsing experience']
+  },
+  {
+    projectId: 'pistachio',
+    challenge: 'Create a fast ordering experience for food customers.',
+    solution: 'Built a responsive menu and ordering flow optimized for quick customer interaction.',
+    architecture: ['Menu interface', 'Mobile ordering flow', 'Direct communication channel'],
+    technologies: ['React', 'TypeScript', 'Cloud deployment'],
+    screenshots: ['/references/pistachio.webp'],
+    results: ['Faster product discovery', 'Mobile friendly ordering']
+  },
+  {
+    projectId: 'lama-home',
+    challenge: 'Develop an elegant home accessories commerce platform.',
+    solution: 'Designed a clean catalog experience with emphasis on imagery, navigation, and conversion.',
+    architecture: ['Product catalog', 'Responsive layout system', 'Optimized asset delivery'],
+    technologies: ['React', 'TypeScript', 'Tailwind CSS'],
+    screenshots: ['/references/lama-home.webp'],
+    results: ['Improved shopping presentation', 'Consistent brand experience']
+  }
+] as const;
+
+
+

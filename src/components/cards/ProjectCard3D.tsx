@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { Project } from '../../types';
+import { useState as useLocalState } from 'react';
+import { PROJECT_CASE_STUDIES } from '../../data/portfolioData';
+import { CaseStudyModal } from './CaseStudyModal';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
 
 interface ProjectCard3DProps {
@@ -11,6 +14,7 @@ interface ProjectCard3DProps {
 }
 
 export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, isFifth = false }) => {
+  const [showCaseStudy, setShowCaseStudy] = useLocalState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -87,6 +91,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
   };
 
   return (
+    <>
     <div
       className={`flex flex-col ${
         isFifth ? 'md:col-span-2 md:w-1/2 md:mx-auto lg:col-span-1 lg:w-full lg:mx-0' : ''
@@ -201,6 +206,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
               src={project.image}
               alt=""
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-top select-none"
               style={
                 disable3D
@@ -281,8 +287,8 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
                 className="mt-4 flex items-center justify-between text-xs font-mono text-chrome-orange pt-2"
                 style={disable3D ? {} : { transform: 'translateZ(18px)' }}
               >
-                <span className="font-semibold underline underline-offset-4 group-hover:tracking-wider transition-all">
-                  VISIT LIVE PLATFORM
+                <span onClick={(e)=>{e.preventDefault();setShowCaseStudy(true)}} className="font-semibold underline underline-offset-4 group-hover:tracking-wider transition-all cursor-pointer">
+                  VIEW CASE STUDY
                 </span>
                 <span className="text-chrome-orange text-sm font-bold transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">
                   ↗
@@ -293,5 +299,13 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
         </a>
       </motion.div>
     </div>
+      {showCaseStudy && PROJECT_CASE_STUDIES.find((item)=>item.projectId===project.id) && (
+        <CaseStudyModal study={PROJECT_CASE_STUDIES.find((item)=>item.projectId===project.id)! as any} onClose={()=>setShowCaseStudy(false)} />
+      )}
+    </>
   );
 };
+
+
+
+

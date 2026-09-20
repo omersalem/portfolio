@@ -644,7 +644,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         /* Static High-Fidelity Fallback */
         <div className="relative w-full h-full flex items-center justify-center">
           <img
-            src="/references/almalaki-store.png"
+            src="/references/almalaki-store.webp"
             alt="3D Engineering Laptop Interface"
             className="w-[85%] h-auto rounded-lg shadow-2xl border border-chrome-border/60 opacity-90 filter contrast-105"
             width={600}

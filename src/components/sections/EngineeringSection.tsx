@@ -92,6 +92,24 @@ export const EngineeringSection: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Live infrastructure style telemetry panel */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            ['FIREWALL', 'ONLINE'],
+            ['CORE NETWORK', 'STABLE'],
+            ['AI AGENTS', 'ACTIVE'],
+            ['SERVICES', '24/24'],
+          ].map(([name, status]) => (
+            <div key={name} className="rounded-lg border border-chrome-border/70 bg-chrome-charcoal/70 p-4 font-mono">
+              <div className="text-[10px] tracking-widest text-neutral-500">{name}</div>
+              <div className="mt-2 flex items-center gap-2 text-sm text-white">
+                <span className="h-2 w-2 rounded-full bg-chrome-orange animate-pulse" />
+                {status}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

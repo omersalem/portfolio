@@ -52,6 +52,15 @@ export const VisualCVSection: React.FC = () => {
 
               <div className="w-12 h-1 bg-chrome-orange mb-6" />
 
+              <a
+                href="/cv.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex mb-6 px-5 py-3 border border-cv-border rounded font-mono text-xs uppercase tracking-wider hover:border-chrome-orange hover:text-chrome-orange transition-colors"
+              >
+                View Professional CV
+              </a>
+
               <p className="text-base font-sans text-neutral-800 leading-relaxed mb-4 font-medium">
                 Most web developers only understand code inside the browser. Most systems engineers rarely craft polished consumer storefronts.
               </p>
@@ -247,3 +256,4 @@ export const VisualCVSection: React.FC = () => {
     </section>
   );
 };
+
