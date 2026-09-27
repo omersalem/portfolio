@@ -16,12 +16,68 @@ const DISCIPLINE_ICONS = [
   ShieldCheck,  // 04 Enterprise Firewalls, Networks, Active Directory
 ];
 
+const DISCIPLINE_THEMES = [
+  {
+    accent: '#00F0FF',
+    glowColor: 'rgba(0, 240, 255, 0.35)',
+    spotlight: 'rgba(0, 240, 255, 0.18)',
+    badgeBg: 'bg-cyan-500/15',
+    badgeBorder: 'border-cyan-500/40',
+    badgeText: 'text-cyan-400',
+    iconBg: 'bg-cyan-500/15',
+    iconBorder: 'border-cyan-500/40',
+    iconText: 'text-cyan-400',
+    ledColor: 'bg-cyan-400',
+    checkColor: 'text-cyan-400',
+  },
+  {
+    accent: '#FF5500',
+    glowColor: 'rgba(255, 85, 0, 0.35)',
+    spotlight: 'rgba(255, 85, 0, 0.18)',
+    badgeBg: 'bg-orange-500/15',
+    badgeBorder: 'border-orange-500/40',
+    badgeText: 'text-orange-400',
+    iconBg: 'bg-orange-500/15',
+    iconBorder: 'border-orange-500/40',
+    iconText: 'text-orange-400',
+    ledColor: 'bg-orange-400',
+    checkColor: 'text-orange-400',
+  },
+  {
+    accent: '#8B5CF6',
+    glowColor: 'rgba(139, 92, 246, 0.35)',
+    spotlight: 'rgba(139, 92, 246, 0.18)',
+    badgeBg: 'bg-purple-500/15',
+    badgeBorder: 'border-purple-500/40',
+    badgeText: 'text-purple-400',
+    iconBg: 'bg-purple-500/15',
+    iconBorder: 'border-purple-500/40',
+    iconText: 'text-purple-400',
+    ledColor: 'bg-purple-400',
+    checkColor: 'text-purple-400',
+  },
+  {
+    accent: '#10B981',
+    glowColor: 'rgba(16, 185, 129, 0.35)',
+    spotlight: 'rgba(16, 185, 129, 0.18)',
+    badgeBg: 'bg-emerald-500/15',
+    badgeBorder: 'border-emerald-500/40',
+    badgeText: 'text-emerald-400',
+    iconBg: 'bg-emerald-500/15',
+    iconBorder: 'border-emerald-500/40',
+    iconText: 'text-emerald-400',
+    ledColor: 'bg-emerald-400',
+    checkColor: 'text-emerald-400',
+  },
+];
+
 export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const { reducedMotion, reducedEffects } = useEffectSettings();
 
+  const theme = DISCIPLINE_THEMES[index % DISCIPLINE_THEMES.length];
   const disable3D = reducedMotion || reducedEffects;
 
   const mouseX = useMotionValue(0);
@@ -43,7 +99,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
   const spotlightBg = useTransform(
     [mousePixelX, mousePixelY],
     ([x, y]) =>
-      `radial-gradient(340px circle at ${x}px ${y}px, rgba(255, 85, 0, 0.16), rgba(255, 255, 255, 0.8) 35%, transparent 75%)`
+      `radial-gradient(340px circle at ${x}px ${y}px, ${theme.spotlight}, transparent 75%)`
   );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -108,11 +164,11 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
         {/* Dynamic Floor Shadow */}
         {!disable3D && (
           <motion.div
-            className="absolute -inset-1 rounded-2xl bg-neutral-900/20 filter blur-lg pointer-events-none -z-10 transition-all duration-300"
+            className="absolute -inset-1 rounded-2xl filter blur-lg pointer-events-none -z-10 transition-all duration-300"
             style={{
-              opacity: isHighlighted ? 0.95 : 0.25,
+              opacity: isHighlighted ? 0.95 : 0.2,
               transform: isHighlighted ? 'translateY(16px) scale(0.96)' : 'translateY(4px) scale(0.94)',
-              boxShadow: isHighlighted ? '0 20px 40px -10px rgba(255, 85, 0, 0.25)' : 'none',
+              boxShadow: isHighlighted ? `0 20px 40px -10px ${theme.glowColor}` : 'none',
             }}
           />
         )}
@@ -124,12 +180,16 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
           onBlur={handleBlur}
           role="region"
           aria-label={`${group.number} ${group.title}`}
-          className={`relative h-full p-6 sm:p-7 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none flex flex-col justify-between ${
+          className={`relative h-full p-6 sm:p-7 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between ${
             isHighlighted
-              ? 'border-chrome-orange/80 bg-gradient-to-b from-white via-[#faf9f6] to-[#efeae0] shadow-xl'
-              : 'border-cv-border bg-gradient-to-b from-white/95 via-[#fcfbf9]/90 to-[#f5f2ea]/90 hover:border-neutral-400'
+              ? 'border-white/30 bg-[#0d1028] shadow-2xl'
+              : 'border-white/10 bg-[#080b1e]/90 hover:border-white/20'
           }`}
-          style={disable3D ? {} : { transformStyle: 'preserve-3d' }}
+          style={{
+            borderColor: isHighlighted ? theme.accent : undefined,
+            boxShadow: isHighlighted ? `0 0 30px ${theme.glowColor}` : undefined,
+            ...(disable3D ? {} : { transformStyle: 'preserve-3d' }),
+          }}
         >
           {/* Spotlight overlay */}
           {!disable3D && (
@@ -143,7 +203,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
           )}
 
           {/* Top highlight rail */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none z-20" />
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-20" />
 
           {/* Holographic Specular Glare Reflection on Surface */}
           {!disable3D && (
@@ -151,37 +211,52 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
               className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
               style={{
                 background:
-                  'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.7) 48%, rgba(255,85,0,0.15) 52%, transparent 65%)',
+                  'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0.05) 52%, transparent 65%)',
                 x: sheenTranslateX,
               }}
             />
           )}
 
           {/* Corner CAD Accents */}
-          <div className="absolute top-2.5 left-2.5 text-[9px] font-mono text-chrome-orange/40 pointer-events-none select-none">
+          <div
+            className="absolute top-2.5 left-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
+          >
             ┌
           </div>
-          <div className="absolute top-2.5 right-2.5 text-[9px] font-mono text-chrome-orange/40 pointer-events-none select-none">
+          <div
+            className="absolute top-2.5 right-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
+          >
             ┐
           </div>
-          <div className="absolute bottom-2.5 left-2.5 text-[9px] font-mono text-neutral-400 pointer-events-none select-none">
+          <div
+            className="absolute bottom-2.5 left-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.15)' }}
+          >
             └
           </div>
-          <div className="absolute bottom-2.5 right-2.5 text-[9px] font-mono text-neutral-400 pointer-events-none select-none">
+          <div
+            className="absolute bottom-2.5 right-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.15)' }}
+          >
             ┘
           </div>
 
           <div>
             {/* Header: Number Badge + Domain Label + LED (translateZ: 22px) */}
             <div
-              className="flex items-center justify-between mb-4 pb-2.5 border-b border-cv-border/70"
+              className="flex items-center justify-between mb-4 pb-2.5 border-b border-white/10"
               style={disable3D ? {} : { transform: 'translateZ(22px)', transformStyle: 'preserve-3d' }}
             >
               <div className="flex items-center space-x-2">
-                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold text-chrome-orange bg-chrome-orange/15 border border-chrome-orange/30 shadow-[0_0_8px_rgba(255,85,0,0.2)]">
+                <span
+                  className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold ${theme.badgeBg} border ${theme.badgeBorder} ${theme.badgeText}`}
+                  style={{ boxShadow: `0 0 10px ${theme.glowColor}` }}
+                >
                   {group.number}
                 </span>
-                <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase font-semibold">
+                <span className="text-[10px] font-mono tracking-widest text-neutral-400 uppercase font-semibold">
                   CAPABILITY DOMAIN
                 </span>
               </div>
@@ -189,12 +264,11 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
               <div className="flex items-center space-x-1.5">
                 <span
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    isHighlighted
-                      ? 'bg-chrome-orange shadow-[0_0_8px_rgba(255,85,0,0.9)] scale-110'
-                      : 'bg-emerald-600/70'
+                    isHighlighted ? `${theme.ledColor} scale-110 animate-pulse` : 'bg-neutral-600'
                   }`}
+                  style={{ boxShadow: isHighlighted ? `0 0 10px ${theme.accent}` : undefined }}
                 />
-                <span className="text-[9px] font-mono text-neutral-500 uppercase font-semibold">
+                <span className="text-[9px] font-mono text-neutral-400 uppercase font-semibold">
                   {isHighlighted ? 'ACTIVE' : 'READY'}
                 </span>
               </div>
@@ -206,23 +280,24 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
               style={disable3D ? {} : { transform: 'translateZ(28px)', transformStyle: 'preserve-3d' }}
             >
               <div
-                className={`p-2 rounded-lg border transition-all duration-300 shrink-0 mt-0.5 ${
+                className={`p-2.5 rounded-lg border transition-all duration-300 shrink-0 mt-0.5 ${
                   isHighlighted
-                    ? 'bg-chrome-orange/15 border-chrome-orange/50 text-chrome-orange shadow-[0_0_12px_rgba(255,85,0,0.2)]'
-                    : 'bg-stone-100 border-stone-200 text-neutral-700'
+                    ? `${theme.iconBg} ${theme.iconBorder} ${theme.iconText}`
+                    : 'bg-white/5 border-white/10 text-neutral-300'
                 }`}
+                style={{ boxShadow: isHighlighted ? `0 0 15px ${theme.glowColor}` : undefined }}
               >
                 <IconComponent className="w-4 h-4" />
               </div>
 
-              <h4 className="text-base sm:text-lg font-mono font-bold text-cv-dark leading-snug">
+              <h4 className="text-base sm:text-lg font-mono font-bold text-white leading-snug">
                 {group.title}
               </h4>
             </div>
 
             {/* Description (translateZ: 16px) */}
             <p
-              className="text-xs sm:text-sm font-sans text-neutral-600 leading-relaxed mb-5 pl-0.5"
+              className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed mb-5 pl-0.5"
               style={disable3D ? {} : { transform: 'translateZ(16px)' }}
             >
               {group.description}
@@ -232,12 +307,12 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
           <div>
             {/* Highlights List with Glowing Checkmarks (translateZ: 24px) */}
             <ul
-              className="space-y-2 pt-3.5 border-t border-cv-border/60"
+              className="space-y-2 pt-3.5 border-t border-white/10"
               style={disable3D ? {} : { transform: 'translateZ(24px)', transformStyle: 'preserve-3d' }}
             >
               {group.highlights.map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-2 text-xs font-sans text-neutral-800 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-chrome-orange shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start space-x-2 text-xs font-sans text-neutral-200 font-medium">
+                  <CheckCircle2 className={`w-3.5 h-3.5 ${theme.checkColor} shrink-0 mt-0.5`} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -248,3 +323,4 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
     </div>
   );
 };
+

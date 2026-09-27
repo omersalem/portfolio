@@ -7,6 +7,11 @@ export interface Project {
   description: string;
   ariaLabel: string;
   tags: string[];
+  category?: 'All' | 'E-Commerce' | 'Civic & Gov' | 'Fast Ordering';
+  accentColor?: string;
+  glowColor?: string;
+  gradientClass?: string;
+  badgeText?: string;
 }
 
 export interface NavItem {
@@ -20,6 +25,7 @@ export interface CapabilityGroup {
   title: string;
   description: string;
   highlights: string[];
+  accentColor?: string;
 }
 
 export interface InfrastructureNode {
@@ -28,6 +34,9 @@ export interface InfrastructureNode {
   label: string;
   description: string;
   technologies: string[];
+  accentColor?: string;
+  glowColor?: string;
+  domainCode?: string;
 }
 
 export interface CareerTimelineItem {

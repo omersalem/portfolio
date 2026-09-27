@@ -73,9 +73,19 @@ export const ContactLaptopCanvas: React.FC = () => {
       scene.add(keyLight);
 
       // White edge rim light
-      const rimLight = new THREE.DirectionalLight(0xffffff, 3.8);
+      const rimLight = new THREE.DirectionalLight(0xffffff, 3.2);
       rimLight.position.set(-3.5, 3, -2.5);
       scene.add(rimLight);
+
+      // Cyber Cyan Edge Rim Light
+      const cyanRimLight = new THREE.DirectionalLight(0x00f0ff, 2.8);
+      cyanRimLight.position.set(4, 2.5, -2);
+      scene.add(cyanRimLight);
+
+      // Cyber Purple Accent Backlight
+      const purpleAccent = new THREE.PointLight(0x8b5cf6, 4.5, 12);
+      purpleAccent.position.set(-2, 3, 2);
+      scene.add(purpleAccent);
 
       // Warm Electric Orange Underglow Light
       const orangeUnderglow = new THREE.PointLight(0xff5500, 7.5, 12);
@@ -83,7 +93,7 @@ export const ContactLaptopCanvas: React.FC = () => {
       scene.add(orangeUnderglow);
 
       // Screen Glow Projection Light (illuminates keyboard)
-      const screenGlow = new THREE.PointLight(0xff6611, 4.5, 5);
+      const screenGlow = new THREE.PointLight(0x00f0ff, 4.5, 5);
       screenGlow.position.set(0, 1.1, 0.3);
       scene.add(screenGlow);
 
@@ -419,31 +429,32 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.fillText('OMER SALEM // MNE RAMALLAH // INFRA & WEB BRAIN', 115, 32);
 
         // Status Badge
-        sCtx.fillStyle = 'rgba(255, 85, 0, 0.18)';
-        sCtx.strokeStyle = 'rgba(255, 85, 0, 0.5)';
+        sCtx.fillStyle = 'rgba(0, 240, 255, 0.12)';
+        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.5)';
+        sCtx.lineWidth = 1;
         sCtx.beginPath();
-        sCtx.roundRect(825, 12, 170, 28, 6);
+        sCtx.roundRect(805, 12, 190, 28, 6);
         sCtx.fill();
         sCtx.stroke();
-        sCtx.fillStyle = '#ff5500';
-        sCtx.font = 'bold 13px monospace';
-        sCtx.fillText('● STATUS: ONLINE', 840, 31);
+        sCtx.fillStyle = '#00f0ff';
+        sCtx.font = 'bold 12px monospace';
+        sCtx.fillText('● SYSTEM STATUS: ONLINE', 818, 31);
 
         // Left Column: Semantic Telemetry & Engineering Identity
         sCtx.font = '15px monospace';
         const lines = [
-          { text: '> INITIALIZING MNE RAMALLAH NODE...', color: '#6b7280' },
-          { text: 'const engineer = "OMER SALEM";', color: '#ff5500' },
-          { text: 'const org = "MINISTRY OF NATIONAL ECONOMY";', color: '#e5e7eb' },
-          { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#ffffff' },
-          { text: 'firewalls_perimeter: [', color: '#9ca3af' },
-          { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff7733' },
-          { text: '  "CISCO FMC & FTD", "SOPHOS SECURITY"', color: '#ff7733' },
-          { text: '];', color: '#9ca3af' },
-          { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#d1d5db' },
-          { text: 'network_fabric: ["CISCO CORE SWITCH", "ROUTERS"];', color: '#d1d5db' },
+          { text: '> INITIALIZING MNE RAMALLAH NODE...', color: '#60a5fa' },
+          { text: 'const engineer = "OMER SALEM";', color: '#00f0ff' },
+          { text: 'const org = "MINISTRY OF NATIONAL ECONOMY";', color: '#e2e8f0' },
+          { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#f59e0b' },
+          { text: 'perimeter_defense: [', color: '#94a3b8' },
+          { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff5500' },
+          { text: '  "CISCO FMC & FTD", "SOPHOS"', color: '#ff7733' },
+          { text: '];', color: '#94a3b8' },
+          { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#a78bfa' },
+          { text: 'network_fabric: ["CISCO CORE L3", "CATALYST HA"];', color: '#38bdf8' },
           { text: 'ai_systems: ["AGENT SKILLS", "LOOPING", "CONTEXT"];', color: '#34d399' },
-          { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#ff5500' },
+          { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#00f0ff' },
         ];
 
         let startY = 92;
@@ -457,53 +468,89 @@ export const ContactLaptopCanvas: React.FC = () => {
         });
 
         // Right Column: Live Telemetry Oscilloscope Box
-        sCtx.fillStyle = '#0d0f14';
-        sCtx.strokeStyle = 'rgba(255, 85, 0, 0.35)';
+        sCtx.fillStyle = '#0b0e1e';
+        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.35)';
         sCtx.lineWidth = 1.5;
         sCtx.beginPath();
         sCtx.roundRect(580, 80, 405, 305, 10);
         sCtx.fill();
         sCtx.stroke();
 
-        sCtx.fillStyle = '#ff5500';
-        sCtx.font = 'bold 13px monospace';
-        sCtx.fillText('REALTIME FIREWALL & PACKET FLOW', 605, 112);
+        sCtx.fillStyle = '#00f0ff';
+        sCtx.font = 'bold 12px monospace';
+        sCtx.fillText('REALTIME PACKET FLOW & WAVEFORM', 605, 112);
 
-        // Animated Waveform
-        sCtx.strokeStyle = '#ff5500';
+        // Grid lines inside oscilloscope
+        sCtx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+        sCtx.lineWidth = 1;
+        for (let gy = 135; gy < 360; gy += 35) {
+          sCtx.beginPath();
+          sCtx.moveTo(600, gy);
+          sCtx.lineTo(965, gy);
+          sCtx.stroke();
+        }
+
+        // Animated Primary Waveform (Cyan)
+        sCtx.strokeStyle = '#00f0ff';
         sCtx.lineWidth = 2.5;
         sCtx.beginPath();
         for (let px = 0; px < 355; px++) {
           const waveX = 605 + px;
           const waveY =
-            230 +
-            Math.sin(px * 0.045 + time * 4.5) * 40 * Math.sin(px * 0.016) +
-            Math.cos(px * 0.09 - time * 2.5) * 18;
+            210 +
+            Math.sin(px * 0.045 + time * 4.5) * 35 * Math.sin(px * 0.016) +
+            Math.cos(px * 0.09 - time * 2.5) * 15;
           if (px === 0) sCtx.moveTo(waveX, waveY);
           else sCtx.lineTo(waveX, waveY);
         }
         sCtx.stroke();
 
-        // Animated Frequency Spectrum Bars
+        // Animated Secondary Waveform (Electric Orange)
+        sCtx.strokeStyle = '#ff5500';
+        sCtx.lineWidth = 1.8;
+        sCtx.beginPath();
+        for (let px = 0; px < 355; px++) {
+          const waveX = 605 + px;
+          const waveY =
+            250 +
+            Math.sin(px * 0.035 - time * 3.2) * 22 * Math.cos(px * 0.012) +
+            Math.sin(px * 0.07 + time * 1.8) * 12;
+          if (px === 0) sCtx.moveTo(waveX, waveY);
+          else sCtx.lineTo(waveX, waveY);
+        }
+        sCtx.stroke();
+
+        // Animated Multi-Color Frequency Spectrum Bars
+        const barColors = ['#00f0ff', '#38bdf8', '#818cf8', '#a855f7', '#ec4899', '#ff5500', '#f59e0b', '#10b981'];
         for (let b = 0; b < 24; b++) {
-          const barH = 14 + Math.sin(time * 5 + b * 0.6) * 14 + Math.cos(time * 3 + b) * 8;
-          sCtx.fillStyle = b % 2 === 0 ? '#ff5500' : '#ffffff';
-          sCtx.fillRect(605 + b * 15, 360 - barH, 10, barH);
+          const barH = 12 + Math.sin(time * 5 + b * 0.6) * 14 + Math.cos(time * 3 + b) * 8;
+          sCtx.fillStyle = barColors[b % barColors.length];
+          sCtx.fillRect(605 + b * 15, 365 - barH, 10, barH);
         }
 
         // Bottom Engineering Credo Banner
-        sCtx.fillStyle = '#13151c';
+        sCtx.fillStyle = '#0d1024';
         sCtx.fillRect(35, 420, 950, 195);
-        sCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.2)';
         sCtx.strokeRect(35, 420, 950, 195);
 
+        // Top Rainbow Horizon Stripe
+        const stripeGrad = sCtx.createLinearGradient(35, 420, 985, 420);
+        stripeGrad.addColorStop(0, '#00f0ff');
+        stripeGrad.addColorStop(0.35, '#8b5cf6');
+        stripeGrad.addColorStop(0.7, '#ec4899');
+        stripeGrad.addColorStop(1, '#ff5500');
+        sCtx.fillStyle = stripeGrad;
+        sCtx.fillRect(35, 420, 950, 3);
+
         sCtx.fillStyle = '#ffffff';
-        sCtx.font = 'bold 21px monospace';
+        sCtx.font = 'bold 20px monospace';
         sCtx.fillText('GOVERNMENT-GRADE RELIABILITY. COMMERCIAL SPEED.', 65, 468);
 
-        sCtx.fillStyle = '#9ca3af';
+        sCtx.fillStyle = '#94a3b8';
         sCtx.font = '14px monospace';
         sCtx.fillText('Ministry of National Economy (7 yrs) • Kuwait (1 yr) • Firewalls • Active Directory • AI Agents', 65, 506);
+        sCtx.fillStyle = '#00f0ff';
         sCtx.fillText('Direct connection: omersalem@mne.gov.ps • +970 599 228 979', 65, 546);
 
         screenTexture.needsUpdate = true;

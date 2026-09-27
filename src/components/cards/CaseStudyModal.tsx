@@ -1,31 +1,147 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProjectCaseStudy } from '../../types';
+import { X, CheckCircle2, Cpu, Layers, Award, Terminal } from 'lucide-react';
 
-export const CaseStudyModal: React.FC<{ study: ProjectCaseStudy; projectName?: string; onClose: () => void }> = ({ study, projectName = 'Project', onClose }) => (
-  <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur p-4 sm:p-8 overflow-y-auto" role="dialog" aria-modal="true" aria-label={`${projectName} case study`}>
-    <div className="max-w-5xl mx-auto bg-[#111215] border border-[#242730] rounded-2xl p-6 sm:p-10 text-white shadow-2xl">
-      <div className="flex justify-between items-start gap-4 mb-8">
-        <div>
-          <p className="text-xs font-mono tracking-[0.25em] text-orange-400">ENGINEERING CASE STUDY</p>
-          <h2 className="text-3xl sm:text-5xl font-bold mt-2">{projectName}</h2>
+interface CaseStudyModalProps {
+  study: ProjectCaseStudy;
+  projectName?: string;
+  onClose: () => void;
+}
+
+export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectName = 'Project', onClose }) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-4 sm:p-8 overflow-y-auto flex items-center justify-center animate-fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${projectName} case study`}
+    >
+      <div className="relative w-full max-w-5xl my-auto bg-gradient-to-b from-[#11142e] via-[#0b0e24] to-[#070818] border border-cyber-cyan/30 rounded-2xl p-6 sm:p-10 text-white shadow-[0_0_50px_rgba(0,240,255,0.15)] overflow-hidden">
+        {/* Top Rainbow Horizon Line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyber-cyan via-cyber-purple via-cyber-pink to-chrome-orange" />
+        
+        {/* Background Ambient Glow */}
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-cyber-purple/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-cyber-cyan/15 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Modal Header */}
+        <div className="relative z-10 flex justify-between items-start gap-4 mb-8 pb-6 border-b border-white/10">
+          <div>
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-[11px] font-mono tracking-widest text-cyber-cyan uppercase mb-2">
+              <Terminal className="w-3.5 h-3.5 text-cyber-cyan" />
+              <span>ENGINEERING CASE STUDY & ARCHITECTURE</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-display font-black tracking-tight text-white mt-1">
+              {projectName}
+            </h2>
+          </div>
+          
+          <button
+            onClick={onClose}
+            className="touch-target group flex items-center space-x-1.5 px-4 py-2 border border-white/20 bg-white/5 rounded-xl font-mono text-xs uppercase tracking-wider text-neutral-300 hover:text-white hover:border-cyber-cyan hover:bg-cyber-cyan/10 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none"
+            aria-label="Close dialog"
+          >
+            <span>CLOSE</span>
+            <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
+          </button>
         </div>
-        <button onClick={onClose} className="px-4 py-2 border border-neutral-700 rounded font-mono text-sm hover:border-orange-400">CLOSE</button>
-      </div>
 
-      <div className="grid md:grid-cols-2 gap-6 font-mono text-sm">
-        <div className="p-5 rounded border border-neutral-800 bg-black/30"><b className="text-orange-400">Challenge</b><p className="mt-3 text-neutral-300">{study.challenge}</p></div>
-        <div className="p-5 rounded border border-neutral-800 bg-black/30"><b className="text-orange-400">Solution</b><p className="mt-3 text-neutral-300">{study.solution}</p></div>
-      </div>
+        {/* Challenge & Solution Grid */}
+        <div className="relative z-10 grid md:grid-cols-2 gap-6 mb-8">
+          <div className="p-6 rounded-xl border border-orange-500/30 bg-[#161224]/80 shadow-[0_0_20px_rgba(255,85,0,0.08)]">
+            <div className="flex items-center space-x-2 text-xs font-mono font-bold text-chrome-orange uppercase tracking-wider mb-2">
+              <Cpu className="w-4 h-4 text-chrome-orange" />
+              <span>THE ARCHITECTURAL CHALLENGE</span>
+            </div>
+            <p className="text-sm font-sans text-neutral-300 leading-relaxed">{study.challenge}</p>
+          </div>
 
-      <div className="mt-8 grid md:grid-cols-3 gap-6">
-        <div><h3 className="text-orange-400 font-mono mb-3">Architecture</h3>{study.architecture.map(item => <p key={item} className="text-neutral-300 text-sm mb-2">• {item}</p>)}</div>
-        <div><h3 className="text-orange-400 font-mono mb-3">Technology</h3>{study.technologies.map(item => <span key={item} className="inline-block m-1 px-3 py-1 border border-neutral-700 rounded text-xs">{item}</span>)}</div>
-        <div><h3 className="text-orange-400 font-mono mb-3">Results</h3>{study.results.map(item => <p key={item} className="text-neutral-300 text-sm mb-2">• {item}</p>)}</div>
-      </div>
+          <div className="p-6 rounded-xl border border-emerald-500/30 bg-[#0c1c24]/80 shadow-[0_0_20px_rgba(16,185,129,0.08)]">
+            <div className="flex items-center space-x-2 text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span>THE ENGINEERING SOLUTION</span>
+            </div>
+            <p className="text-sm font-sans text-neutral-300 leading-relaxed">{study.solution}</p>
+          </div>
+        </div>
 
-      <div className="mt-8 grid sm:grid-cols-2 gap-4">
-        {study.screenshots.map(image => <img key={image} src={image} alt={`${projectName} screenshot`} loading="lazy" className="rounded border border-neutral-800" />)}
+        {/* Triple Specifications Grid */}
+        <div className="relative z-10 grid md:grid-cols-3 gap-6 mb-8">
+          <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+            <div className="flex items-center space-x-2 text-xs font-mono font-bold text-cyber-cyan uppercase tracking-wider mb-3">
+              <Layers className="w-4 h-4 text-cyber-cyan" />
+              <span>System Architecture</span>
+            </div>
+            <div className="space-y-2">
+              {study.architecture.map((item) => (
+                <div key={item} className="flex items-start space-x-2 text-xs font-sans text-neutral-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyber-cyan shrink-0 mt-1.5" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+            <div className="flex items-center space-x-2 text-xs font-mono font-bold text-cyber-purple uppercase tracking-wider mb-3">
+              <Cpu className="w-4 h-4 text-cyber-purple" />
+              <span>Core Stack</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {study.technologies.map((item) => (
+                <span key={item} className="px-2.5 py-1 text-[11px] font-mono rounded bg-white/10 border border-white/10 text-neutral-200">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+            <div className="flex items-center space-x-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-3">
+              <Award className="w-4 h-4 text-amber-400" />
+              <span>Quantified Impact</span>
+            </div>
+            <div className="space-y-2">
+              {study.results.map((item) => (
+                <div key={item} className="flex items-start space-x-2 text-xs font-sans text-neutral-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Screenshots Preview */}
+        {study.screenshots && study.screenshots.length > 0 && (
+          <div className="relative z-10 pt-4 border-t border-white/10">
+            <div className="text-xs font-mono text-neutral-400 uppercase tracking-wider mb-3">
+              INTERFACE VERIFICATION
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {study.screenshots.map((image) => (
+                <img
+                  key={image}
+                  src={image}
+                  alt={`${projectName} screenshot`}
+                  loading="lazy"
+                  className="rounded-xl border border-white/15 shadow-lg w-full object-cover hover:border-cyber-cyan/50 transition-colors"
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  </div>
-);
+  );
+};

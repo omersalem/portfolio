@@ -18,6 +18,11 @@ export const PROJECTS: Project[] = [
     description: 'Premier confectionery and cake supplies e-commerce platform featuring multi-currency commerce, curated catalog browsing, and mobile app integration.',
     ariaLabel: 'View Almalaki Store at almalakistore.ps',
     tags: ['E-Commerce', 'Bilingual Storefront', 'PWA'],
+    category: 'E-Commerce',
+    accentColor: '#FF4D6D',
+    glowColor: 'rgba(255, 77, 109, 0.45)',
+    gradientClass: 'from-pink-500 via-rose-500 to-amber-500',
+    badgeText: 'CONFECTIONERY COMMERCE',
   },
   {
     id: 'bazaria',
@@ -28,6 +33,11 @@ export const PROJECTS: Project[] = [
     description: 'Official municipal portal providing citizen digital public services, official announcements, community tracking, and civic engagement.',
     ariaLabel: 'View Bazaria Council at bazariacouncil.pages.dev',
     tags: ['Civic Portal', 'Cloudflare Pages', 'Public Services'],
+    category: 'Civic & Gov',
+    accentColor: '#00F0FF',
+    glowColor: 'rgba(0, 240, 255, 0.45)',
+    gradientClass: 'from-cyan-400 via-sky-500 to-blue-600',
+    badgeText: 'MUNICIPAL SERVICES',
   },
   {
     id: 'handmade',
@@ -38,6 +48,11 @@ export const PROJECTS: Project[] = [
     description: 'Artisanal digital boutique for handcrafted ceramics, bespoke gifts, and specialty home items with streamlined catalog navigation.',
     ariaLabel: 'View handmade.ps at handmade.ps',
     tags: ['Artisanal Store', 'Design System', 'Direct Checkout'],
+    category: 'E-Commerce',
+    accentColor: '#10B981',
+    glowColor: 'rgba(16, 185, 129, 0.45)',
+    gradientClass: 'from-emerald-400 via-teal-500 to-amber-400',
+    badgeText: 'ARTISANAL LUXE',
   },
   {
     id: 'pistachio',
@@ -48,6 +63,11 @@ export const PROJECTS: Project[] = [
     description: 'Gourmet dessert and fresh pastry ordering interface engineered with rapid category filtering and WhatsApp direct customer ordering.',
     ariaLabel: 'View Pistachio at postachio.pages.dev',
     tags: ['Gourmet Food', 'Order Flow', 'Responsive Web'],
+    category: 'Fast Ordering',
+    accentColor: '#84CC16',
+    glowColor: 'rgba(132, 204, 22, 0.45)',
+    gradientClass: 'from-lime-400 via-emerald-400 to-teal-500',
+    badgeText: 'RAPID ORDERING',
   },
   {
     id: 'lama-home',
@@ -58,6 +78,11 @@ export const PROJECTS: Project[] = [
     description: 'Curated home accessories and artisanal decor e-commerce store with high-contrast aesthetic imagery and secure shopping flow.',
     ariaLabel: 'View Lama Home at lamastorev2.pages.dev',
     tags: ['Home Accessories', 'Commerce UX', 'Fast Fulfillment'],
+    category: 'E-Commerce',
+    accentColor: '#A855F7',
+    glowColor: 'rgba(168, 85, 247, 0.45)',
+    gradientClass: 'from-fuchsia-500 via-purple-500 to-pink-500',
+    badgeText: 'DECOR & LIVING',
   },
 ];
 
@@ -68,6 +93,9 @@ export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
     label: 'Cisco Core Switches & Enterprise Routing',
     description: 'Enterprise network backbone architecture utilizing Cisco Core Switches, Catalyst & Nexus fabrics, distribution layers, resilient VLAN segmentation, and deterministic OSPF/BGP routing topologies.',
     technologies: ['Cisco Core Switch', 'Catalyst & Nexus', 'Enterprise Routers', 'VLAN / OSPF / BGP'],
+    accentColor: '#00F0FF',
+    glowColor: 'rgba(0, 240, 255, 0.4)',
+    domainCode: 'FABRIC_ROUTING',
   },
   {
     id: 'firewalls-waf',
@@ -75,6 +103,9 @@ export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
     label: 'Next-Gen Firewalls & Perimeter Security',
     description: 'Direct operational responsibility for perimeter firewalls, deep packet inspection, threat prevention, SSL inspection, high-availability clustering, and Web Application Firewall defense.',
     technologies: ['FortiGate NGFW', 'F5 BIG-IP (WAF/LTM)', 'Cisco FMC & FTD', 'Sophos Security'],
+    accentColor: '#FF5500',
+    glowColor: 'rgba(255, 85, 0, 0.4)',
+    domainCode: 'PERIMETER_DEFENSE',
   },
   {
     id: 'active-directory',
@@ -82,6 +113,9 @@ export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
     label: 'Active Directory & Enterprise Identity',
     description: 'Direct responsibility for Active Directory Domain Services (AD DS), enterprise Group Policy Object (GPO) engineering, role-based access control (RBAC), and Kerberos/LDAP identity governance.',
     technologies: ['Active Directory (AD DS)', 'Group Policy (GPO)', 'Domain Architecture', 'Identity Governance'],
+    accentColor: '#A855F7',
+    glowColor: 'rgba(168, 85, 247, 0.4)',
+    domainCode: 'IDENTITY_GOV',
   },
   {
     id: 'exchange-server',
@@ -89,6 +123,9 @@ export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
     label: 'Microsoft Exchange Server Infrastructure',
     description: 'Nationwide enterprise messaging architecture, Database Availability Groups (DAG) clustering, secure mail flow transport pipelines, anti-spam hygiene, and TLS encryption compliance.',
     technologies: ['Exchange Server', 'DAG Clustering', 'Mail Flow Routing', 'TLS & Transport Security'],
+    accentColor: '#38BDF8',
+    glowColor: 'rgba(56, 189, 248, 0.4)',
+    domainCode: 'MESSAGING_CLUSTER',
   },
   {
     id: 'sccm-management',
@@ -96,6 +133,9 @@ export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
     label: 'SCCM Endpoint & Patch Management',
     description: 'Microsoft System Center Configuration Manager (SCCM) for centralized OS deployment, automated security patch pipelines, endpoint compliance, and enterprise software distribution.',
     technologies: ['Microsoft SCCM', 'OS Imaging & Task Sequences', 'Patch Compliance', 'Asset Automation'],
+    accentColor: '#10B981',
+    glowColor: 'rgba(16, 185, 129, 0.4)',
+    domainCode: 'ENDPOINT_OPS',
   },
   {
     id: 'ai-agents',
@@ -103,6 +143,9 @@ export const INFRASTRUCTURE_NODES: InfrastructureNode[] = [
     label: 'AI Autonomous Agents & Infrastructure Automation',
     description: 'Autonomous multi-agent orchestration, specialized agent skills architecture, execution loops, context window optimization, self-healing diagnostic runbooks, and MNE Brain v2.',
     technologies: ['Autonomous Agents', 'Skills Architecture', 'Looping & Context Chains', 'MNE Brain v2'],
+    accentColor: '#EC4899',
+    glowColor: 'rgba(236, 72, 153, 0.4)',
+    domainCode: 'AGENTIC_SYSTEMS',
   },
 ];
 

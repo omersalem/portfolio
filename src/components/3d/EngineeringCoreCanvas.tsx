@@ -82,9 +82,17 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
       capMesh.position.y = 0.25;
       coreGroup.add(capMesh);
 
-      // 6 Radial Conduits and Peripheral Nodes
+      // 6 Radial Conduits and Peripheral Nodes with Multi-Color Tech Spectrum
       const channelMeshes: THREE.Mesh[] = [];
       const pulseMaterials: THREE.MeshBasicMaterial[] = [];
+      const nodeColors = [
+        0x00f0ff, // 01 Cisco Core: Cyan
+        0xff5500, // 02 Firewalls & WAF: Orange
+        0xa855f7, // 03 Active Directory: Purple
+        0x38bdf8, // 04 Exchange: Sky Blue
+        0x10b981, // 05 SCCM: Emerald
+        0xec4899, // 06 AI Agents: Magenta
+      ];
 
       for (let i = 0; i < 6; i++) {
         const angle = (i * Math.PI) / 3;
@@ -97,12 +105,12 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         armMesh.position.y = 1.6;
         channelGroup.add(armMesh);
 
-        // Orange Energy Conduit line
-        const conduitGeo = new THREE.BoxGeometry(0.06, 1.6, 0.08);
+        // Radiant Multi-Color Energy Conduit line
+        const conduitGeo = new THREE.BoxGeometry(0.08, 1.6, 0.1);
         const pulseMat = new THREE.MeshBasicMaterial({
-          color: 0xff5500,
+          color: nodeColors[i],
           transparent: true,
-          opacity: 0.4,
+          opacity: 0.6,
         });
         pulseMaterials.push(pulseMat);
         const conduitMesh = new THREE.Mesh(conduitGeo, pulseMat);
@@ -110,11 +118,18 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         conduitMesh.position.z = 0.06;
         channelGroup.add(conduitMesh);
 
-        // Peripheral Node
+        // Peripheral Node with Chrome & Color Accent
         const nodeGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.25, 24);
         const nodeMesh = new THREE.Mesh(nodeGeo, chromeMaterial);
         nodeMesh.position.y = 2.6;
         channelGroup.add(nodeMesh);
+
+        // Glowing Core LED on each node
+        const ledGeo = new THREE.SphereGeometry(0.1, 16, 16);
+        const ledMat = new THREE.MeshBasicMaterial({ color: nodeColors[i] });
+        const ledMesh = new THREE.Mesh(ledGeo, ledMat);
+        ledMesh.position.set(0, 2.75, 0.05);
+        channelGroup.add(ledMesh);
 
         coreGroup.add(channelGroup);
         channelMeshes.push(conduitMesh);
@@ -161,15 +176,15 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         // Slow 45-second rotation
         coreGroup.rotation.z = elapsedTime * 0.14;
 
-        // Controlled signal pulse traveling through channels
+        // Controlled multi-spectral signal pulse traveling through channels
         pulseMaterials.forEach((mat, idx) => {
           if (activeNodeIndex === idx) {
-            mat.opacity = 0.95;
-            mat.color.setHex(0xff7722);
+            mat.opacity = 1.0;
+            mat.color.setHex(0xffffff); // White-hot blaze on active
           } else {
-            const wave = Math.sin(elapsedTime * 1.5 - idx * 1.05);
-            mat.opacity = THREE.MathUtils.clamp(wave * 0.6 + 0.3, 0.15, 0.85);
-            mat.color.setHex(0xff5500);
+            const wave = Math.sin(elapsedTime * 2.2 - idx * 1.05);
+            mat.opacity = THREE.MathUtils.clamp(wave * 0.45 + 0.45, 0.2, 0.95);
+            mat.color.setHex(nodeColors[idx]);
           }
         });
 

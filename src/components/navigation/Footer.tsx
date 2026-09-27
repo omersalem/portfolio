@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github } from 'lucide-react';
+import { ArrowUp, Github, MessageSquare, Terminal } from 'lucide-react';
 import { NAV_ITEMS } from '../../data/portfolioData';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
 
@@ -14,18 +14,27 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-chrome-charcoal border-t border-chrome-border/80 text-white py-12 lg:py-16">
-      <div className="layout-container">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-chrome-border/60">
+    <footer className="relative bg-[#04050d] text-white overflow-hidden">
+      {/* Top Rainbow Chromatic Horizon Line */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-cyber-cyan via-cyber-purple via-cyber-pink to-chrome-orange shadow-[0_0_15px_rgba(0,240,255,0.4)]" />
+
+      {/* Subtle Aurora Glow in Footer */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-32 bg-cyber-purple/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="layout-container py-12 lg:py-16 relative z-10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/10">
           <div>
             <div className="flex items-center space-x-3 mb-2">
-              <span className="w-2 h-2 bg-chrome-orange rounded-full" />
-              <span className="font-mono text-base tracking-widest font-bold uppercase">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyber-cyan" />
+              </span>
+              <span className="font-display font-extrabold text-lg tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-purple-200">
                 OMER SALEM
               </span>
             </div>
             <p className="text-xs font-mono text-neutral-400">
-              Computer Engineer • High-Performance Web Platforms & Infrastructure
+              Computer Engineer • High-Performance Web Platforms &amp; Enterprise Infrastructure
             </p>
           </div>
 
@@ -36,7 +45,7 @@ export const Footer: React.FC = () => {
                 href={item.href}
                 target={item.href.startsWith('#') ? undefined : '_blank'}
                 rel={item.href.startsWith('#') ? undefined : 'noopener noreferrer'}
-                className="touch-target text-xs font-mono tracking-widest text-neutral-400 hover:text-chrome-orange transition-colors focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none"
+                className="touch-target text-xs font-mono tracking-widest text-neutral-400 hover:text-cyber-cyan transition-colors focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none"
               >
                 {item.label}
               </a>
@@ -45,30 +54,41 @@ export const Footer: React.FC = () => {
               href="https://github.com/omersalem"
               target="_blank"
               rel="noopener noreferrer"
-              className="touch-target inline-flex items-center space-x-1.5 text-xs font-mono tracking-widest text-neutral-400 hover:text-chrome-orange transition-colors focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none"
+              className="touch-target inline-flex items-center space-x-1.5 text-xs font-mono tracking-widest text-neutral-400 hover:text-purple-400 transition-colors focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:outline-none"
               aria-label="Omer Salem GitHub Profile"
             >
-              <Github className="w-3.5 h-3.5 text-chrome-orange" />
+              <Github className="w-3.5 h-3.5 text-purple-400" />
               <span>GITHUB</span>
+            </a>
+            <a
+              href="https://wa.me/970599228979"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="touch-target inline-flex items-center space-x-1.5 text-xs font-mono tracking-widest text-neutral-400 hover:text-emerald-400 transition-colors focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:outline-none"
+              aria-label="Direct WhatsApp Message"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <span>WHATSAPP</span>
             </a>
           </nav>
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-neutral-500">
-          <div>
-            © {new Date().getFullYear()} Omer Salem. All architectural & engineering rights reserved.
+          <div className="flex items-center space-x-2">
+            <Terminal className="w-3.5 h-3.5 text-cyber-cyan/70" />
+            <span>© {new Date().getFullYear()} Omer Salem. All architectural &amp; engineering rights reserved.</span>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <span className="inline-flex items-center space-x-1 text-emerald-400/90">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>SYSTEM ONLINE</span>
+          <div className="flex items-center space-x-5">
+            <span className="inline-flex items-center space-x-1.5 text-emerald-400/90 font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>ALL SYSTEMS OPERATIONAL</span>
             </span>
 
             <button
               type="button"
               onClick={handleScrollToTop}
-              className="touch-target inline-flex items-center space-x-1.5 text-neutral-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none"
+              className="touch-target inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-neutral-300 hover:text-white hover:border-cyber-cyan/50 hover:shadow-[0_0_15px_rgba(0,240,255,0.2)] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none"
               aria-label="Back to top of page"
             >
               <span>TOP</span>
@@ -80,3 +100,4 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+

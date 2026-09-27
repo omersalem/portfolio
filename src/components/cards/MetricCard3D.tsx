@@ -8,12 +8,52 @@ interface MetricCard3DProps {
   index: number;
 }
 
+const METRIC_THEMES = [
+  {
+    accent: '#FF5500',
+    colorClass: 'text-amber-400',
+    dotColor: 'bg-amber-400',
+    glowColor: 'rgba(255, 85, 0, 0.35)',
+    borderHover: 'hover:border-amber-400/70',
+    gradientValue: 'from-amber-200 via-orange-400 to-amber-300',
+    bgSpotlight: 'rgba(255, 85, 0, 0.2)',
+  },
+  {
+    accent: '#10B981',
+    colorClass: 'text-emerald-400',
+    dotColor: 'bg-emerald-400',
+    glowColor: 'rgba(16, 185, 129, 0.35)',
+    borderHover: 'hover:border-emerald-400/70',
+    gradientValue: 'from-emerald-200 via-teal-300 to-emerald-300',
+    bgSpotlight: 'rgba(16, 185, 129, 0.2)',
+  },
+  {
+    accent: '#8B5CF6',
+    colorClass: 'text-purple-400',
+    dotColor: 'bg-purple-400',
+    glowColor: 'rgba(139, 92, 246, 0.35)',
+    borderHover: 'hover:border-purple-400/70',
+    gradientValue: 'from-purple-200 via-pink-400 to-indigo-300',
+    bgSpotlight: 'rgba(139, 92, 246, 0.2)',
+  },
+  {
+    accent: '#00F0FF',
+    colorClass: 'text-cyber-cyan',
+    dotColor: 'bg-cyber-cyan',
+    glowColor: 'rgba(0, 240, 255, 0.35)',
+    borderHover: 'hover:border-cyber-cyan/70',
+    gradientValue: 'from-cyan-200 via-sky-300 to-blue-300',
+    bgSpotlight: 'rgba(0, 240, 255, 0.2)',
+  },
+];
+
 export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const { reducedMotion, reducedEffects } = useEffectSettings();
 
+  const theme = METRIC_THEMES[index % METRIC_THEMES.length];
   const disable3D = reducedMotion || reducedEffects;
 
   const mouseX = useMotionValue(0);
@@ -33,7 +73,7 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
   const spotlightBg = useTransform(
     [mousePixelX, mousePixelY],
     ([x, y]) =>
-      `radial-gradient(280px circle at ${x}px ${y}px, rgba(255, 85, 0, 0.14), rgba(255, 255, 255, 0.8) 35%, transparent 75%)`
+      `radial-gradient(280px circle at ${x}px ${y}px, ${theme.bgSpotlight}, transparent 75%)`
   );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -97,11 +137,11 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
         {/* Dynamic Floor Shadow */}
         {!disable3D && (
           <motion.div
-            className="absolute -inset-1 rounded-2xl bg-neutral-900/15 filter blur-md pointer-events-none -z-10 transition-all duration-300"
+            className="absolute -inset-1 rounded-2xl filter blur-md pointer-events-none -z-10 transition-all duration-300"
             style={{
-              opacity: isHighlighted ? 0.9 : 0.25,
-              transform: isHighlighted ? 'translateY(14px) scale(0.96)' : 'translateY(4px) scale(0.94)',
-              boxShadow: isHighlighted ? '0 16px 30px -8px rgba(255, 85, 0, 0.22)' : 'none',
+              opacity: isHighlighted ? 0.9 : 0.2,
+              transform: isHighlighted ? 'translateY(12px) scale(0.96)' : 'translateY(4px) scale(0.94)',
+              boxShadow: isHighlighted ? `0 16px 30px -8px ${theme.glowColor}` : 'none',
             }}
           />
         )}
@@ -113,12 +153,16 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
           onBlur={handleBlur}
           role="region"
           aria-label={`${metric.label}: ${metric.value}`}
-          className={`relative h-full p-5 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none flex flex-col justify-between ${
+          className={`relative h-full p-5 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between ${
             isHighlighted
-              ? 'border-chrome-orange/80 bg-gradient-to-b from-white via-[#faf9f6] to-[#f2eee6] shadow-lg'
-              : 'border-cv-border bg-gradient-to-b from-white/95 via-[#fcfbf9]/90 to-[#f6f4ee]/90 hover:border-neutral-400'
+              ? 'border-white/30 bg-[#0d1127] shadow-xl'
+              : 'border-white/10 bg-[#090c1e]/90 hover:border-white/20'
           }`}
-          style={disable3D ? {} : { transformStyle: 'preserve-3d' }}
+          style={{
+            borderColor: isHighlighted ? theme.accent : undefined,
+            boxShadow: isHighlighted ? `0 0 25px ${theme.glowColor}` : undefined,
+            ...(disable3D ? {} : { transformStyle: 'preserve-3d' }),
+          }}
         >
           {/* Spotlight overlay */}
           {!disable3D && (
@@ -132,20 +176,26 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
           )}
 
           {/* Top highlight rail */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none z-20" />
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-20" />
 
           {/* Corner CAD Accents */}
-          <div className="absolute top-2 left-2 text-[8px] font-mono text-chrome-orange/40 pointer-events-none select-none">
+          <div
+            className="absolute top-2 left-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
+          >
             ┌
           </div>
-          <div className="absolute top-2 right-2 text-[8px] font-mono text-chrome-orange/40 pointer-events-none select-none">
+          <div
+            className="absolute top-2 right-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
+          >
             ┐
           </div>
 
           <div>
             {/* Metric Value (translateZ: 26px) */}
             <div
-              className="text-2xl sm:text-3xl font-display font-extrabold text-cv-dark mb-1.5 tracking-tight group-hover:text-neutral-900"
+              className={`text-2xl sm:text-3xl font-display font-extrabold tracking-tight mb-2 text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientValue}`}
               style={disable3D ? {} : { transform: 'translateZ(26px)' }}
             >
               {metric.value}
@@ -153,17 +203,17 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
 
             {/* Metric Label (translateZ: 20px) */}
             <div
-              className="text-xs font-mono font-bold text-chrome-orange uppercase tracking-wider mb-1.5 flex items-center space-x-1.5"
+              className={`text-xs font-mono font-bold uppercase tracking-wider mb-2 flex items-center space-x-1.5 ${theme.colorClass}`}
               style={disable3D ? {} : { transform: 'translateZ(20px)' }}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-chrome-orange shrink-0" />
+              <span className={`w-1.5 h-1.5 rounded-full ${theme.dotColor} shrink-0 animate-pulse`} />
               <span>{metric.label}</span>
             </div>
           </div>
 
           {/* Metric Subtext (translateZ: 14px) */}
           <div
-            className="text-[11px] font-sans text-neutral-600 leading-snug pt-2 border-t border-cv-border/50"
+            className="text-[11px] font-mono text-neutral-400 leading-snug pt-2.5 border-t border-white/10"
             style={disable3D ? {} : { transform: 'translateZ(14px)' }}
           >
             {metric.subtext}
@@ -173,3 +223,4 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
     </div>
   );
 };
+

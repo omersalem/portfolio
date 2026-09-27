@@ -2,51 +2,112 @@ import React, { useState } from 'react';
 import { INFRASTRUCTURE_NODES } from '../../data/portfolioData';
 import { EngineeringCoreCanvas } from '../3d/EngineeringCoreCanvas';
 import { InfrastructureCard3D } from '../cards/InfrastructureCard3D';
-import { Cpu, ShieldCheck } from 'lucide-react';
+import { Cpu, ShieldCheck, Terminal, Radio } from 'lucide-react';
 
 export const EngineeringSection: React.FC = () => {
   const [activeNodeIndex, setActiveNodeIndex] = useState<number | null>(null);
+
+  const stackPills = [
+    { name: 'FortiGate NGFW', color: 'text-amber-400 border-amber-500/30 bg-amber-500/10' },
+    { name: 'F5 BIG-IP (WAF/LTM)', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10' },
+    { name: 'Cisco FMC & FTD', color: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10' },
+    { name: 'Cisco Core Switches', color: 'text-blue-400 border-blue-500/30 bg-blue-500/10' },
+    { name: 'Active Directory (AD DS/GPO)', color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' },
+    { name: 'Exchange Server & SCCM', color: 'text-pink-400 border-pink-500/30 bg-pink-500/10' },
+    { name: 'Sophos Endpoint Security', color: 'text-orange-400 border-orange-500/30 bg-orange-500/10' },
+    { name: 'MNE Autonomous AI Loops', color: 'text-cyber-cyan border-cyber-cyan/40 bg-cyber-cyan/10 font-bold' },
+  ];
+
+  const telemetryChannels = [
+    {
+      label: 'NGFW & PERIMETER',
+      protocol: 'FORTIGATE 100F + CISCO FTD',
+      status: 'SHIELD ACTIVE',
+      metric: '0.4ms inspection',
+      dotColor: 'bg-emerald-400',
+      pingColor: 'bg-emerald-400/40',
+      accentBorder: 'hover:border-emerald-500/50',
+      textColor: 'text-emerald-400',
+      bgGlow: 'from-emerald-950/20 to-transparent',
+    },
+    {
+      label: 'ENTERPRISE CORE FABRIC',
+      protocol: 'CISCO CATALYST HA L3',
+      status: 'LINE SPEED 10G',
+      metric: '99.999% uptime',
+      dotColor: 'bg-cyan-400',
+      pingColor: 'bg-cyan-400/40',
+      accentBorder: 'hover:border-cyan-500/50',
+      textColor: 'text-cyan-400',
+      bgGlow: 'from-cyan-950/20 to-transparent',
+    },
+    {
+      label: 'AI-NATIVE NEURAL CORE',
+      protocol: 'MNE BRAIN V2 / AGENT LOOPS',
+      status: 'AUTONOMOUS ACTIVE',
+      metric: '9 micro-agents live',
+      dotColor: 'bg-purple-400',
+      pingColor: 'bg-purple-400/40',
+      accentBorder: 'hover:border-purple-500/50',
+      textColor: 'text-purple-400',
+      bgGlow: 'from-purple-950/20 to-transparent',
+    },
+    {
+      label: 'IDENTITY & ZERO-TRUST',
+      protocol: 'AD DS • KERBEROS • RADIUS',
+      status: 'REPLICATED 24/7',
+      metric: '2,400+ directory objs',
+      dotColor: 'bg-amber-400',
+      pingColor: 'bg-amber-400/40',
+      accentBorder: 'hover:border-amber-500/50',
+      textColor: 'text-amber-400',
+      bgGlow: 'from-amber-950/20 to-transparent',
+    },
+  ];
 
   return (
     <section
       id="engineering"
       aria-labelledby="engineering-heading"
-      className="relative py-20 lg:py-32 bg-chrome-black border-b border-chrome-border/40 overflow-hidden"
+      className="relative py-24 lg:py-36 bg-[#070814] border-b border-cyber-cyan/15 overflow-hidden"
     >
-      {/* Background Grid & Architectural Aura */}
-      <div className="absolute inset-0 monolithic-noise opacity-20 pointer-events-none" />
+      {/* Background Chromatic Aurora Glows */}
+      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-cyber-purple/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-cyber-cyan/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:32px_32px] opacity-25 pointer-events-none" />
 
       <div className="layout-container relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 lg:mb-16">
-          <div className="inline-flex items-center space-x-2 text-xs font-mono tracking-widest text-chrome-orange uppercase mb-3">
-            <Cpu className="w-4 h-4 text-chrome-orange" />
-            <span>INFRASTRUCTURE & COMPUTING DEPTH</span>
+        <div className="max-w-3xl mb-14 lg:mb-20">
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-chrome-orange/10 border border-chrome-orange/30 text-xs font-mono tracking-widest text-chrome-orange uppercase mb-4 shadow-[0_0_15px_rgba(255,85,0,0.2)]">
+            <Radio className="w-3.5 h-3.5 text-chrome-orange animate-pulse" />
+            <span>INFRASTRUCTURE &amp; COMPUTING DEPTH</span>
           </div>
 
           <h2
             id="engineering-heading"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight text-white mb-4"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-black uppercase tracking-tight text-white mb-5"
           >
-            BEYOND THE BROWSER.
+            BEYOND THE <span className="text-gradient-aurora">BROWSER.</span>
           </h2>
 
-          <div className="inline-block px-3 py-1.5 bg-chrome-charcoal border border-chrome-border rounded text-xs sm:text-sm font-mono tracking-widest text-neutral-300 uppercase mb-4">
-            MNE BRAIN V2 — AI-NATIVE INFRASTRUCTURE BRAIN
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-cyber-purple/10 border border-cyber-purple/40 rounded-md text-xs sm:text-sm font-mono tracking-wider text-purple-200 uppercase mb-5 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+            <Cpu className="w-4 h-4 text-cyber-purple shrink-0" />
+            <span>MNE BRAIN V2 — AI-NATIVE INFRASTRUCTURE BRAIN</span>
           </div>
 
-          <p className="text-neutral-400 font-mono text-sm sm:text-base leading-relaxed mb-4">
-            At the <strong>Ministry of National Economy (MNE) in Ramallah</strong>, Omer has served for 7 years as Computer Engineer with direct operational responsibility for perimeter firewalls, enterprise core networks, and Active Directory. Digital platforms built by Omer inherit the uncompromising reliability, high-availability clustering, and zero-trust security of national-scale systems.
+          <p className="text-neutral-300 font-sans text-base sm:text-lg leading-relaxed mb-6">
+            At the <strong className="text-white font-semibold">Ministry of National Economy (MNE) in Ramallah</strong>, Omer has served for 7 years as Computer Engineer with direct operational responsibility for perimeter firewalls, enterprise core networks, and Active Directory. Digital platforms built by Omer inherit the uncompromising reliability, high-availability clustering, and zero-trust security of national-scale systems.
           </p>
 
           {/* Core Hardware & Security Stack Pills */}
-          <div className="flex flex-wrap gap-2 pt-2">
-            {['FortiGate NGFW', 'F5 BIG-IP (WAF/LTM)', 'Cisco FMC & FTD', 'Cisco Core Switches', 'Active Directory (AD DS/GPO)', 'Exchange Server', 'SCCM', 'Sophos Security', 'AI Autonomous Loops'].map((tech) => (
+          <div className="flex flex-wrap gap-2.5 pt-1">
+            {stackPills.map((tech) => (
               <span
-                key={tech}
-                className="px-2.5 py-1 text-[11px] font-mono text-neutral-300 bg-chrome-charcoal/90 border border-chrome-border/80 rounded"
+                key={tech.name}
+                className={`px-3 py-1.5 text-xs font-mono rounded-md border transition-all duration-200 ${tech.color}`}
               >
-                {tech}
+                {tech.name}
               </span>
             ))}
           </div>
@@ -84,33 +145,56 @@ export const EngineeringSection: React.FC = () => {
             </div>
 
             {/* Architecture Assurance Note */}
-            <div className="mt-6 flex items-center space-x-3 px-4 py-3 bg-chrome-charcoal/60 rounded border border-chrome-border/60 text-xs font-mono text-neutral-400">
-              <ShieldCheck className="w-4 h-4 text-chrome-orange shrink-0" />
+            <div className="mt-6 flex items-center space-x-3 px-4 py-3 bg-[#0d1024]/80 rounded-xl border border-cyber-cyan/20 text-xs font-mono text-neutral-300 shadow-[0_0_20px_rgba(0,240,255,0.05)]">
+              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
               <span>
-                Enterprise reliability: High-level architectural capability without exposing private topology or sensitive assets.
+                <strong className="text-white">Enterprise security guarantee:</strong> High-level architectural capability demonstrated without exposing private topology or sensitive national assets.
               </span>
             </div>
           </div>
         </div>
 
         {/* Live infrastructure style telemetry panel */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            ['FIREWALL', 'ONLINE'],
-            ['CORE NETWORK', 'STABLE'],
-            ['AI AGENTS', 'ACTIVE'],
-            ['SERVICES', '24/24'],
-          ].map(([name, status]) => (
-            <div key={name} className="rounded-lg border border-chrome-border/70 bg-chrome-charcoal/70 p-4 font-mono">
-              <div className="text-[10px] tracking-widest text-neutral-500">{name}</div>
-              <div className="mt-2 flex items-center gap-2 text-sm text-white">
-                <span className="h-2 w-2 rounded-full bg-chrome-orange animate-pulse" />
-                {status}
+        <div className="mt-16">
+          <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-neutral-400 mb-4">
+            <Terminal className="w-4 h-4 text-cyber-cyan" />
+            <span>REAL-TIME SYSTEM DIAGNOSTIC RUNTIME STATUS</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {telemetryChannels.map((channel) => (
+              <div
+                key={channel.label}
+                className={`relative group rounded-xl border border-white/10 bg-gradient-to-b ${channel.bgGlow} bg-[#0b0e22]/80 backdrop-blur-md p-5 font-mono transition-all duration-300 ${channel.accentBorder} hover:shadow-[0_0_25px_rgba(0,240,255,0.1)]`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
+                    {channel.label}
+                  </span>
+                  <div className="relative flex h-2.5 w-2.5">
+                    <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${channel.pingColor}`} />
+                    <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${channel.dotColor}`} />
+                  </div>
+                </div>
+
+                <div className="text-xs text-neutral-400 truncate mb-3">
+                  {channel.protocol}
+                </div>
+
+                <div className="pt-2 border-t border-white/5 flex items-center justify-between">
+                  <span className={`text-sm font-bold tracking-tight ${channel.textColor}`}>
+                    {channel.status}
+                  </span>
+                  <span className="text-[11px] text-neutral-400 font-sans">
+                    {channel.metric}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
+

@@ -48,51 +48,62 @@ export const HeroCanvas: React.FC = () => {
       const ctx = envCanvas.getContext('2d');
       if (ctx) {
         const grad = ctx.createLinearGradient(0, 0, 0, 512);
-        grad.addColorStop(0, '#040508');
-        grad.addColorStop(0.15, '#161922');
-        grad.addColorStop(0.3, '#ffffff'); // bright softbox slit
-        grad.addColorStop(0.42, '#202430');
-        grad.addColorStop(0.68, '#06070a');
-        grad.addColorStop(0.82, '#ff5500'); // intense electric orange horizon band
-        grad.addColorStop(0.9, '#ff7700');  // warm amber core
-        grad.addColorStop(1.0, '#040508');
+        grad.addColorStop(0, '#050714');
+        grad.addColorStop(0.18, '#1e1035'); // deep violet
+        grad.addColorStop(0.32, '#ffffff'); // bright softbox slit
+        grad.addColorStop(0.48, '#00f0ff'); // vivid cyber-cyan band
+        grad.addColorStop(0.65, '#070918');
+        grad.addColorStop(0.82, '#ff5500'); // electric orange horizon band
+        grad.addColorStop(0.92, '#ec4899'); // magenta glow
+        grad.addColorStop(1.0, '#050714');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1024, 512);
 
-        // Add specular softbox reflections
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
-        ctx.fillRect(200, 100, 160, 80);
-        ctx.fillRect(680, 90, 180, 90);
+        // Add specular softbox reflections with color
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.45)';
+        ctx.fillRect(160, 90, 180, 90);
+        ctx.fillStyle = 'rgba(168, 85, 247, 0.45)';
+        ctx.fillRect(680, 80, 200, 100);
 
-        // Add orange side rim accent
-        ctx.fillStyle = 'rgba(255, 85, 0, 0.4)';
-        ctx.fillRect(400, 380, 240, 60);
+        // Add orange & rose side accents
+        ctx.fillStyle = 'rgba(255, 85, 0, 0.5)';
+        ctx.fillRect(400, 360, 240, 70);
       }
       const envTexture = new THREE.CanvasTexture(envCanvas);
       envTexture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = envTexture;
 
-      // 3. Architectural Studio Lights
-      const ambientLight = new THREE.AmbientLight(0x222634, 1.8);
+      // 3. Multi-Spectral Studio Lights
+      const ambientLight = new THREE.AmbientLight(0x181930, 1.8);
       scene.add(ambientLight);
 
       // Top Key Light
-      const topKey = new THREE.DirectionalLight(0xffffff, 4.2);
+      const topKey = new THREE.DirectionalLight(0xf0f9ff, 4.0);
       topKey.position.set(2.5, 5, 4);
       scene.add(topKey);
 
-      // White edge rim light
-      const whiteRim = new THREE.DirectionalLight(0xffffff, 6.5);
-      whiteRim.position.set(-4.5, 2.5, -2.5);
-      scene.add(whiteRim);
+      // Electric Cyan edge rim light (Left side)
+      const cyanRim = new THREE.DirectionalLight(0x00f0ff, 6.0);
+      cyanRim.position.set(-4.5, 2.5, -2.5);
+      scene.add(cyanRim);
 
-      // Controlled electric orange rim light
-      const orangeRim = new THREE.PointLight(0xff5500, 9.0, 22);
+      // Controlled electric orange rim light (Right side)
+      const orangeRim = new THREE.PointLight(0xff5500, 8.5, 22);
       orangeRim.position.set(4.2, 0.6, -1.2);
       scene.add(orangeRim);
 
+      // Neon Purple top highlight
+      const purpleRim = new THREE.PointLight(0xa855f7, 5.0, 18);
+      purpleRim.position.set(-1.0, 3.5, -1.5);
+      scene.add(purpleRim);
+
+      // Subtle Cyber Emerald underglow
+      const emeraldBounce = new THREE.PointLight(0x10b981, 3.0, 14);
+      emeraldBounce.position.set(0, -2.5, 1.0);
+      scene.add(emeraldBounce);
+
       // Dynamic Interactive Mouse Spotlight (sweeps across chrome surfaces)
-      const mouseSpot = new THREE.PointLight(0xff7722, 5.0, 10);
+      const mouseSpot = new THREE.PointLight(0x00f0ff, 5.0, 10);
       mouseSpot.position.set(0, 0, 3);
       scene.add(mouseSpot);
 
@@ -178,24 +189,38 @@ export const HeroCanvas: React.FC = () => {
 
       scene.add(gyroscopicGroup);
 
-      // --- 6. Floating Cosmic Micro-Particles (3D Stardust) ---
-      const particleCount = 70;
+      // --- 6. Floating Multi-Chromatic Cosmic Stardust ---
+      const particleCount = 95;
       const particleGeo = new THREE.BufferGeometry();
       const particlePositions = new Float32Array(particleCount * 3);
-      const particleScales = new Float32Array(particleCount);
+      const particleColors = new Float32Array(particleCount * 3);
+
+      const colorPalette = [
+        new THREE.Color(0x00f0ff), // cyber-cyan
+        new THREE.Color(0xa855f7), // neon purple
+        new THREE.Color(0xff5500), // electric orange
+        new THREE.Color(0xf43f5e), // cyber pink
+        new THREE.Color(0x10b981), // cyber emerald
+        new THREE.Color(0xf59e0b), // golden amber
+      ];
 
       for (let i = 0; i < particleCount; i++) {
-        const radius = 1.8 + Math.random() * 2.2;
+        const radius = 1.8 + Math.random() * 2.4;
         const theta = Math.random() * Math.PI * 2;
         const phi = (Math.random() - 0.5) * Math.PI * 0.8;
 
         particlePositions[i * 3] = radius * Math.cos(theta) * Math.cos(phi);
         particlePositions[i * 3 + 1] = radius * Math.sin(phi) + 0.1;
         particlePositions[i * 3 + 2] = radius * Math.sin(theta) * Math.cos(phi) - 0.2;
-        particleScales[i] = Math.random() * 0.8 + 0.3;
+
+        const col = colorPalette[i % colorPalette.length];
+        particleColors[i * 3] = col.r;
+        particleColors[i * 3 + 1] = col.g;
+        particleColors[i * 3 + 2] = col.b;
       }
 
       particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
       // Particle texture
       const pCanvas = document.createElement('canvas');
@@ -204,8 +229,9 @@ export const HeroCanvas: React.FC = () => {
       const pCtx = pCanvas.getContext('2d');
       if (pCtx) {
         const pGrad = pCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
-        pGrad.addColorStop(0, 'rgba(255, 140, 50, 1.0)');
-        pGrad.addColorStop(0.4, 'rgba(255, 85, 0, 0.6)');
+        pGrad.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+        pGrad.addColorStop(0.35, 'rgba(255, 255, 255, 0.7)');
+        pGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0.15)');
         pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         pCtx.fillStyle = pGrad;
         pCtx.fillRect(0, 0, 64, 64);
@@ -213,12 +239,13 @@ export const HeroCanvas: React.FC = () => {
       const pTexture = new THREE.CanvasTexture(pCanvas);
 
       const particleMat = new THREE.PointsMaterial({
-        size: 0.08,
+        size: 0.085,
         map: pTexture,
+        vertexColors: true,
         transparent: true,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
-        opacity: 0.75,
+        opacity: 0.85,
       });
 
       const particleSystem = new THREE.Points(particleGeo, particleMat);
@@ -358,8 +385,12 @@ export const HeroCanvas: React.FC = () => {
         mouseSpot.position.x = currentMouseX * 7;
         mouseSpot.position.y = -currentMouseY * 5;
 
-        // 5. Pulsing Electric Orange Rim-Light
+        // 5. Pulsing Multi-Spectral Rim-Lights and Cosmic Drift
         orangeRim.intensity = 8.0 + Math.sin(elapsedTime * 1.6) * 2.5;
+        cyanRim.intensity = 6.0 + Math.cos(elapsedTime * 1.4) * 2.0;
+        particleSystem.rotation.y = elapsedTime * 0.04;
+        particleSystem.rotation.x = Math.sin(elapsedTime * 0.08) * 0.05;
+        moltenOrangeMaterial.emissiveIntensity = 1.5 + Math.sin(elapsedTime * 2.2) * 0.5;
 
         if (renderer) {
           renderer.render(scene, camera);

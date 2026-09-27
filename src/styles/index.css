@@ -3,16 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --bg-black: #08090A;
-  --bg-charcoal: #111215;
-  --bg-card: #16181D;
-  --border-subtle: #242730;
-  --border-highlight: #3D4250;
+  --bg-black: #070814;
+  --bg-charcoal: #0d0f1a;
+  --bg-card: #131626;
+  --border-subtle: #252a42;
+  --border-highlight: #3d4468;
   --accent-orange: #FF5500;
   --accent-orange-light: #FF7733;
-  --cv-offwhite: #F4F1EA;
-  --cv-dark: #141416;
-  --cv-border: #DCD7CC;
+  --cyber-cyan: #00F0FF;
+  --cyber-purple: #8B5CF6;
+  --cyber-pink: #F43F5E;
+  --cyber-emerald: #10B981;
+  --cyber-amber: #F59E0B;
+  --cv-offwhite: #0b0d1e;
+  --cv-dark: #F8FAFC;
+  --cv-border: #282F4E;
 }
 
 @layer base {
@@ -83,35 +88,109 @@
     justify-content: center;
   }
 
-  /* Chrome edge highlight */
+  /* Luminous Chromatic Panels */
   .chrome-panel {
-    background: linear-gradient(180deg, rgba(28, 30, 36, 0.8) 0%, rgba(18, 19, 23, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(26, 30, 51, 0.85) 0%, rgba(13, 15, 26, 0.95) 100%);
     border: 1px solid var(--border-subtle);
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.07) inset, 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset, 0 16px 36px -12px rgba(0, 0, 0, 0.7);
   }
 
-  /* Subtle noise background overlay */
+  .glass-panel-rainbow {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(0, 240, 255, 0.05) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  /* Subtle noise & matrix backgrounds */
   .monolithic-noise {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-    background-size: 24px 24px;
+    background-image: radial-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 0), radial-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 0);
+    background-size: 32px 32px, 16px 16px;
+  }
+
+  /* Glowing Aurora Gradient Text */
+  .text-gradient-aurora {
+    background: linear-gradient(135deg, #FFFFFF 0%, #A5F3FC 30%, #C4B5FD 60%, #FDA4AF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #FFFFFF 20%, #00F0FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #FFFFFF 20%, #A855F7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #FFFFFF 20%, #FF5500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
-/* Custom subtle scrollbar */
+/* Floating animated aurora orbs */
+@keyframes aurora-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(30px, -25px) scale(1.12);
+    opacity: 0.55;
+  }
+}
+
+@keyframes aurora-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.6;
+  }
+}
+
+.animate-aurora-float {
+  animation: aurora-float 12s ease-in-out infinite;
+}
+
+.animate-aurora-pulse {
+  animation: aurora-pulse 8s ease-in-out infinite;
+}
+
+/* Shimmer ribbon */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  animation: shimmer-sweep 2.5s infinite;
+}
+
+/* Custom glowing scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #08090A;
+  background: #070814;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #242730;
+  background: #252a42;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3D4250;
+  background: #8B5CF6;
 }

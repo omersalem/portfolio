@@ -3,30 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omer Salem — Professional CV</title>
+  <title>Omer Salem — Senior Computer Engineer & Systems Architect CV</title>
   <meta
     name="description"
-    content="Professional CV of Omer Salem — Computer Engineer specializing in infrastructure, cybersecurity, enterprise systems, and modern web engineering."
+    content="Curriculum Vitae of Omer Salem — Computer Engineer specializing in enterprise infrastructure, perimeter cybersecurity (FortiGate, F5 WAF, Cisco FMC), Cisco Core Networks, Active Directory, and modern React/TypeScript/Three.js web engineering."
   />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
+    /* ==========================================================================
+       CYBERPUNK AURORA CHROMATIC DESIGN SYSTEM
+       ========================================================================== */
     :root {
-      --bg: #050608;
-      --bg-soft: #0b0e13;
-      --panel: rgba(255, 255, 255, 0.04);
-      --panel-strong: rgba(255, 255, 255, 0.07);
-      --stroke: rgba(255, 255, 255, 0.1);
-      --text: #f3f4f6;
-      --muted: #a1a1aa;
-      --accent: #ff6a00;
-      --accent-soft: rgba(255, 106, 0, 0.18);
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
-      --radius: 22px;
-      --radius-sm: 16px;
-      --max: 1200px;
+      --bg-dark: #050611;
+      --bg-card: rgba(14, 18, 36, 0.72);
+      --bg-card-hover: rgba(20, 26, 52, 0.85);
+      --panel-inner: rgba(255, 255, 255, 0.035);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+
+      /* Chromatic Palette */
+      --cyan: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.35);
+      --orange: #ff5500;
+      --orange-glow: rgba(255, 85, 0, 0.4);
+      --purple: #8b5cf6;
+      --purple-glow: rgba(139, 92, 246, 0.35);
+      --pink: #ec4899;
+      --pink-glow: rgba(236, 72, 153, 0.35);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.35);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.35);
+
+      /* Typography */
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+      --text-muted: #64748b;
+      --font-display: 'Orbitron', 'Space Grotesk', -apple-system, sans-serif;
+      --font-tech: 'Space Grotesk', 'Exo 2', monospace;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --max-width: 1240px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -34,73 +68,149 @@
     }
 
     body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255, 106, 0, 0.14), transparent 22%),
-        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.07), transparent 16%),
-        radial-gradient(circle at 70% 75%, rgba(255, 106, 0, 0.08), transparent 18%),
-        linear-gradient(180deg, #050608 0%, #090c11 100%);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
       min-height: 100vh;
+      position: relative;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Ambient Chromatic Auroras */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 600px 500px at 10% 15%, rgba(0, 240, 255, 0.12), transparent 70%),
+        radial-gradient(ellipse 700px 550px at 85% 10%, rgba(139, 92, 246, 0.14), transparent 70%),
+        radial-gradient(ellipse 650px 600px at 80% 65%, rgba(255, 85, 0, 0.10), transparent 70%),
+        radial-gradient(ellipse 550px 500px at 15% 85%, rgba(16, 185, 129, 0.08), transparent 70%);
+    }
+
+    /* Micro-dot CAD Grid Overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 28px 28px;
-      opacity: 0.25;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.3));
+        radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.45;
+    }
+
+    /* Prismatic Horizon Top Rainbow Bar */
+    .rainbow-horizon {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #00f0ff 0%, #8b5cf6 25%, #ec4899 50%, #ff5500 75%, #10b981 100%);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+      z-index: 100;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      transition: all 0.2s ease;
     }
 
     .wrap {
-      max-width: var(--max);
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 32px 20px 72px;
+      padding: 32px 24px 80px;
       position: relative;
-      z-index: 1;
+      z-index: 10;
     }
 
+    /* ==========================================================================
+       TOP ACTION BAR
+       ========================================================================== */
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       flex-wrap: wrap;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      color: var(--muted);
+      gap: 14px;
     }
 
-    .brand-dot {
-      width: 10px;
-      height: 10px;
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(139, 92, 246, 0.2));
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      box-shadow: 0 0 18px var(--cyan-glow);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 16px rgba(255, 106, 0, 0.8);
+      background: var(--emerald);
+      box-shadow: 0 0 12px var(--emerald);
+      animation: pulseLive 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseLive {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .brand-sub {
+      font-family: var(--font-tech);
+      font-size: 0.76rem;
+      letter-spacing: 0.15em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-weight: 600;
     }
 
     .top-actions {
       display: flex;
+      align-items: center;
       gap: 12px;
       flex-wrap: wrap;
     }
@@ -109,871 +219,1662 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 12px 18px;
-      border-radius: 14px;
-      border: 1px solid var(--stroke);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      font-weight: 600;
-      transition: 0.2s ease;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-tech);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
       cursor: pointer;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 106, 0, 0.55);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px var(--cyan-glow);
+      color: #fff;
     }
 
     .btn-primary {
-      background: linear-gradient(180deg, #ff7a14 0%, #ff5a00 100%);
+      background: linear-gradient(135deg, #ff5500 0%, #ec4899 50%, #8b5cf6 100%);
       color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 24px rgba(255, 85, 0, 0.45);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 35px rgba(236, 72, 153, 0.7);
       border-color: transparent;
     }
 
+    /* ==========================================================================
+       CAD GLASS PANEL CARDS & BRACKETS
+       ========================================================================== */
+    .cad-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      position: relative;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+
+    .cad-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Precision Technical Corner Accents */
+    .corner-bracket {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .corner-tl { top: 6px; left: 6px; border-top: 2px solid var(--cyan); border-left: 2px solid var(--cyan); }
+    .corner-tr { top: 6px; right: 6px; border-top: 2px solid var(--purple); border-right: 2px solid var(--purple); }
+    .corner-bl { bottom: 6px; left: 6px; border-bottom: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner-br { bottom: 6px; right: 6px; border-bottom: 2px solid var(--emerald); border-right: 2px solid var(--emerald); }
+
+    /* ==========================================================================
+       HERO EXECUTIVE DOSSIER
+       ========================================================================== */
     .hero {
       display: grid;
-      grid-template-columns: 1.45fr 0.9fr;
-      gap: 26px;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
       align-items: stretch;
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
 
-    .hero-card,
-    .panel,
-    .stat,
-    .skill-group,
-    .timeline-item,
-    .project-item,
-    .contact-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-card {
-      padding: 36px;
+    .hero-main {
+      padding: 40px;
       position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
     }
 
-    .hero-card::before {
+    .hero-main::after {
       content: "";
       position: absolute;
-      inset: -30% auto auto -10%;
+      top: 0;
+      right: 0;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(255,106,0,0.18), transparent 65%);
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .eyebrow {
-      color: var(--accent);
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 85, 0, 0.12);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: #ff944d;
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 16px rgba(255, 85, 0, 0.2);
     }
 
-    .name {
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      line-height: 0.95;
+    .name-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6.5vw, 4.8rem);
       font-weight: 900;
-      letter-spacing: -0.05em;
-      margin: 0;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 30%, #00f0ff 65%, #8b5cf6 90%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.25));
     }
 
-    .title {
-      margin: 18px 0 10px;
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
+    .title-sub {
+      font-family: var(--font-tech);
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
       font-weight: 700;
-      color: #f7f7f8;
+      color: #f1f5f9;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
     }
 
-    .summary {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      max-width: 60ch;
-      margin-top: 14px;
+    .title-sub span {
+      color: var(--cyan);
     }
 
-    .pill-row {
+    .executive-summary {
+      color: var(--text-dim);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      max-width: 68ch;
+    }
+
+    .executive-summary strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Colorful Skill Pill Horizon */
+    .skill-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
+      margin-bottom: 28px;
     }
 
     .pill {
-      padding: 10px 14px;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 7px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      color: #f5f5f5;
-      font-size: 0.92rem;
-      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
     }
 
-    .hero-meta {
+    .pill-cyan {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: #67e8f9;
+    }
+    .pill-orange {
+      background: rgba(255, 85, 0, 0.08);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: #fdba74;
+    }
+    .pill-purple {
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: #c4b5fd;
+    }
+    .pill-emerald {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+    .pill-pink {
+      background: rgba(236, 72, 153, 0.08);
+      border: 1px solid rgba(236, 72, 153, 0.35);
+      color: #f472b6;
+    }
+
+    /* Dossier Meta Ribbon */
+    .hero-meta-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 14px;
-      margin-top: 26px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
     }
 
-    .meta-box {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 18px;
-      padding: 16px;
+    .meta-item {
+      background: var(--panel-inner);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
     }
 
-    .meta-label {
-      font-size: 0.76rem;
-      letter-spacing: 0.18em;
+    .meta-tag {
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .meta-value {
+      color: var(--cyan);
+      margin-bottom: 4px;
       font-weight: 700;
-      line-height: 1.45;
     }
 
+    .meta-val {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    /* Hero Side Panel */
     .hero-side {
-      display: grid;
-      gap: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
-    .panel {
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
+    .side-card {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .panel-title {
+    .side-card-title {
+      font-family: var(--font-display);
       font-size: 0.82rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--amber);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+    }
+
+    .side-card h3 {
+      font-family: var(--font-tech);
+      font-size: 1.15rem;
+      color: #fff;
       margin-bottom: 10px;
-      font-weight: 700;
     }
 
-    .panel h3 {
-      margin: 0 0 8px;
-      font-size: 1.1rem;
-    }
-
-    .panel p {
-      margin: 0;
-      color: var(--muted);
+    .side-card p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
       line-height: 1.7;
     }
 
-    .panel-list {
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .section {
-      margin-top: 28px;
-    }
-
-    .section-header {
+    .side-list {
+      list-style: none;
+      margin-top: 12px;
       display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .section-header h2 {
-      margin: 0;
-      font-size: 1.6rem;
-      letter-spacing: -0.03em;
-    }
-
-    .section-header p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 60ch;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 16px;
-    }
-
-    .stat {
-      padding: 22px 18px;
-      text-align: left;
-      transform: perspective(1200px) rotateX(0deg);
-      transition: transform 0.25s ease;
-    }
-
-    .stat:hover {
-      transform: perspective(1200px) rotateX(4deg) translateY(-4px);
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      padding: 22px;
-      position: relative;
-    }
-
-    .timeline-item .role {
-      font-size: 1.08rem;
-      font-weight: 700;
-      margin: 0 0 4px;
-    }
-
-    .timeline-item .company {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .timeline-item .period {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 14px;
-    }
-
-    .timeline-item ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .skills-grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .skill-group {
-      padding: 22px;
-    }
-
-    .skill-group h3 {
-      margin: 0 0 14px;
-      font-size: 1rem;
-    }
-
-    .tags {
+    .side-list li {
+      font-size: 0.88rem;
+      color: #cbd5e1;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 10px;
     }
 
-    .tag {
-      font-size: 0.9rem;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #f4f4f5;
+    .side-list li::before {
+      content: "▹";
+      color: var(--cyan);
+      font-size: 1rem;
+      font-weight: bold;
     }
 
-    .projects {
-      display: grid;
-      gap: 16px;
-    }
-
-    .project-item {
-      padding: 22px;
-    }
-
-    .project-top {
+    /* ==========================================================================
+       STATS QUAD GRID
+       ========================================================================== */
+    .section-title-wrap {
       display: flex;
+      align-items: flex-end;
       justify-content: space-between;
-      gap: 14px;
-      align-items: start;
+      gap: 16px;
+      margin: 36px 0 20px;
       flex-wrap: wrap;
     }
 
-    .project-item h3 {
-      margin: 0 0 8px;
-      font-size: 1.12rem;
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .project-summary {
-      color: var(--muted);
-      line-height: 1.7;
-      margin: 0 0 16px;
+    .section-heading-tag {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--cyan);
     }
 
-    .mini-grid {
+    .section-sub {
+      color: var(--text-dim);
+      font-size: 0.92rem;
+      max-width: 60ch;
+    }
+
+    .stats-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      padding: 24px 20px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-card-orange {
+      border-top: 3px solid var(--orange);
+    }
+    .stat-card-orange:hover {
+      box-shadow: 0 10px 30px var(--orange-glow);
+    }
+
+    .stat-card-amber {
+      border-top: 3px solid var(--amber);
+    }
+    .stat-card-amber:hover {
+      box-shadow: 0 10px 30px var(--amber-glow);
+    }
+
+    .stat-card-cyan {
+      border-top: 3px solid var(--cyan);
+    }
+    .stat-card-cyan:hover {
+      box-shadow: 0 10px 30px var(--cyan-glow);
+    }
+
+    .stat-card-emerald {
+      border-top: 3px solid var(--emerald);
+    }
+    .stat-card-emerald:hover {
+      box-shadow: 0 10px 30px var(--emerald-glow);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-number-orange {
+      background: linear-gradient(135deg, #ffffff, #ff7a14);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-number-amber {
+      background: linear-gradient(135deg, #ffffff, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-number-cyan {
+      background: linear-gradient(135deg, #ffffff, #00f0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-number-emerald {
+      background: linear-gradient(135deg, #ffffff, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-title {
+      font-family: var(--font-tech);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .stat-desc {
+      color: var(--text-dim);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       TWO-COLUMN LAYOUT: TIMELINE & SKILLS MATRIX
+       ========================================================================== */
+    .two-col-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      margin-top: 32px;
+      align-items: start;
+    }
+
+    /* Timeline items */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .timeline-item {
+      padding: 28px;
+      position: relative;
+    }
+
+    .timeline-border-orange {
+      border-left: 4px solid var(--orange);
+    }
+    .timeline-border-cyan {
+      border-left: 4px solid var(--cyan);
+    }
+    .timeline-border-purple {
+      border-left: 4px solid var(--purple);
+    }
+
+    .timeline-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .company-pill {
+      font-family: var(--font-tech);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+
+    .company-orange {
+      background: rgba(255, 85, 0, 0.14);
+      color: #ff8c42;
+      border: 1px solid rgba(255, 85, 0, 0.35);
+    }
+
+    .company-cyan {
+      background: rgba(0, 240, 255, 0.14);
+      color: #67e8f9;
+      border: 1px solid rgba(0, 240, 255, 0.35);
+    }
+
+    .company-purple {
+      background: rgba(139, 92, 246, 0.14);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.35);
+    }
+
+    .timeline-period {
+      font-family: var(--font-tech);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline-location {
+      font-family: var(--font-tech);
+      font-size: 0.84rem;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+
+    .timeline-responsibilities {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-responsibilities li {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.65;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline-responsibilities li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 1rem;
+    }
+
+    .timeline-border-cyan .timeline-responsibilities li::before {
+      color: var(--cyan);
+    }
+
+    .timeline-border-purple .timeline-responsibilities li::before {
+      color: var(--purple);
+    }
+
+    .tech-stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+    }
+
+    .tech-chip {
+      font-family: var(--font-tech);
+      font-size: 0.74rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    /* Skills Grid */
+    .skills-column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 22px;
+      position: relative;
+    }
+
+    .skill-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .skill-domain-title {
+      font-family: var(--font-tech);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-icon-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .dot-orange { background: var(--orange); box-shadow: 0 0 10px var(--orange); }
+    .dot-cyan { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .dot-purple { background: var(--purple); box-shadow: 0 0 10px var(--purple); }
+    .dot-emerald { background: var(--emerald); box-shadow: 0 0 10px var(--emerald); }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: #f1f5f9;
+      transition: all 0.2s ease;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.08);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       FEATURED PROJECTS PORTFOLIO ALIGNMENT
+       ========================================================================== */
+    .projects-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .project-card {
+      padding: 30px;
+      position: relative;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .project-title-group h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .project-link-url {
+      font-family: var(--font-tech);
+      font-size: 0.82rem;
+      color: var(--cyan);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .project-badge {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+
+    .project-desc {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+      max-width: 85ch;
+    }
+
+    .project-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
 
-    .mini-card {
+    .spec-box {
+      background: var(--panel-inner);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
       padding: 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
     }
 
-    .mini-card strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--accent);
-      font-size: 0.88rem;
-      letter-spacing: 0.08em;
+    .spec-header {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    .mini-card p,
-    .mini-card li {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
+    .spec-orange { color: var(--orange); }
+    .spec-cyan { color: var(--cyan); }
+    .spec-purple { color: var(--purple); }
+    .spec-emerald { color: var(--emerald); }
+
+    .spec-content {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
     }
 
-    .mini-card ul {
-      margin: 0;
-      padding-left: 18px;
+    .spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.86rem;
+      color: #cbd5e1;
     }
 
+    .spec-list li::before {
+      content: "• ";
+      color: var(--cyan);
+    }
+
+    /* ==========================================================================
+       CONTACT & VERIFIED CHANNELS
+       ========================================================================== */
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 24px;
     }
 
-    .contact-card {
-      padding: 20px;
+    .contact-tile {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: var(--radius-md);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .contact-card h3 {
-      margin: 0 0 8px;
-      font-size: 0.95rem;
-      color: var(--accent);
-      letter-spacing: 0.08em;
+    .contact-tile:hover {
+      transform: translateY(-3px);
+    }
+
+    .contact-whatsapp {
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 18, 36, 0.75) 100%);
+    }
+    .contact-whatsapp:hover {
+      box-shadow: 0 10px 30px var(--emerald-glow);
+      border-color: var(--emerald);
+    }
+
+    .contact-email {
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      background: linear-gradient(180deg, rgba(0, 240, 255, 0.1) 0%, rgba(14, 18, 36, 0.75) 100%);
+    }
+    .contact-email:hover {
+      box-shadow: 0 10px 30px var(--cyan-glow);
+      border-color: var(--cyan);
+    }
+
+    .contact-github {
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, rgba(14, 18, 36, 0.75) 100%);
+    }
+    .contact-github:hover {
+      box-shadow: 0 10px 30px var(--purple-glow);
+      border-color: var(--purple);
+    }
+
+    .contact-portfolio {
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      background: linear-gradient(180deg, rgba(255, 85, 0, 0.1) 0%, rgba(14, 18, 36, 0.75) 100%);
+    }
+    .contact-portfolio:hover {
+      box-shadow: 0 10px 30px var(--orange-glow);
+      border-color: var(--orange);
+    }
+
+    .contact-tile-tag {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .contact-card p,
-    .contact-card a {
-      margin: 0;
-      color: var(--text);
-      word-break: break-word;
+    .contact-tile-value {
+      font-family: var(--font-tech);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      word-break: break-all;
+      margin-bottom: 6px;
     }
 
-    .footer-note {
-      margin-top: 26px;
-      color: var(--muted);
-      font-size: 0.95rem;
+    .contact-tile-sub {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* Footer Note */
+    .cv-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
       text-align: center;
+      font-family: var(--font-tech);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
     }
 
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
+       ========================================================================== */
     @media (max-width: 1100px) {
       .hero,
-      .two-col {
+      .two-col-layout {
         grid-template-columns: 1fr;
       }
 
-      .stats,
+      .stats-grid,
       .contact-grid {
-        grid-template-columns: repeat(2, minmax(0,1fr));
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-specs-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
       .wrap {
-        padding: 22px 14px 56px;
+        padding: 20px 16px 60px;
       }
 
-      .hero-card,
-      .panel,
-      .timeline-item,
-      .skill-group,
-      .project-item,
-      .contact-card,
-      .stat {
-        padding: 18px;
+      .hero-main {
+        padding: 24px 20px;
       }
 
-      .stats,
+      .name-heading {
+        font-size: 3rem;
+      }
+
+      .hero-meta-grid,
+      .stats-grid,
       .contact-grid,
-      .hero-meta,
-      .mini-grid {
+      .project-specs-grid {
         grid-template-columns: 1fr;
       }
 
-      .name {
-        font-size: 2.8rem;
+      .timeline-item,
+      .project-card,
+      .side-card {
+        padding: 20px;
       }
     }
 
+    /* ==========================================================================
+       PRINT & PDF EXPORT OPTIMIZATIONS (@media print)
+       ========================================================================== */
     @media print {
       body {
-        background: #fff;
-        color: #111;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
       }
 
       body::before,
+      body::after,
+      .rainbow-horizon,
       .topbar,
-      .footer-note {
+      .corner-bracket,
+      .pulse-dot {
         display: none !important;
       }
 
-      .hero-card,
-      .panel,
-      .stat,
-      .skill-group,
-      .timeline-item,
-      .project-item,
-      .contact-card {
-        box-shadow: none;
-        background: #fff;
-        color: #111;
-        border: 1px solid #ddd;
+      .wrap {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
 
-      .summary,
-      .project-summary,
-      .panel p,
-      .mini-card p,
-      .mini-card li,
-      .timeline-item ul,
-      .section-header p,
-      .stat-label,
-      .tag,
-      .pill,
-      .contact-card p,
-      .contact-card a {
-        color: #333 !important;
+      .cad-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        border-radius: 8px !important;
+        backdrop-filter: none !important;
+        color: #0f172a !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 16px !important;
       }
 
-      .panel-title,
-      .company,
-      .mini-card strong,
-      .contact-card h3,
-      .eyebrow,
+      .name-heading {
+        background: none !important;
+        -webkit-text-fill-color: #0f172a !important;
+        color: #0f172a !important;
+        font-size: 2.4rem !important;
+        filter: none !important;
+      }
+
+      .title-sub {
+        color: #0f172a !important;
+      }
+
+      .title-sub span {
+        color: #0284c7 !important;
+      }
+
+      .executive-summary,
+      .side-card p,
+      .timeline-responsibilities li,
+      .project-desc,
+      .stat-desc,
+      .spec-content {
+        color: #334155 !important;
+      }
+
+      .eyebrow-badge,
+      .company-pill,
+      .project-badge {
+        border: 1px solid #cbd5e1 !important;
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+      }
+
+      .pill {
+        border: 1px solid #cbd5e1 !important;
+        background: #f8fafc !important;
+        color: #0f172a !important;
+      }
+
+      .meta-item,
+      .spec-box {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+
+      .meta-tag,
+      .spec-header,
+      .brand-sub,
+      .timeline-location {
+        color: #0284c7 !important;
+      }
+
+      .meta-val,
+      .stat-title,
+      .timeline-role,
+      .project-title-group h3,
+      .skill-domain-title {
+        color: #0f172a !important;
+      }
+
       .stat-number {
-        color: #d45500 !important;
+        -webkit-text-fill-color: #0284c7 !important;
+        color: #0284c7 !important;
+        font-size: 1.8rem !important;
+      }
+
+      .timeline-border-orange { border-left: 4px solid #ea580c !important; }
+      .timeline-border-cyan { border-left: 4px solid #0284c7 !important; }
+      .timeline-border-purple { border-left: 4px solid #7c3aed !important; }
+
+      .timeline-responsibilities li::before {
+        color: #0f172a !important;
+      }
+
+      .contact-tile {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+      }
+
+      .contact-tile-value {
+        color: #0f172a !important;
+      }
+
+      .cv-footer {
+        display: none !important;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Prismatic Rainbow Horizon Line -->
+  <div class="rainbow-horizon"></div>
+
   <div class="wrap">
-    <div class="topbar">
+    <!-- Top Action Navigation Bar -->
+    <header class="topbar">
       <div class="brand">
-        <span class="brand-dot"></span>
-        <span>Omer Salem • Professional CV</span>
+        <div class="brand-logo">OS</div>
+        <div class="brand-meta">
+          <div class="brand-title">
+            <span>OMER SALEM</span>
+            <span class="pulse-dot" title="Operational / Available"></span>
+          </div>
+          <div class="brand-sub">SYS_ID: OS-8979 // PALESTINE & KUWAIT</div>
+        </div>
       </div>
       <div class="top-actions">
-        <a class="btn" href="/">Back to Portfolio</a>
-        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+        <a class="btn" href="/" title="Navigate back to 3D Cyberpunk Portfolio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Portfolio
+        </a>
+        <button class="btn btn-primary" onclick="window.print()" title="Export print-optimized PDF version">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print / Save PDF
+        </button>
       </div>
-    </div>
+    </header>
 
+    <!-- Hero Executive Dossier -->
     <section class="hero">
-      <div class="hero-card">
-        <div class="eyebrow">Computer Engineer</div>
-        <h1 class="name">Omer<br />Salem</h1>
-        <div class="title">Infrastructure, Security, Enterprise Systems & Modern Web Engineering</div>
-        <p class="summary">
-          Computer Engineer with strong hands-on experience in enterprise infrastructure,
-          cybersecurity operations, modern web platforms, and technical solution design.
-          Experienced in building secure systems, production-ready websites, and practical
-          engineering solutions that connect business goals with technical execution.
+      <div class="cad-card hero-main">
+        <div class="corner-bracket corner-tl"></div>
+        <div class="corner-bracket corner-tr"></div>
+        <div class="corner-bracket corner-bl"></div>
+        <div class="corner-bracket corner-br"></div>
+
+        <div class="eyebrow-badge">
+          <span>Enterprise Systems &amp; Web Architect</span>
+        </div>
+
+        <h1 class="name-heading">OMER<br />SALEM</h1>
+
+        <div class="title-sub">
+          Computer Engineer <span>•</span> Infrastructure <span>•</span> Cybersecurity <span>•</span> Modern Web
+        </div>
+
+        <p class="executive-summary">
+          <strong>Computer Engineer</strong> with <strong>8+ years</strong> of verified experience across mission-critical enterprise environments and high-performance digital product engineering. <strong>7 years</strong> dedicated to the <strong>Ministry of National Economy (Ramallah)</strong> managing enterprise perimeter security (FortiGate, Cisco FMC/FTD, F5 WAF), nationwide Active Directory domain services, Cisco Core backbone fabrics, and high-availability systems. Simultaneously architecting high-converting modern web applications (React 18, TypeScript, Three.js 3D WebGL) and autonomous AI multi-agent orchestration pipelines.
         </p>
 
-        <div class="pill-row">
-          <span class="pill">7+ Years Experience</span>
-          <span class="pill">Ministry of National Economy</span>
-          <span class="pill">Web Platforms</span>
-          <span class="pill">Cybersecurity</span>
-          <span class="pill">Infrastructure</span>
+        <!-- Colorful Skill Pill Horizon -->
+        <div class="skill-pills">
+          <span class="pill pill-orange">Next-Gen Firewalls &amp; WAF</span>
+          <span class="pill pill-cyan">Cisco Core Switches &amp; Routing</span>
+          <span class="pill pill-purple">Active Directory (AD DS) &amp; GPO</span>
+          <span class="pill pill-pink">React 18 &amp; Three.js 3D</span>
+          <span class="pill pill-emerald">Autonomous AI Agents</span>
+          <span class="pill pill-cyan">Dual Bilingual (AR / EN)</span>
         </div>
 
-        <div class="hero-meta">
-          <div class="meta-box">
-            <div class="meta-label">Core Focus</div>
-            <div class="meta-value">Infrastructure • Security • Enterprise Systems • Web Engineering</div>
+        <!-- Telemetry Meta Ribbon -->
+        <div class="hero-meta-grid">
+          <div class="meta-item">
+            <div class="meta-tag">Core Technical Specialization</div>
+            <div class="meta-val">Perimeter Defense, Enterprise Microsoft, Routing Fabrics &amp; Production Web</div>
           </div>
-          <div class="meta-box">
-            <div class="meta-label">Portfolio Strength</div>
-            <div class="meta-value">3D product presentation, full-stack delivery, deployment, and system architecture</div>
+          <div class="meta-item">
+            <div class="meta-tag">Operational Security Status</div>
+            <div class="meta-val">Government Infrastructure &amp; Zero-Trust Hardening Verified</div>
           </div>
         </div>
       </div>
 
+      <!-- Hero Side Profiles -->
       <div class="hero-side">
-        <div class="panel">
-          <div class="panel-title">Professional Profile</div>
-          <h3>Engineering value with technical depth</h3>
+        <div class="cad-card side-card">
+          <div class="corner-bracket corner-tl"></div>
+          <div class="corner-bracket corner-tr"></div>
+          <div class="side-card-title">
+            <span class="pulse-dot"></span>
+            <span>Engineering Authority</span>
+          </div>
+          <h3>The Power of Unified Dual Competence</h3>
           <p>
-            Combines enterprise IT knowledge with modern web product execution. Delivers
-            infrastructure-driven thinking, secure architecture, and high-end presentation quality.
+            Bridging the gap between physical datacenter infrastructure (cabling, rack switches, firewall clusters, zero-trust policies) and modern interactive digital storefronts that convert visitors into revenue.
           </p>
         </div>
 
-        <div class="panel">
-          <div class="panel-title">Key Capabilities</div>
-          <ul class="panel-list">
-            <li>Enterprise infrastructure and systems administration</li>
-            <li>Firewall, Active Directory, and Microsoft environment management</li>
-            <li>React, TypeScript, and premium UI engineering</li>
-            <li>Deployment readiness and technical problem-solving</li>
+        <div class="cad-card side-card">
+          <div class="corner-bracket corner-bl"></div>
+          <div class="corner-bracket corner-br"></div>
+          <div class="side-card-title">
+            <span class="pulse-dot"></span>
+            <span>Key Differentiators</span>
+          </div>
+          <ul class="side-list">
+            <li>Direct ownership of government perimeter firewalls &amp; switches</li>
+            <li>Production-proven React &amp; TypeScript architecture</li>
+            <li>Autonomous AI agent skills &amp; self-healing runbook execution</li>
+            <li>Bilingual executive communication in Arabic &amp; English</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-header">
-        <h2>Impact Snapshot</h2>
-        <p>Quick overview of the engineering profile, portfolio direction, and delivery scope.</p>
+    <!-- Key Metrics Quad-Grid -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="section-heading">
+          <span>ENGINEERING IMPACT METRICS</span>
+          <span class="section-heading-tag">VERIFIED TELEMETRY</span>
+        </div>
+        <div class="section-sub">
+          Quantifiable track record across enterprise availability, government service continuity, and digital product delivery.
+        </div>
       </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-number">7+</div>
-          <div class="stat-label">Years of enterprise environment experience</div>
+
+      <div class="stats-grid">
+        <div class="cad-card stat-card stat-card-orange">
+          <div class="stat-number stat-number-orange">8+</div>
+          <div class="stat-title">Years Engineering Experience</div>
+          <div class="stat-desc">Proven leadership in datacenter systems, enterprise security, and modern web architecture.</div>
         </div>
-        <div class="stat">
-          <div class="stat-number">5</div>
-          <div class="stat-label">Featured portfolio projects with case-study support</div>
+
+        <div class="cad-card stat-card stat-card-amber">
+          <div class="stat-number stat-number-amber">7 Yrs</div>
+          <div class="stat-title">Ministry of National Economy</div>
+          <div class="stat-desc">Ramallah — Continuous responsibility for firewalls, core networks, and Active Directory.</div>
         </div>
-        <div class="stat">
-          <div class="stat-number">4</div>
-          <div class="stat-label">Main capability pillars: Infrastructure, Security, Web, Systems</div>
+
+        <div class="cad-card stat-card stat-card-cyan">
+          <div class="stat-number stat-number-cyan">5</div>
+          <div class="stat-title">Featured Production Platforms</div>
+          <div class="stat-desc">Live commercial and civic portals engineered with modern frontend and cloud deployments.</div>
         </div>
-        <div class="stat">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Operational mindset for reliability and support readiness</div>
+
+        <div class="cad-card stat-card stat-card-emerald">
+          <div class="stat-number stat-number-emerald">99.99%</div>
+          <div class="stat-title">High-Availability Mindset</div>
+          <div class="stat-desc">Disciplined operational hygiene, redundant clustering, and proactive disaster prevention.</div>
         </div>
       </div>
     </section>
 
-    <section class="section two-col">
+    <!-- Two-Column Layout: Professional Experience & Comprehensive Skills -->
+    <div class="two-col-layout">
+      <!-- Left Column: Career Timeline -->
       <div>
-        <div class="section-header">
-          <h2>Professional Experience</h2>
-          <p>Core background that supports both the enterprise engineering profile and the portfolio’s technical direction.</p>
+        <div class="section-title-wrap">
+          <div class="section-heading">
+            <span>PROFESSIONAL TIMELINE</span>
+            <span class="section-heading-tag">CAREER PATH</span>
+          </div>
         </div>
 
         <div class="timeline">
-          <div class="timeline-item">
-            <div class="role">Computer Engineer / Infrastructure & Systems Specialist</div>
-            <div class="company">Ministry of National Economy — Ramallah</div>
-            <div class="period">7 Years</div>
-            <ul>
-              <li>Supported enterprise infrastructure, systems, and operational technology environments.</li>
-              <li>Worked across cybersecurity, identity services, network-connected systems, and service continuity.</li>
-              <li>Handled practical engineering responsibilities involving reliability, administration, and technical troubleshooting.</li>
-              <li>Built a strong foundation in structured system thinking, production discipline, and security-first implementation.</li>
+          <!-- Experience 1: Ministry of National Economy -->
+          <div class="cad-card timeline-item timeline-border-orange">
+            <div class="corner-bracket corner-tr"></div>
+            <div class="timeline-badge-row">
+              <span class="company-pill company-orange">Ministry of National Economy (MNE)</span>
+              <span class="timeline-period">2019 – Present (7 Years)</span>
+            </div>
+            <div class="timeline-role">Computer Engineer — Infrastructure, Security &amp; Systems</div>
+            <div class="timeline-location">Ramallah, Palestine • Government Enterprise Datacenter</div>
+
+            <ul class="timeline-responsibilities">
+              <li>Direct operational responsibility for enterprise perimeter security across FortiGate NGFW, Cisco FMC &amp; FTD, F5 BIG-IP (WAF/LTM), and Sophos security clusters, ensuring high availability and zero-trust perimeter enforcement.</li>
+              <li>Comprehensive domain architecture and security administration of nationwide Active Directory (AD DS) and centralized Group Policy (GPO) governance across hundreds of ministerial endpoints.</li>
+              <li>Engineered Cisco Core Switch networks, Catalyst/Nexus distribution fabrics, resilient VLAN segmentations, and deterministic OSPF/BGP routing topologies.</li>
+              <li>Maintained continuous operations of enterprise Microsoft Exchange Server messaging infrastructure, Database Availability Groups (DAG), and SCCM automated deployment/patching pipelines.</li>
+              <li>Pioneered autonomous AI agent orchestration (MNE Brain v2) for automated infrastructure telemetry, specialized execution loops, and self-healing diagnostic runbooks.</li>
             </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-chip">FortiGate NGFW</span>
+              <span class="tech-chip">F5 BIG-IP WAF</span>
+              <span class="tech-chip">Cisco FMC &amp; FTD</span>
+              <span class="tech-chip">Cisco Core Switches</span>
+              <span class="tech-chip">Active Directory (AD DS)</span>
+              <span class="tech-chip">Microsoft Exchange DAG</span>
+              <span class="tech-chip">SCCM</span>
+              <span class="tech-chip">AI Agent Loops</span>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="role">Web Engineering & Digital Platform Development</div>
-            <div class="company">Portfolio & Client Projects</div>
-            <div class="period">Ongoing</div>
-            <ul>
-              <li>Designed and built modern websites and digital experiences for real businesses and organizations.</li>
-              <li>Focused on responsive UX, visual presentation, product clarity, and client-facing conversion flow.</li>
-              <li>Used React and TypeScript to create maintainable interfaces with high-end design quality.</li>
-              <li>Translated technical capability into polished commercial and portfolio-ready products.</li>
+          <!-- Experience 2: Kuwait -->
+          <div class="cad-card timeline-item timeline-border-cyan">
+            <div class="corner-bracket corner-tr"></div>
+            <div class="timeline-badge-row">
+              <span class="company-pill company-cyan">Enterprise Systems Engineering</span>
+              <span class="timeline-period">2018 – 2019 (1 Year)</span>
+            </div>
+            <div class="timeline-role">Computer Engineer</div>
+            <div class="timeline-location">Kuwait • Datacenter &amp; Systems Integration</div>
+
+            <ul class="timeline-responsibilities">
+              <li>Executed enterprise computer system deployments, rack installations, structured network cabling, and server lifecycle management.</li>
+              <li>Configured enterprise network switching, routing topologies, hardware diagnostics, and secure user access administration.</li>
+              <li>Enforced baseline cybersecurity policies, automated backup routines, disaster prevention routines, and storage cluster monitoring.</li>
             </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-chip">Enterprise Routers</span>
+              <span class="tech-chip">Network Switching</span>
+              <span class="tech-chip">Windows Server</span>
+              <span class="tech-chip">Hardware Diagnostics</span>
+              <span class="tech-chip">Storage &amp; Backup</span>
+            </div>
+          </div>
+
+          <!-- Experience 3: Web Engineering & AI Platforms -->
+          <div class="cad-card timeline-item timeline-border-purple">
+            <div class="corner-bracket corner-tr"></div>
+            <div class="timeline-badge-row">
+              <span class="company-pill company-purple">Web Engineering &amp; Client Products</span>
+              <span class="timeline-period">Ongoing Production Practice</span>
+            </div>
+            <div class="timeline-role">Lead Web Architect &amp; Product Developer</div>
+            <div class="timeline-location">Remote &amp; Contract • Commercial &amp; Civic Solutions</div>
+
+            <ul class="timeline-responsibilities">
+              <li>Architected and deployed 5 live production platforms ranging from multi-currency e-commerce storefronts to municipal civic communication portals.</li>
+              <li>Engineered interactive 3D WebGL interfaces using Three.js and custom shaders to deliver cutting-edge visual presentation and high-converting UX.</li>
+              <li>Leveraged React 18, TypeScript, and modern component systems for clean maintainability, sub-second load times, and fluid mobile responsiveness.</li>
+            </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-chip">React 18</span>
+              <span class="tech-chip">TypeScript</span>
+              <span class="tech-chip">Three.js WebGL</span>
+              <span class="tech-chip">Tailwind CSS</span>
+              <span class="tech-chip">Cloudflare Edge</span>
+              <span class="tech-chip">PWA Architecture</span>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- Right Column: Skills Matrix Categorized by Domain -->
       <div>
-        <div class="section-header">
-          <h2>Skills Matrix</h2>
-          <p>Grouped to show both enterprise depth and modern frontend capability.</p>
+        <div class="section-title-wrap">
+          <div class="section-heading">
+            <span>SKILLS MATRIX</span>
+            <span class="section-heading-tag">DOMAIN EXPERTISE</span>
+          </div>
         </div>
 
-        <div class="skills-grid">
-          <div class="skill-group">
-            <h3>Web Engineering</h3>
-            <div class="tags">
-              <span class="tag">React</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">HTML / CSS</span>
-              <span class="tag">Responsive UI</span>
-              <span class="tag">Component Systems</span>
-              <span class="tag">Three.js</span>
-              <span class="tag">Frontend Architecture</span>
+        <div class="skills-column">
+          <!-- Domain 1: Perimeter & Firewalls -->
+          <div class="cad-card skill-card">
+            <div class="skill-card-header">
+              <div class="skill-domain-title">
+                <span class="skill-icon-dot dot-orange"></span>
+                <span>Perimeter &amp; Firewalls</span>
+              </div>
+              <span class="section-heading-tag">DEFENSE</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">FortiGate NGFW</span>
+              <span class="skill-tag">F5 BIG-IP (WAF/ASM)</span>
+              <span class="skill-tag">Cisco FMC &amp; FTD</span>
+              <span class="skill-tag">Sophos Security</span>
+              <span class="skill-tag">SSL Inspection</span>
+              <span class="skill-tag">Zero-Trust Rules</span>
+              <span class="skill-tag">HA Clustering</span>
+              <span class="skill-tag">Threat Prevention</span>
             </div>
           </div>
 
-          <div class="skill-group">
-            <h3>Infrastructure & Systems</h3>
-            <div class="tags">
-              <span class="tag">Cisco Networking</span>
-              <span class="tag">Active Directory</span>
-              <span class="tag">Exchange Server</span>
-              <span class="tag">SCCM</span>
-              <span class="tag">Enterprise Systems</span>
-              <span class="tag">System Administration</span>
+          <!-- Domain 2: Core Networks & Routing -->
+          <div class="cad-card skill-card">
+            <div class="skill-card-header">
+              <div class="skill-domain-title">
+                <span class="skill-icon-dot dot-cyan"></span>
+                <span>Core Networks &amp; Routing</span>
+              </div>
+              <span class="section-heading-tag">BACKBONE</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Cisco Core Switches</span>
+              <span class="skill-tag">Catalyst &amp; Nexus</span>
+              <span class="skill-tag">Enterprise Routers</span>
+              <span class="skill-tag">VLAN Segmentation</span>
+              <span class="skill-tag">OSPF / BGP Topologies</span>
+              <span class="skill-tag">Port Channels (LACP)</span>
+              <span class="skill-tag">Spanning Tree (RSTP)</span>
             </div>
           </div>
 
-          <div class="skill-group">
-            <h3>Security</h3>
-            <div class="tags">
-              <span class="tag">FortiGate</span>
-              <span class="tag">Firewall Operations</span>
-              <span class="tag">Identity & Access</span>
-              <span class="tag">Secure Architecture</span>
-              <span class="tag">Operational Hardening</span>
+          <!-- Domain 3: Enterprise Microsoft & Identity -->
+          <div class="cad-card skill-card">
+            <div class="skill-card-header">
+              <div class="skill-domain-title">
+                <span class="skill-icon-dot dot-purple"></span>
+                <span>Enterprise Microsoft &amp; Identity</span>
+              </div>
+              <span class="section-heading-tag">SYSTEMS</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Active Directory (AD DS)</span>
+              <span class="skill-tag">Group Policy (GPO) Hardening</span>
+              <span class="skill-tag">Exchange Server (DAG)</span>
+              <span class="skill-tag">Microsoft SCCM</span>
+              <span class="skill-tag">Windows Server Datacenter</span>
+              <span class="skill-tag">DNS &amp; DHCP Infrastructure</span>
+              <span class="skill-tag">Role-Based Access (RBAC)</span>
             </div>
           </div>
 
-          <div class="skill-group">
-            <h3>Delivery Strengths</h3>
-            <div class="tags">
-              <span class="tag">Problem Solving</span>
-              <span class="tag">Deployment Readiness</span>
-              <span class="tag">Technical Communication</span>
-              <span class="tag">System Thinking</span>
-              <span class="tag">Client-Facing Presentation</span>
+          <!-- Domain 4: Web Engineering & Autonomous AI -->
+          <div class="cad-card skill-card">
+            <div class="skill-card-header">
+              <div class="skill-domain-title">
+                <span class="skill-icon-dot dot-emerald"></span>
+                <span>Web Engineering &amp; AI Agents</span>
+              </div>
+              <span class="section-heading-tag">MODERN TECH</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">React 18 &amp; TypeScript</span>
+              <span class="skill-tag">Three.js &amp; 3D WebGL</span>
+              <span class="skill-tag">Tailwind CSS</span>
+              <span class="skill-tag">Responsive UX Architecture</span>
+              <span class="skill-tag">Autonomous Multi-Agents</span>
+              <span class="skill-tag">Skills &amp; Context Loops</span>
+              <span class="skill-tag">E-Commerce Systems</span>
+            </div>
+          </div>
+
+          <!-- Domain 5: Languages & Communication -->
+          <div class="cad-card skill-card">
+            <div class="skill-card-header">
+              <div class="skill-domain-title">
+                <span class="skill-icon-dot dot-cyan"></span>
+                <span>Languages &amp; Governance</span>
+              </div>
+              <span class="section-heading-tag">COMMUNICATION</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Arabic (Native Speaker)</span>
+              <span class="skill-tag">English (Professional Fluent)</span>
+              <span class="skill-tag">Technical Architecture Runbooks</span>
+              <span class="skill-tag">Incident Response Leadership</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
-      <div class="section-header">
-        <h2>Selected Project Highlights</h2>
-        <p>Condensed project view aligned with the portfolio case-study system.</p>
+    <!-- Featured Live Projects Case Studies -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="section-heading">
+          <span>FEATURED PRODUCTION WORK</span>
+          <span class="section-heading-tag">5 LIVE PLATFORMS</span>
+        </div>
+        <div class="section-sub">
+          Direct evidence of real-world implementation capability, high-converting UX architecture, and cloud deployment pipelines.
+        </div>
       </div>
 
-      <div class="projects">
-        <div class="project-item">
-          <div class="project-top">
-            <div>
+      <div class="projects-container">
+        <!-- Project 1: Almalaki Store -->
+        <div class="cad-card project-card">
+          <div class="corner-bracket corner-tl"></div>
+          <div class="corner-bracket corner-br"></div>
+          <div class="project-header">
+            <div class="project-title-group">
               <h3>Almalaki Store</h3>
-              <p class="project-summary">Modern commerce experience designed to improve product presentation and customer ordering flow.</p>
+              <a href="https://almalakistore.ps/" target="_blank" rel="noopener noreferrer" class="project-link-url">
+                almalakistore.ps
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
             </div>
+            <span class="project-badge company-orange">E-COMMERCE &amp; CONFECTIONERY</span>
           </div>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <strong>Challenge</strong>
-              <p>Build a modern commerce experience that supports product discovery and customer ordering.</p>
+          <p class="project-desc">
+            Premier confectionery and cake supplies digital storefront engineered with multi-currency checkout, rich catalog categorization, and native-feeling mobile PWA browsing.
+          </p>
+          <div class="project-specs-grid">
+            <div class="spec-box">
+              <div class="spec-header spec-orange">Engineering Challenge</div>
+              <div class="spec-content">Design an intuitive commerce catalog supporting high-SKU inventory with rapid customer purchase intent.</div>
             </div>
-            <div class="mini-card">
-              <strong>Solution</strong>
-              <p>Designed a responsive storefront with optimized browsing, ordering flow, and deployment-ready frontend architecture.</p>
+            <div class="spec-box">
+              <div class="spec-header spec-cyan">Engineered Solution</div>
+              <div class="spec-content">Developed a lightweight, high-performance responsive frontend with frictionless ordering and cloud asset optimization.</div>
             </div>
-            <div class="mini-card">
-              <strong>Architecture</strong>
-              <ul>
-                <li>React frontend</li>
-                <li>Responsive component system</li>
-                <li>Cloud deployment pipeline</li>
+            <div class="spec-box">
+              <div class="spec-header spec-purple">Architecture</div>
+              <ul class="spec-list">
+                <li>React 18 Frontend</li>
+                <li>Responsive Component Kit</li>
+                <li>Cloud CDN Deployment</li>
               </ul>
             </div>
-            <div class="mini-card">
-              <strong>Technology</strong>
-              <p>React, TypeScript, frontend architecture, responsive UI</p>
+            <div class="spec-box">
+              <div class="spec-header spec-emerald">Tech Stack</div>
+              <div class="spec-content">React, TypeScript, PWA, Tailwind CSS, Cloudflare</div>
             </div>
           </div>
         </div>
 
-        <div class="project-item">
-          <div class="project-top">
-            <div>
+        <!-- Project 2: Bazaria Council -->
+        <div class="cad-card project-card">
+          <div class="corner-bracket corner-tl"></div>
+          <div class="corner-bracket corner-br"></div>
+          <div class="project-header">
+            <div class="project-title-group">
               <h3>Bazaria Council</h3>
-              <p class="project-summary">Public-facing digital portal for local communication and information delivery.</p>
+              <a href="https://bazariacouncil.pages.dev/" target="_blank" rel="noopener noreferrer" class="project-link-url">
+                bazariacouncil.pages.dev
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
             </div>
+            <span class="project-badge company-cyan">CIVIC &amp; GOVERNMENT SERVICES</span>
           </div>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <strong>Challenge</strong>
-              <p>Create a public digital portal for municipal communication.</p>
+          <p class="project-desc">
+            Official municipal civic portal providing digital public services, official announcements, community tracking, and transparent civic communication.
+          </p>
+          <div class="project-specs-grid">
+            <div class="spec-box">
+              <div class="spec-header spec-cyan">Engineering Challenge</div>
+              <div class="spec-content">Deliver an ultra-accessible, rapid public information portal accessible across all mobile devices and networks.</div>
             </div>
-            <div class="mini-card">
-              <strong>Solution</strong>
-              <p>Delivered a clean, accessible web presence focused on information clarity and citizen communication.</p>
+            <div class="spec-box">
+              <div class="spec-header spec-orange">Engineered Solution</div>
+              <div class="spec-content">Built a clean civic layout prioritizing readability, structured news bulletins, and sub-second load times.</div>
             </div>
-            <div class="mini-card">
-              <strong>Architecture</strong>
-              <ul>
-                <li>Frontend application</li>
-                <li>Static deployment</li>
-                <li>Content-driven pages</li>
+            <div class="spec-box">
+              <div class="spec-header spec-purple">Architecture</div>
+              <ul class="spec-list">
+                <li>Cloudflare Pages Edge</li>
+                <li>Accessible Information Flow</li>
+                <li>Static Jamstack Pipeline</li>
               </ul>
             </div>
-            <div class="mini-card">
-              <strong>Technology</strong>
-              <p>React, TypeScript, responsive UI, content architecture</p>
+            <div class="spec-box">
+              <div class="spec-header spec-emerald">Tech Stack</div>
+              <div class="spec-content">React, TypeScript, Cloudflare Pages, Responsive UI</div>
             </div>
           </div>
         </div>
 
-        <div class="project-item">
-          <div class="project-top">
-            <div>
+        <!-- Project 3: handmade.ps -->
+        <div class="cad-card project-card">
+          <div class="corner-bracket corner-tl"></div>
+          <div class="corner-bracket corner-br"></div>
+          <div class="project-header">
+            <div class="project-title-group">
               <h3>handmade.ps</h3>
-              <p class="project-summary">Premium storefront concept for handcrafted products with stronger visual merchandising.</p>
+              <a href="https://handmade.ps/" target="_blank" rel="noopener noreferrer" class="project-link-url">
+                handmade.ps
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
             </div>
+            <span class="project-badge company-purple">ARTISANAL COMMERCE &amp; LUXURY</span>
           </div>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <strong>Challenge</strong>
-              <p>Present handcrafted products through a premium digital shopping experience.</p>
+          <p class="project-desc">
+            Artisanal digital boutique for handcrafted ceramics, bespoke Palestinian gifts, and specialty home decor with refined visual merchandising.
+          </p>
+          <div class="project-specs-grid">
+            <div class="spec-box">
+              <div class="spec-header spec-purple">Engineering Challenge</div>
+              <div class="spec-content">Elevate handcrafted products through an artisanal luxury brand identity and smooth mobile browsing.</div>
             </div>
-            <div class="mini-card">
-              <strong>Solution</strong>
-              <p>Built a refined storefront structure with better product discovery and stronger visual presentation.</p>
+            <div class="spec-box">
+              <div class="spec-header spec-emerald">Engineered Solution</div>
+              <div class="spec-content">Created a gallery-centric visual layout with high-contrast imagery, smooth transitions, and instant cart interaction.</div>
             </div>
-            <div class="mini-card">
-              <strong>Architecture</strong>
-              <ul>
-                <li>Component-based storefront</li>
-                <li>Responsive product gallery</li>
-                <li>Checkout integration layer</li>
+            <div class="spec-box">
+              <div class="spec-header spec-cyan">Architecture</div>
+              <ul class="spec-list">
+                <li>Visual Component Gallery</li>
+                <li>Direct Order Checkout</li>
+                <li>Responsive Design Tokens</li>
               </ul>
             </div>
-            <div class="mini-card">
-              <strong>Technology</strong>
-              <p>React, TypeScript, storefront UI, responsive commerce design</p>
+            <div class="spec-box">
+              <div class="spec-header spec-orange">Tech Stack</div>
+              <div class="spec-content">React, TypeScript, Tailwind CSS, Responsive UX</div>
             </div>
           </div>
         </div>
 
-        <div class="project-item">
-          <div class="project-top">
-            <div>
+        <!-- Project 4: Pistachio -->
+        <div class="cad-card project-card">
+          <div class="corner-bracket corner-tl"></div>
+          <div class="corner-bracket corner-br"></div>
+          <div class="project-header">
+            <div class="project-title-group">
               <h3>Pistachio</h3>
-              <p class="project-summary">Food ordering experience designed around speed, mobile usability, and direct action.</p>
+              <a href="https://postachio.pages.dev/" target="_blank" rel="noopener noreferrer" class="project-link-url">
+                postachio.pages.dev
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
             </div>
+            <span class="project-badge company-orange">GOURMET FOOD &amp; FAST ORDERING</span>
           </div>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <strong>Challenge</strong>
-              <p>Create a fast ordering experience for food customers.</p>
+          <p class="project-desc">
+            Fresh pastry and gourmet dessert ordering experience engineered around rapid category filtering and direct WhatsApp customer ordering channels.
+          </p>
+          <div class="project-specs-grid">
+            <div class="spec-box">
+              <div class="spec-header spec-orange">Engineering Challenge</div>
+              <div class="spec-content">Eliminate checkout friction for culinary customers on mobile devices requiring rapid ordering.</div>
             </div>
-            <div class="mini-card">
-              <strong>Solution</strong>
-              <p>Designed a streamlined mobile-friendly interface with clear menu access and fast communication flow.</p>
+            <div class="spec-box">
+              <div class="spec-header spec-cyan">Engineered Solution</div>
+              <div class="spec-content">Designed a rapid touch-optimized menu with direct-to-WhatsApp formatted cart payload transmission.</div>
             </div>
-            <div class="mini-card">
-              <strong>Architecture</strong>
-              <ul>
-                <li>Menu interface</li>
-                <li>Mobile ordering flow</li>
-                <li>Direct communication channel</li>
+            <div class="spec-box">
+              <div class="spec-header spec-emerald">Architecture</div>
+              <ul class="spec-list">
+                <li>Touch-First Menu Grid</li>
+                <li>Instant Filtering Engine</li>
+                <li>WhatsApp Order Bridge</li>
               </ul>
             </div>
-            <div class="mini-card">
-              <strong>Technology</strong>
-              <p>Responsive UI, action-focused UX, frontend implementation</p>
+            <div class="spec-box">
+              <div class="spec-header spec-purple">Tech Stack</div>
+              <div class="spec-content">React, TypeScript, Cloudflare Pages, Responsive UX</div>
             </div>
           </div>
         </div>
 
-        <div class="project-item">
-          <div class="project-top">
-            <div>
+        <!-- Project 5: Lama Home -->
+        <div class="cad-card project-card">
+          <div class="corner-bracket corner-tl"></div>
+          <div class="corner-bracket corner-br"></div>
+          <div class="project-header">
+            <div class="project-title-group">
               <h3>Lama Home</h3>
-              <p class="project-summary">Elegant digital storefront for home accessories with emphasis on clean layout and product clarity.</p>
+              <a href="https://lamastorev2.pages.dev/" target="_blank" rel="noopener noreferrer" class="project-link-url">
+                lamastorev2.pages.dev
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
             </div>
+            <span class="project-badge company-purple">HOME ACCESSORIES &amp; LIVING</span>
           </div>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <strong>Challenge</strong>
-              <p>Develop an elegant home accessories commerce platform.</p>
+          <p class="project-desc">
+            Curated home decor and interior accessories platform emphasizing high-contrast photography, minimalist navigation, and curated collections.
+          </p>
+          <div class="project-specs-grid">
+            <div class="spec-box">
+              <div class="spec-header spec-purple">Engineering Challenge</div>
+              <div class="spec-content">Showcase home accessories with minimal cognitive load and high conversion visual presentation.</div>
             </div>
-            <div class="mini-card">
-              <strong>Solution</strong>
-              <p>Created a refined product presentation experience with clean structure and optimized asset usage.</p>
+            <div class="spec-box">
+              <div class="spec-header spec-cyan">Engineered Solution</div>
+              <div class="spec-content">Structured a clean product hierarchy with responsive image loading and streamlined cart actions.</div>
             </div>
-            <div class="mini-card">
-              <strong>Architecture</strong>
-              <ul>
-                <li>Product catalog</li>
-                <li>Responsive layout system</li>
-                <li>Optimized asset delivery</li>
+            <div class="spec-box">
+              <div class="spec-header spec-emerald">Architecture</div>
+              <ul class="spec-list">
+                <li>Catalog Hierarchy Engine</li>
+                <li>Responsive Image CDN</li>
+                <li>Single-Page Navigation</li>
               </ul>
             </div>
-            <div class="mini-card">
-              <strong>Technology</strong>
-              <p>React, TypeScript, responsive layout, asset optimization</p>
+            <div class="spec-box">
+              <div class="spec-header spec-orange">Tech Stack</div>
+              <div class="spec-content">React, TypeScript, Tailwind CSS, Cloudflare Pages</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-header">
-        <h2>Contact & Availability</h2>
-        <p>Clear contact paths for recruiters, employers, and clients.</p>
+    <!-- Verified Direct Communication Channels -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="section-heading">
+          <span>VERIFIED DIRECT CHANNELS</span>
+          <span class="section-heading-tag">CONNECT &amp; INITIATE</span>
+        </div>
+        <div class="section-sub">
+          Immediate, verified communication pathways for enterprise opportunities, infrastructure roles, and full-stack engagements.
+        </div>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-card">
-          <h3>Role Focus</h3>
-          <p>Computer Engineer</p>
-        </div>
-        <div class="contact-card">
-          <h3>Specialization</h3>
-          <p>Infrastructure, Security, Systems, Web Engineering</p>
-        </div>
-        <div class="contact-card">
-          <h3>Portfolio</h3>
-          <a href="/">Open Main Portfolio</a>
-        </div>
-        <div class="contact-card">
-          <h3>Availability</h3>
-          <p>Open to technical opportunities and project collaboration</p>
-        </div>
-      </div>
+        <!-- Channel 1: WhatsApp -->
+        <a href="https://wa.me/970599228979" target="_blank" rel="noopener noreferrer" class="contact-tile contact-whatsapp">
+          <div>
+            <div class="contact-tile-tag" style="color: var(--emerald);">
+              <span>WHATSAPP MESSAGING</span>
+              <span class="pulse-dot"></span>
+            </div>
+            <div class="contact-tile-value">+970 599 228 979</div>
+          </div>
+          <div class="contact-tile-sub">Direct encrypted chat • Rapid response</div>
+        </a>
 
-      <div class="footer-note">
-        This CV is part of the Omer Salem portfolio system and is designed for both screen presentation and PDF export.
+        <!-- Channel 2: Email -->
+        <a href="mailto:omersalem@mne.gov.ps" class="contact-tile contact-email">
+          <div>
+            <div class="contact-tile-tag" style="color: var(--cyan);">
+              <span>OFFICIAL EMAIL</span>
+              <span style="font-size: 0.7rem; color: var(--cyan);">VERIFIED</span>
+            </div>
+            <div class="contact-tile-value">omersalem@mne.gov.ps</div>
+          </div>
+          <div class="contact-tile-sub">Official enterprise correspondence</div>
+        </a>
+
+        <!-- Channel 3: GitHub -->
+        <a href="https://github.com/omersalem" target="_blank" rel="noopener noreferrer" class="contact-tile contact-github">
+          <div>
+            <div class="contact-tile-tag" style="color: var(--purple);">
+              <span>GITHUB PROFILE</span>
+              <span style="font-size: 0.7rem; color: var(--purple);">CODEBASE</span>
+            </div>
+            <div class="contact-tile-value">github.com/omersalem</div>
+          </div>
+          <div class="contact-tile-sub">Infrastructure repos &amp; frontend projects</div>
+        </a>
+
+        <!-- Channel 4: 3D Portfolio -->
+        <a href="/" class="contact-tile contact-portfolio">
+          <div>
+            <div class="contact-tile-tag" style="color: var(--orange);">
+              <span>3D PORTFOLIO SYSTEM</span>
+              <span style="font-size: 0.7rem; color: var(--orange);">INTERACTIVE</span>
+            </div>
+            <div class="contact-tile-value">Return to Portfolio</div>
+          </div>
+          <div class="contact-tile-sub">Interactive 3D WebGL canvases &amp; cases</div>
+        </a>
       </div>
     </section>
+
+    <!-- Document Footer -->
+    <footer class="cv-footer">
+      <div>OMER SALEM • SENIOR COMPUTER ENGINEER &amp; SYSTEMS ARCHITECT • RAMALLAH, PALESTINE</div>
+      <div style="margin-top: 6px; color: var(--cyan);">
+        CYBERPUNK AURORA CHROMATIC DESIGN SPEC // DUAL SCREEN &amp; PDF PRINT OPTIMIZED
+      </div>
+    </footer>
   </div>
 </body>
 </html>

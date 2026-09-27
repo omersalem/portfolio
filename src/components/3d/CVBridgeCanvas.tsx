@@ -24,7 +24,7 @@ export const CVBridgeCanvas: React.FC = () => {
       const height = container.clientHeight;
 
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xf4f1ea);
+      // Transparent background for seamless dark cyberpunk integration
 
       const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
       camera.position.set(0, 0.8, 5.0);
@@ -32,38 +32,43 @@ export const CVBridgeCanvas: React.FC = () => {
       renderer = new THREE.WebGLRenderer({
         canvas,
         antialias: true,
+        alpha: true,
         powerPreference: 'high-performance',
       });
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
-      // Soft daylight lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
+      // Dynamic studio lighting with colored accents
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
       scene.add(ambientLight);
 
-      const keyLight = new THREE.DirectionalLight(0xffffff, 2.0);
+      const keyLight = new THREE.DirectionalLight(0x00f0ff, 2.5); // Cyan key
       keyLight.position.set(2, 4, 3);
       scene.add(keyLight);
 
-      const fillLight = new THREE.DirectionalLight(0xf0ece1, 1.0);
+      const fillLight = new THREE.DirectionalLight(0xff5500, 1.8); // Orange fill
       fillLight.position.set(-3, 2, 2);
       scene.add(fillLight);
 
+      const purpleRim = new THREE.PointLight(0x8b5cf6, 3.0, 10); // Purple rim
+      purpleRim.position.set(0.85, 1.2, 1);
+      scene.add(purpleRim);
+
       const sculptureGroup = new THREE.Group();
 
-      // Platform 1 (Left Lower Stone Slab)
+      // Platform 1 (Left Lower Obsidian Pedestal)
       const stoneMat = new THREE.MeshStandardMaterial({
-        color: 0xe6e1d5,
-        roughness: 0.8,
-        metalness: 0.1,
+        color: 0x11172f,
+        roughness: 0.3,
+        metalness: 0.7,
       });
       const slab1Geo = new THREE.BoxGeometry(1.4, 0.5, 1.0);
       const slab1 = new THREE.Mesh(slab1Geo, stoneMat);
       slab1.position.set(-1.1, -0.6, 0);
       sculptureGroup.add(slab1);
 
-      // Platform 2 (Right Elevated Stone Column)
+      // Platform 2 (Right Elevated Obsidian Column)
       const slab2Geo = new THREE.BoxGeometry(0.8, 1.1, 0.8);
       const slab2 = new THREE.Mesh(slab2Geo, stoneMat);
       slab2.position.set(1.2, -0.3, 0);
@@ -71,9 +76,9 @@ export const CVBridgeCanvas: React.FC = () => {
 
       // Liquid Chrome Bridge Material
       const chromeMat = new THREE.MeshPhysicalMaterial({
-        color: 0xeeeeef,
-        metalness: 0.98,
-        roughness: 0.04,
+        color: 0xffffff,
+        metalness: 1.0,
+        roughness: 0.05,
         clearcoat: 1.0,
       });
 
@@ -91,7 +96,7 @@ export const CVBridgeCanvas: React.FC = () => {
       const sphereMat = new THREE.MeshStandardMaterial({
         color: 0xff5500,
         emissive: 0xff5500,
-        emissiveIntensity: 0.8,
+        emissiveIntensity: 1.4,
         roughness: 0.2,
         metalness: 0.3,
       });
@@ -100,9 +105,18 @@ export const CVBridgeCanvas: React.FC = () => {
       sphere.position.set(0.85, 0.38, 0);
       sculptureGroup.add(sphere);
 
-      // Gyroscopic Liquid Chrome Ring around Apex
+      // Cyan emissive neon material for inner ring
+      const cyanNeonMat = new THREE.MeshStandardMaterial({
+        color: 0x00f0ff,
+        emissive: 0x00f0ff,
+        emissiveIntensity: 1.2,
+        roughness: 0.2,
+        metalness: 0.5,
+      });
+
+      // Gyroscopic Liquid Chrome / Cyan Ring around Apex
       const ringGeo = new THREE.TorusGeometry(0.38, 0.02, 24, 64);
-      const ringMesh = new THREE.Mesh(ringGeo, chromeMat);
+      const ringMesh = new THREE.Mesh(ringGeo, cyanNeonMat);
       ringMesh.position.set(0.85, 0.38, 0);
       ringMesh.rotation.x = Math.PI * 0.35;
       ringMesh.rotation.y = Math.PI * 0.2;
@@ -118,7 +132,7 @@ export const CVBridgeCanvas: React.FC = () => {
 
       // Orbiting Energy Satellite traversing the Bridge
       const satelliteGeo = new THREE.SphereGeometry(0.065, 24, 24);
-      const satelliteMesh = new THREE.Mesh(satelliteGeo, chromeMat);
+      const satelliteMesh = new THREE.Mesh(satelliteGeo, cyanNeonMat);
       sculptureGroup.add(satelliteMesh);
 
       scene.add(sculptureGroup);
@@ -214,6 +228,7 @@ export const CVBridgeCanvas: React.FC = () => {
 
         stoneMat.dispose();
         chromeMat.dispose();
+        cyanNeonMat.dispose();
         sphereMat.dispose();
         renderer?.dispose();
       };
@@ -229,7 +244,7 @@ export const CVBridgeCanvas: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[16/9] w-full rounded overflow-hidden bg-stone-200/50 shadow-sm border border-stone-300 pointer-events-none"
+      className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#0d1026]/80 shadow-[0_0_30px_rgba(0,240,255,0.08)] border border-cyber-cyan/30 pointer-events-none"
       aria-hidden="true"
     >
       {shouldRenderStatic ? (
