@@ -35,6 +35,8 @@ export default {
         display: ['Syne', 'Orbitron', 'Space Grotesk', 'sans-serif'],
         orbitron: ['Orbitron', 'sans-serif'],
         exo: ['Exo 2', 'sans-serif'],
+        cairo: ['Cairo', 'sans-serif'],
+        ibmPlex: ['IBM Plex Sans Arabic', 'sans-serif'],
       },
       maxWidth: {
         'content': '1440px',

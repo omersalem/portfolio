@@ -3,9 +3,10 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { Project } from '../../types';
 import { useState as useLocalState } from 'react';
-import { PROJECT_CASE_STUDIES } from '../../data/portfolioData';
+import { getPortfolioData } from '../../data/portfolioData';
 import { CaseStudyModal } from './CaseStudyModal';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface ProjectCard3DProps {
   project: Project;
@@ -19,6 +20,8 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const { reducedMotion, reducedEffects } = useEffectSettings();
+  const { language, isRTL } = useLanguage();
+  const { caseStudies, ui } = getPortfolioData(language);
 
   const disable3D = reducedMotion || reducedEffects;
 
@@ -95,266 +98,267 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
 
   return (
     <>
-    <div
-      className={`flex flex-col ${
-        isFifth ? 'md:col-span-2 md:w-1/2 md:mx-auto lg:col-span-1 lg:w-full lg:mx-0' : ''
-      }`}
-      style={{ perspective: 1200 }}
-    >
-      <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        initial={disable3D ? undefined : { opacity: 0, y: 35, rotateX: 8 }}
-        whileInView={disable3D ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-        style={
-          disable3D
-            ? {}
-            : {
-                rotateX,
-                rotateY,
-                scale: cardScale,
-                z: cardZ,
-                transformStyle: 'preserve-3d',
-              }
-        }
-        className="relative w-full h-full rounded-2xl transition-shadow duration-300"
+      <div
+        className={`flex flex-col ${
+          isFifth ? 'md:col-span-2 md:w-1/2 md:mx-auto lg:col-span-1 lg:w-full lg:mx-0' : ''
+        }`}
+        style={{ perspective: 1200 }}
       >
-        {/* Dynamic 3D Floor Shadow Layer with Brand Accent Glow */}
-        {!disable3D && (
-          <motion.div
-            className="absolute -inset-2 rounded-2xl bg-black/90 filter blur-xl pointer-events-none -z-10 transition-all duration-300"
-            style={{
-              opacity: isHovered || isFocused ? 0.95 : 0.4,
-              transform: isHovered || isFocused ? 'translateY(22px) scale(0.96)' : 'translateY(8px) scale(0.92)',
-              boxShadow: isHovered || isFocused ? `0 30px 60px -12px ${glowColor}` : 'none',
-            }}
-          />
-        )}
-
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={project.ariaLabel}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          className="group relative block w-full h-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#151829] via-[#0d0f1b] to-[#070814] border border-white/10 hover:border-white/30 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none transition-all duration-300 shadow-[0_1px_0_0_rgba(255,255,255,0.09)_inset]"
+        <motion.div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          initial={disable3D ? undefined : { opacity: 0, y: 35, rotateX: 8 }}
+          whileInView={disable3D ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
           style={
             disable3D
-              ? { borderColor: isHovered ? accentColor : undefined }
+              ? {}
               : {
+                  rotateX,
+                  rotateY,
+                  scale: cardScale,
+                  z: cardZ,
                   transformStyle: 'preserve-3d',
-                  borderColor: isHovered ? accentColor : undefined,
-                  boxShadow: isHovered ? `0 0 30px ${glowColor}` : undefined,
                 }
           }
+          className="relative w-full h-full rounded-2xl transition-shadow duration-300"
         >
-          {/* Interactive Dynamic Brand Cursor Spotlight */}
+          {/* Dynamic 3D Floor Shadow Layer with Brand Accent Glow */}
           {!disable3D && (
             <motion.div
-              className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
+              className="absolute -inset-2 rounded-2xl bg-black/90 filter blur-xl pointer-events-none -z-10 transition-all duration-300"
               style={{
-                background: spotlightBg,
-                opacity: isHovered ? 1 : 0,
+                opacity: isHovered || isFocused ? 0.95 : 0.4,
+                transform: isHovered || isFocused ? 'translateY(22px) scale(0.96)' : 'translateY(8px) scale(0.92)',
+                boxShadow: isHovered || isFocused ? `0 30px 60px -12px ${glowColor}` : 'none',
               }}
             />
           )}
 
-          {/* Subtle top rim highlight line */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-20" />
-
-          {/* 1. Browser Slab Header (Pops out in 3D: translateZ: 28px) */}
-          <div
-            className="h-10 px-4 bg-[#0d0f1b]/95 border-b border-white/[0.08] flex items-center justify-between relative z-10 backdrop-blur-md"
-            style={disable3D ? {} : { transform: 'translateZ(28px)', transformStyle: 'preserve-3d' }}
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={project.ariaLabel}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            className="group relative block w-full h-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#151829] via-[#0d0f1b] to-[#070814] border border-white/10 hover:border-white/30 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none transition-all duration-300 shadow-[0_1px_0_0_rgba(255,255,255,0.09)_inset]"
+            style={
+              disable3D
+                ? { borderColor: isHovered ? accentColor : undefined }
+                : {
+                    transformStyle: 'preserve-3d',
+                    borderColor: isHovered ? accentColor : undefined,
+                    boxShadow: isHovered ? `0 0 30px ${glowColor}` : undefined,
+                  }
+            }
           >
-            {/* Mac-style Window Controls with 3D depth and hover glow */}
-            <div
-              className="flex items-center space-x-1.5"
-              style={disable3D ? {} : { transform: 'translateZ(12px)' }}
-            >
-              <span
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  isHovered ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]' : 'bg-neutral-600'
-                }`}
-              />
-              <span
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  isHovered ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.9)]' : 'bg-neutral-600'
-                }`}
-              />
-              <span
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  isHovered ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)]' : 'bg-neutral-600'
-                }`}
-              />
-            </div>
-
-            {/* Display URL Pill with Brand Accent Hover */}
-            <div
-              className="px-3 py-0.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors truncate max-w-[180px] sm:max-w-[220px]"
-              style={
-                disable3D
-                  ? {}
-                  : {
-                      transform: 'translateZ(10px)',
-                      borderColor: isHovered ? accentColor : undefined,
-                    }
-              }
-            >
-              {project.displayUrl}
-            </div>
-
-            {/* External Link Icon */}
-            <div style={disable3D ? {} : { transform: 'translateZ(12px)' }}>
-              <ExternalLink
-                className="w-3.5 h-3.5 text-neutral-400 transition-colors shrink-0"
-                style={{ color: isHovered ? accentColor : undefined }}
-              />
-            </div>
-          </div>
-
-          {/* 2. Screenshot Media Area with 3D Depth Aperture (translateZ: 36px) */}
-          <div
-            className="relative w-full aspect-[16/10] bg-neutral-950 overflow-hidden border-b border-white/[0.08]"
-            style={disable3D ? {} : { transform: 'translateZ(36px)', transformStyle: 'preserve-3d' }}
-          >
-            <motion.img
-              src={project.image}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover object-top select-none"
-              style={
-                disable3D
-                  ? {}
-                  : {
-                      x: imagePanX,
-                      y: imagePanY,
-                      scale: isHovered ? 1.09 : 1.02,
-                      transition: 'scale 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                    }
-              }
-              width={640}
-              height={400}
-            />
-
-            {/* Ambient Vignette & Shadow Frame */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#070814] via-transparent to-black/30 pointer-events-none" />
-
-            {/* Badge overlay on top corner */}
-            {project.badgeText && (
-              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 border border-white/20 backdrop-blur-md text-[10px] font-mono font-bold tracking-wider uppercase text-white shadow-md">
-                {project.badgeText}
-              </div>
-            )}
-
-            {/* Holographic Specular Glare Reflection on Glass */}
+            {/* Interactive Dynamic Brand Cursor Spotlight */}
             {!disable3D && (
               <motion.div
-                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
                 style={{
-                  background:
-                    'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.18) 48%, rgba(0,240,255,0.25) 52%, transparent 65%)',
-                  x: sheenTranslateX,
+                  background: spotlightBg,
+                  opacity: isHovered ? 1 : 0,
                 }}
               />
             )}
-          </div>
 
-          {/* 3. Card Content & Metadata (translateZ: 30px) */}
-          <div
-            className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-[#0e101f]/95"
-            style={disable3D ? {} : { transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}
-          >
-            <div>
-              {/* Title & Counter Row */}
+            {/* Subtle top rim highlight line */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-20" />
+
+            {/* 1. Browser Slab Header (Pops out in 3D: translateZ: 28px) */}
+            <div
+              className="h-10 px-4 bg-[#0d0f1b]/95 border-b border-white/[0.08] flex items-center justify-between relative z-10 backdrop-blur-md"
+              style={disable3D ? {} : { transform: 'translateZ(28px)', transformStyle: 'preserve-3d' }}
+            >
+              {/* Mac-style Window Controls with 3D depth and hover glow */}
               <div
-                className="flex items-baseline justify-between mb-2"
-                style={disable3D ? {} : { transform: 'translateZ(16px)' }}
-              >
-                <h3
-                  className="text-lg sm:text-xl font-display font-bold text-white transition-colors"
-                  style={{ color: isHovered ? accentColor : undefined }}
-                >
-                  {project.name}
-                </h3>
-                <span
-                  className="text-[11px] font-mono font-bold px-2 py-0.5 rounded border shadow-sm transition-colors"
-                  style={{
-                    color: accentColor,
-                    borderColor: `${accentColor}55`,
-                    backgroundColor: `${accentColor}15`,
-                    boxShadow: `0 0 10px ${glowColor}`,
-                  }}
-                >
-                  0{index + 1}
-                </span>
-              </div>
-
-              {/* Description */}
-              <p
-                className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed mb-4"
-                style={disable3D ? {} : { transform: 'translateZ(10px)' }}
-              >
-                {project.description}
-              </p>
-            </div>
-
-            <div>
-              {/* Tags */}
-              <div
-                className="flex flex-wrap gap-2 pt-3 border-t border-white/[0.08]"
+                className="flex items-center gap-1.5 ltr-text"
                 style={disable3D ? {} : { transform: 'translateZ(12px)' }}
               >
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-white/[0.04] text-neutral-300 rounded-md border border-white/10 group-hover:border-white/20 transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                <span
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    isHovered ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]' : 'bg-neutral-600'
+                  }`}
+                />
+                <span
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    isHovered ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.9)]' : 'bg-neutral-600'
+                  }`}
+                />
+                <span
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    isHovered ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)]' : 'bg-neutral-600'
+                  }`}
+                />
               </div>
 
-              {/* Explicit Destination Link Cue */}
+              {/* Display URL Pill with Brand Accent Hover */}
               <div
-                className="mt-4 flex items-center justify-between text-xs font-mono pt-2"
-                style={disable3D ? {} : { transform: 'translateZ(18px)' }}
+                className="px-3 py-0.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors truncate max-w-[180px] sm:max-w-[220px] ltr-text"
+                style={
+                  disable3D
+                    ? {}
+                    : {
+                        transform: 'translateZ(10px)',
+                        borderColor: isHovered ? accentColor : undefined,
+                      }
+                }
               >
-                <span
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowCaseStudy(true);
-                  }}
-                  className="font-semibold underline underline-offset-4 group-hover:tracking-wider transition-all cursor-pointer"
-                  style={{ color: accentColor }}
-                >
-                  VIEW CASE STUDY
-                </span>
-                <span
-                  className="text-sm font-bold transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
-                  style={{ color: accentColor }}
-                >
-                  ↗
-                </span>
+                {project.displayUrl}
+              </div>
+
+              {/* External Link Icon */}
+              <div style={disable3D ? {} : { transform: 'translateZ(12px)' }}>
+                <ExternalLink
+                  className="w-3.5 h-3.5 text-neutral-400 transition-colors shrink-0"
+                  style={{ color: isHovered ? accentColor : undefined }}
+                />
               </div>
             </div>
-          </div>
-        </a>
-      </motion.div>
-    </div>
-      {showCaseStudy && PROJECT_CASE_STUDIES.find((item)=>item.projectId===project.id) && (
-        <CaseStudyModal study={PROJECT_CASE_STUDIES.find((item)=>item.projectId===project.id)! as any} onClose={()=>setShowCaseStudy(false)} />
+
+            {/* 2. Screenshot Media Area with 3D Depth Aperture (translateZ: 36px) */}
+            <div
+              className="relative w-full aspect-[16/10] bg-neutral-950 overflow-hidden border-b border-white/[0.08]"
+              style={disable3D ? {} : { transform: 'translateZ(36px)', transformStyle: 'preserve-3d' }}
+            >
+              <motion.img
+                src={project.image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover object-top select-none"
+                style={
+                  disable3D
+                    ? {}
+                    : {
+                        x: imagePanX,
+                        y: imagePanY,
+                        scale: isHovered ? 1.09 : 1.02,
+                        transition: 'scale 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                      }
+                }
+                width={640}
+                height={400}
+              />
+
+              {/* Ambient Vignette & Shadow Frame */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070814] via-transparent to-black/30 pointer-events-none" />
+
+              {/* Badge overlay on top corner */}
+              {project.badgeText && (
+                <div className="absolute top-3 start-3 px-2.5 py-1 rounded-md bg-black/75 border border-white/20 backdrop-blur-md text-[10px] font-mono font-bold tracking-wider uppercase text-white shadow-md">
+                  {project.badgeText}
+                </div>
+              )}
+
+              {/* Holographic Specular Glare Reflection on Glass */}
+              {!disable3D && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background:
+                      'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.18) 48%, rgba(0,240,255,0.25) 52%, transparent 65%)',
+                    x: sheenTranslateX,
+                  }}
+                />
+              )}
+            </div>
+
+            {/* 3. Card Content & Metadata (translateZ: 30px) */}
+            <div
+              className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-[#0e101f]/95 text-start"
+              style={disable3D ? {} : { transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}
+            >
+              <div>
+                {/* Title & Counter Row */}
+                <div
+                  className="flex items-baseline justify-between mb-2"
+                  style={disable3D ? {} : { transform: 'translateZ(16px)' }}
+                >
+                  <h3
+                    className="text-lg sm:text-xl font-display font-bold text-white transition-colors"
+                    style={{ color: isHovered ? accentColor : undefined }}
+                  >
+                    {project.name}
+                  </h3>
+                  <span
+                    className="text-[11px] font-mono font-bold px-2 py-0.5 rounded border shadow-sm transition-colors ltr-text"
+                    style={{
+                      color: accentColor,
+                      borderColor: `${accentColor}55`,
+                      backgroundColor: `${accentColor}15`,
+                      boxShadow: `0 0 10px ${glowColor}`,
+                    }}
+                  >
+                    0{index + 1}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p
+                  className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed mb-4"
+                  style={disable3D ? {} : { transform: 'translateZ(10px)' }}
+                >
+                  {project.description}
+                </p>
+              </div>
+
+              <div>
+                {/* Tags */}
+                <div
+                  className="flex flex-wrap gap-2 pt-3 border-t border-white/[0.08]"
+                  style={disable3D ? {} : { transform: 'translateZ(12px)' }}
+                >
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-white/[0.04] text-neutral-300 rounded-md border border-white/10 group-hover:border-white/20 transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Explicit Destination Link Cue */}
+                <div
+                  className="mt-4 flex items-center justify-between text-xs font-mono pt-2"
+                  style={disable3D ? {} : { transform: 'translateZ(18px)' }}
+                >
+                  <span
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowCaseStudy(true);
+                    }}
+                    className="font-semibold underline underline-offset-4 group-hover:tracking-wider transition-all cursor-pointer"
+                    style={{ color: accentColor }}
+                  >
+                    {ui.work.viewCaseStudy}
+                  </span>
+                  <span
+                    className="text-sm font-bold transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
+                    style={{ color: accentColor }}
+                  >
+                    {isRTL ? '↖' : '↗'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </motion.div>
+      </div>
+
+      {showCaseStudy && caseStudies.find((item) => item.projectId === project.id) && (
+        <CaseStudyModal
+          study={caseStudies.find((item) => item.projectId === project.id)!}
+          projectName={project.name}
+          onClose={() => setShowCaseStudy(false)}
+        />
       )}
     </>
   );
 };
-
-
-
-

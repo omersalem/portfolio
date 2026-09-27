@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عمر سالم — السيرة الذاتية المهنية | مهندس حاسوب ومصمم معمارية الأنظمة والويب</title>
+  <meta
+    name="description"
+    content="السيرة الذاتية للمهندس عمر سالم — مهندس حاسوب متخصص في البنية التحتية المؤسسية، أمن المحيط السيبراني (FortiGate, F5 WAF, Cisco FMC)، شبكات سيسكو المركزية، الدليل النشط، وهندسة منصات الويب الحديثة (React, TypeScript, Three.js) ووكلاء الذكاء الاصطناعي."
+  />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ==========================================================================
+       CYBERPUNK AURORA CHROMATIC DESIGN SYSTEM - ARABIC EDITION
+       ========================================================================== */
+    :root {
+      --bg-dark: #050611;
+      --bg-card: rgba(14, 18, 36, 0.72);
+      --bg-card-hover: rgba(20, 26, 52, 0.85);
+      --panel-inner: rgba(255, 255, 255, 0.035);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+
+      /* Chromatic Palette */
+      --cyan: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.35);
+      --orange: #ff5500;
+      --orange-glow: rgba(255, 85, 0, 0.4);
+      --purple: #8b5cf6;
+      --purple-glow: rgba(139, 92, 246, 0.35);
+      --pink: #ec4899;
+      --pink-glow: rgba(236, 72, 153, 0.35);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.35);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.35);
+
+      /* Typography */
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+      --text-muted: #64748b;
+      --font-display: 'Cairo', 'Orbitron', -apple-system, sans-serif;
+      --font-tech: 'IBM Plex Sans Arabic', monospace;
+      --font-body: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --max-width: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ambient Chromatic Auroras */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 600px 500px at 90% 15%, rgba(0, 240, 255, 0.12), transparent 70%),
+        radial-gradient(ellipse 700px 550px at 15% 10%, rgba(139, 92, 246, 0.14), transparent 70%),
+        radial-gradient(ellipse 650px 600px at 20% 65%, rgba(255, 85, 0, 0.10), transparent 70%),
+        radial-gradient(ellipse 550px 500px at 85% 85%, rgba(16, 185, 129, 0.08), transparent 70%);
+    }
+
+    /* Micro-dot CAD Grid Overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.45;
+    }
+
+    /* Prismatic Horizon Top Rainbow Bar */
+    .rainbow-horizon {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981 0%, #ff5500 25%, #ec4899 50%, #8b5cf6 75%, #00f0ff 100%);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+      z-index: 100;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .ltr-text {
+      direction: ltr !important;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       TOP ACTION BAR
+       ========================================================================== */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(139, 92, 246, 0.2));
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      box-shadow: 0 0 18px var(--cyan-glow);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: #fff;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 12px var(--emerald);
+      animation: pulseLive 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseLive {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .brand-sub {
+      font-family: var(--font-tech);
+      font-size: 0.78rem;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-tech);
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px var(--cyan-glow);
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff5500 0%, #ec4899 50%, #8b5cf6 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 24px rgba(255, 85, 0, 0.45);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 35px rgba(236, 72, 153, 0.7);
+      border-color: transparent;
+    }
+
+    /* ==========================================================================
+       CAD GLASS PANEL CARDS & BRACKETS
+       ========================================================================== */
+    .cad-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      position: relative;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+
+    .cad-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Precision Technical Corner Accents */
+    .corner-bracket {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .corner-tl { top: 6px; left: 6px; border-top: 2px solid var(--cyan); border-left: 2px solid var(--cyan); }
+    .corner-tr { top: 6px; right: 6px; border-top: 2px solid var(--purple); border-right: 2px solid var(--purple); }
+    .corner-bl { bottom: 6px; left: 6px; border-bottom: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+    .corner-br { bottom: 6px; right: 6px; border-bottom: 2px solid var(--emerald); border-right: 2px solid var(--emerald); }
+
+    /* ==========================================================================
+       HERO EXECUTIVE DOSSIER
+       ========================================================================== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-main {
+      padding: 40px;
+      position: relative;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 85, 0, 0.12);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: #ff944d;
+      font-family: var(--font-tech);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      box-shadow: 0 0 16px rgba(255, 85, 0, 0.2);
+    }
+
+    .name-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 30%, #00f0ff 65%, #8b5cf6 90%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.25));
+    }
+
+    .title-sub {
+      font-family: var(--font-tech);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .title-sub span {
+      color: var(--cyan);
+    }
+
+    .executive-summary {
+      color: var(--text-dim);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      max-width: 68ch;
+    }
+
+    .executive-summary strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Colorful Skill Pill Horizon */
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .pill {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .pill-cyan {
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: #67e8f9;
+    }
+    .pill-orange {
+      background: rgba(255, 85, 0, 0.08);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: #fdba74;
+    }
+    .pill-purple {
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: #c4b5fd;
+    }
+    .pill-emerald {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+    .pill-pink {
+      background: rgba(236, 72, 153, 0.08);
+      border: 1px solid rgba(236, 72, 153, 0.35);
+      color: #f472b6;
+    }
+
+    /* Dossier Meta Ribbon */
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
+    }
+
+    .meta-item {
+      background: var(--panel-inner);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+    }
+
+    .meta-tag {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      color: var(--cyan);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .meta-val {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    /* Hero Side Panel */
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .side-card {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .side-card-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--amber);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+    }
+
+    .side-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .side-card p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .side-list {
+      list-style: none;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-list li {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .side-list li::before {
+      content: "◂";
+      color: var(--cyan);
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       STATS QUAD GRID
+       ========================================================================== */
+    .section-title-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 36px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-heading-tag {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--cyan);
+    }
+
+    .section-sub {
+      color: var(--text-dim);
+      font-size: 0.92rem;
+      max-width: 60ch;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      padding: 24px 20px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-card-orange { border-top: 3px solid var(--orange); }
+    .stat-card-orange:hover { box-shadow: 0 10px 30px var(--orange-glow); }
+    .stat-card-amber { border-top: 3px solid var(--amber); }
+    .stat-card-amber:hover { box-shadow: 0 10px 30px var(--amber-glow); }
+    .stat-card-cyan { border-top: 3px solid var(--cyan); }
+    .stat-card-cyan:hover { box-shadow: 0 10px 30px var(--cyan-glow); }
+    .stat-card-emerald { border-top: 3px solid var(--emerald); }
+    .stat-card-emerald:hover { box-shadow: 0 10px 30px var(--emerald-glow); }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-card-orange .stat-num { color: #ff7733; }
+    .stat-card-amber .stat-num { color: #fbbf24; }
+    .stat-card-cyan .stat-num { color: #38bdf8; }
+    .stat-card-emerald .stat-num { color: #34d399; }
+
+    .stat-label {
+      font-family: var(--font-tech);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .stat-sub {
+      color: var(--text-dim);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       TIMELINE SECTION
+       ========================================================================== */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-top: 10px;
+    }
+
+    .timeline-item {
+      padding: 32px;
+      position: relative;
+    }
+
+    .timeline-item-mne {
+      border-right: 4px solid var(--amber);
+    }
+    .timeline-item-mne:hover {
+      box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .timeline-item-kuwait {
+      border-right: 4px solid var(--cyan);
+    }
+    .timeline-item-kuwait:hover {
+      box-shadow: 0 15px 40px rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .timeline-org {
+      font-family: var(--font-tech);
+      font-size: 0.92rem;
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    .timeline-kuwait .timeline-org {
+      color: var(--cyan);
+    }
+
+    .timeline-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-period {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: #fde68a;
+    }
+
+    .timeline-kuwait .badge-period {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.4);
+      color: #bae6fd;
+    }
+
+    .duty-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .duty-list li {
+      font-size: 0.94rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.7;
+    }
+
+    .duty-list li::before {
+      content: "✔";
+      color: var(--emerald);
+      font-size: 0.95rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tech-stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .tech-tag {
+      font-family: var(--font-tech);
+      font-size: 0.74rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       PROJECTS SHOWCASE
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.35);
+    }
+
+    .project-badge {
+      font-family: var(--font-tech);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--cyan);
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    /* ==========================================================================
+       TECHNICAL SKILL MATRIX
+       ========================================================================== */
+    .skills-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-cat-card {
+      padding: 22px;
+    }
+
+    .skill-cat-header {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-chip {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       EDUCATION & CREDENTIALS
+       ========================================================================== */
+    .edu-card {
+      padding: 30px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-right: 4px solid var(--purple);
+    }
+
+    .edu-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-family: var(--font-tech);
+      font-size: 0.92rem;
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       PRINT & RESPONSIVE STYLES
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-matrix { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-matrix { grid-template-columns: 1fr; }
+      .hero-main { padding: 24px; }
+      .hero-meta-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .rainbow-horizon, .topbar, body::before, body::after {
+        display: none !important;
+      }
+      .cad-card {
+        background: #fff !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        color: #000 !important;
+      }
+      .name-heading {
+        background: none !important;
+        -webkit-text-fill-color: #000 !important;
+        color: #000 !important;
+      }
+      .wrap { padding: 0 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="rainbow-horizon"></div>
+
+  <div class="wrap">
+    <!-- Top Action Bar -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">ع س</div>
+        <div class="brand-meta">
+          <div class="brand-title">
+            <span>عمر سالم</span>
+            <span class="pulse-dot"></span>
+          </div>
+          <div class="brand-sub">السيرة الذاتية الهندسية الشاملة // بنية تحتية ومواقع ويب</div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <a href="/?lang=ar" class="btn">
+          <span>العودة للموقع الرئيسي</span>
+          <span>◂</span>
+        </a>
+        <a href="/cv.html" class="btn">
+          <span>English CV</span>
+          <span>🌐</span>
+        </a>
+        <button onclick="window.print()" class="btn btn-primary">
+          <span>طباعة / حفظ PDF</span>
+          <span>🖨</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Executive Dossier -->
+    <section class="hero">
+      <div class="cad-card hero-main">
+        <div class="corner-bracket corner-tl"></div>
+        <div class="corner-bracket corner-tr"></div>
+        <div class="corner-bracket corner-bl"></div>
+        <div class="corner-bracket corner-br"></div>
+
+        <div class="eyebrow-badge">
+          <span>🛡</span>
+          <span>وثيقة الاعتماد الهندسي والمهني // سجل موثق</span>
+        </div>
+
+        <h1 class="name-heading">عمر سالم</h1>
+        <div class="title-sub">
+          مهندس حاسوب أول <span>•</span> مصمم معمارية الأنظمة المؤسسية وتطبيقات الويب
+        </div>
+
+        <p class="executive-summary">
+          مهندس حاسوب ذو خبرة تفوق <strong>8 سنوات</strong>، يحمل مسؤولية تشغيلية مباشرة في <strong>وزارة الاقتصاد الوطني برام الله</strong> لأكثر من <strong>7 سنوات</strong> عن جدران الحماية المحيطية (فورتي جيت، F5 WAF، سيسكو FMC)، شبكات سيسكو المركزية، ودومين الدليل النشط. يدمج بين صرامة وموثوقية أمن الأنظمة الحكومية، وبناء واجهات الويب ثلاثية الأبعاد التفاعلية والمتاجر الإلكترونية التجارية فائقة المبيعات (React/TypeScript/Three.js)، وهندسة حلول وكلاء الذكاء الاصطناعي المستقلة (MNE Brain v2).
+        </p>
+
+        <div class="skill-pills">
+          <span class="pill pill-orange">🛡 فورتي جيت NGFW</span>
+          <span class="pill pill-purple">🔒 F5 BIG-IP (WAF/LTM)</span>
+          <span class="pill pill-cyan">⚡ سيسكو FMC &amp; FTD</span>
+          <span class="pill pill-cyan">🌐 محولات سيسكو كور</span>
+          <span class="pill pill-emerald">🏢 الدليل النشط وسياسات GPO</span>
+          <span class="pill pill-pink">✉️ خوادم إكستشينج &amp; SCCM</span>
+          <span class="pill pill-cyan">⚛️ React 18 &amp; TypeScript</span>
+          <span class="pill pill-purple">🎮 Three.js &amp; WebGL</span>
+          <span class="pill pill-pink">🤖 وكلاء الذكاء الاصطناعي MNE Brain</span>
+        </div>
+
+        <div class="hero-meta-grid">
+          <div class="meta-item">
+            <div class="meta-tag">المقر والنشاط المهني</div>
+            <div class="meta-val">رام الله، فلسطين // مشاريع خليجية ودولية</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-tag">البريد الإلكتروني الرسمي</div>
+            <div class="meta-val"><a href="mailto:omersalem@mne.gov.ps" class="ltr-text">omersalem@mne.gov.ps</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-tag">الاتصال المباشر والواتساب</div>
+            <div class="meta-val"><a href="https://wa.me/970599228979" target="_blank" class="ltr-text">+970 599 228 979</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-tag">مستودع الأكواد والبرمجيات</div>
+            <div class="meta-val"><a href="https://github.com/omersalem" target="_blank" class="ltr-text">github.com/omersalem</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Cards -->
+      <div class="hero-side">
+        <div class="cad-card side-card">
+          <div class="side-card-title">
+            <span>⚡</span>
+            <span>الرؤية الهندسية // عالمان متكاملان</span>
+          </div>
+          <h3>فكر هندسي واحد يجمع أمان السيرفرات بجماليات الويب</h3>
+          <p>
+            معظم مطوري الويب تنتهي معرفتهم بحدود المتصفح، بينما نادراً ما يصنع مهندسو البنية التحتية واجهات زبائن تجارية ساحرة. يدمج عمر العالمين معاً لتقديم منصات رقمية ترث حماية وتوافر الأنظمة الحكومية وتخطف أنظار المستخدمين.
+          </p>
+          <ul class="side-list">
+            <li>حماية الثقة الصفرية Zero-Trust وعزل VLAN</li>
+            <li>واجهات ثلاثية الأبعاد تفاعلية وسريعة</li>
+            <li>مسارات دفع وطلب مباشر خالية من أي عوائق</li>
+          </ul>
+        </div>
+
+        <div class="cad-card side-card">
+          <div class="side-card-title">
+            <span>🌐</span>
+            <span>التواصل وإتقان اللغات</span>
+          </div>
+          <h3>تواصل ثنائي اللغة بطلاقة هندسية</h3>
+          <ul class="side-list">
+            <li><strong>اللغة العربية:</strong> اللغة الأم الأصلية (صياغة فنية راقية)</li>
+            <li><strong>اللغة الإنجليزية:</strong> طلاقة مهنية كاملة (Professional Fluent)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Metrics Section -->
+    <div class="section-title-wrap">
+      <div class="section-heading">
+        <span>المؤشرات الهندسية الأساسية</span>
+        <span class="section-heading-tag">METRICS_01</span>
+      </div>
+      <div class="section-sub">أرقام موثقة من واقع العمل الحكومي والمشاريع التجارية المنجزة</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="cad-card stat-card stat-card-orange">
+        <div class="stat-num">+8 سنوات</div>
+        <div class="stat-label">خبرة هندسية رصينة</div>
+        <div class="stat-sub">أنظمة مؤسسية معتمدة وتطوير منصات ويب متقدمة</div>
+      </div>
+
+      <div class="cad-card stat-card stat-card-amber">
+        <div class="stat-num">7 سنوات</div>
+        <div class="stat-label">وزارة الاقتصاد الوطني</div>
+        <div class="stat-sub">رام الله — مسؤولية مباشرة عن الفايروول والشبكات والدليل النشط</div>
+      </div>
+
+      <div class="cad-card stat-card stat-card-cyan">
+        <div class="stat-num">5 متاجر حية</div>
+        <div class="stat-label">مشاريع عملاء قيد التشغيل</div>
+        <div class="stat-sub">منصات تجارية ومجالس بلدية تعمل بكفاءة ومرونة تامة</div>
+      </div>
+
+      <div class="cad-card stat-card stat-card-emerald">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">جهوزية واستمرارية تشغيل</div>
+        <div class="stat-sub">تصميم معماري بتكرار عالي HA وحماية محيطية استباقية</div>
+      </div>
+    </div>
+
+    <!-- Professional Experience Timeline -->
+    <div class="section-title-wrap">
+      <div class="section-heading">
+        <span>التسلسل المهني والمسار القيادي</span>
+        <span class="section-heading-tag">CAREER_HISTORY</span>
+      </div>
+      <div class="section-sub">سجل موثق بالمسؤوليات المباشرة والأنظمة المدارة على مدار السنوات</div>
+    </div>
+
+    <div class="timeline">
+      <!-- MNE -->
+      <div class="cad-card timeline-item timeline-item-mne">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">مهندس حاسوب (بنية تحتية، أمان سيبراني وأنظمة)</div>
+            <div class="timeline-org">وزارة الاقتصاد الوطني (Ministry of National Economy) • رام الله، فلسطين</div>
+          </div>
+          <div class="timeline-badges">
+            <span class="badge-period">7 سنوات • 2019 – حتى الآن</span>
+          </div>
+        </div>
+
+        <ul class="duty-list">
+          <li>المسؤولية التشغيلية المباشرة عن جدران الحماية المحيطية (FortiGate, Cisco FMC &amp; FTD, F5 BIG-IP WAF, Sophos)، وتأمين التوافر العالي واستراتيجية الثقة الصفرية Zero-Trust لكافة الخدمات والشبكات.</li>
+          <li>الإدارة الشاملة لبنية الدليل النشط (AD DS) على المستوى الحكومي، وهندسة وتطبيق سياسات المجموعة (GPO) للتحكم في صلاحيات المستخدمين وتأمين النقاط الطرفية.</li>
+          <li>إدارة شبكات سيسكو المركزية عبر محولات Cisco Core Switches، وطبقات التوزيع Catalyst، وتطبيق بروتوكولات التوجيه المؤسسية الآمنة OSPF و BGP للربط بين الفروع والمقرات.</li>
+          <li>التشغيل المستمر وعالي التوافر لبنية خوادم المراسلة Microsoft Exchange Server، وحزم تجميع قواعد البيانات (DAG)، ومسارات الفحص الآمن لتدفق البريد.</li>
+          <li>أتمتة إدارة النقاط الطرفية وتوزيع التحديثات الأمنية وسد الثغرات مركزياً عبر Microsoft SCCM لضمان الامتثال الأمني المستمر.</li>
+          <li>هندسة وبناء أنظمة وكلاء الذكاء الاصطناعي والتوأم الرقمي للأنظمة (MNE Brain v2) للمراقبة الآنية والتشخيص المؤتمت وتنفيذ دفاتر التشغيل.</li>
+        </ul>
+
+        <div class="tech-stack-row">
+          <span class="tech-tag">FortiGate NGFW</span>
+          <span class="tech-tag">F5 BIG-IP (WAF/LTM)</span>
+          <span class="tech-tag">Cisco FMC &amp; FTD</span>
+          <span class="tech-tag">Cisco Core Switches</span>
+          <span class="tech-tag">Active Directory (AD DS)</span>
+          <span class="tech-tag">Group Policy (GPO)</span>
+          <span class="tech-tag">Microsoft Exchange</span>
+          <span class="tech-tag">Microsoft SCCM</span>
+          <span class="tech-tag">Sophos Security</span>
+          <span class="tech-tag">AI Autonomous Agents</span>
+        </div>
+      </div>
+
+      <!-- Kuwait -->
+      <div class="cad-card timeline-item timeline-item-kuwait">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">مهندس حاسوب وشبكات</div>
+            <div class="timeline-org">هندسة الأنظمة والشبكات المؤسسية • دولة الكويت</div>
+          </div>
+          <div class="timeline-badges">
+            <span class="badge-period">سنة واحدة • 2018 – 2019</span>
+          </div>
+        </div>
+
+        <ul class="duty-list">
+          <li>تجهيز ونشر أنظمة الحاسوب والخوادم المؤسسية، وتركيب كبائن الخوادم والراكّات وتمديد الكوابل الشبكية المنظمة.</li>
+          <li>إعداد وتكوين محولات التبديل (Switching) وأجهزة التوجيه (Routing)، وتشخيص الأعطال العتادية، وإدارة صلاحيات وصول المستخدمين.</li>
+          <li>تطبيق بروتوكولات الأمان الأساسية للأنظمة، وسياسات النسخ الاحتياطي الدوري، وإجراءات منع الكوارث واستمرارية الأعمال.</li>
+        </ul>
+
+        <div class="tech-stack-row">
+          <span class="tech-tag">Enterprise Switching</span>
+          <span class="tech-tag">Cisco Routers</span>
+          <span class="tech-tag">Hardware Diagnostics</span>
+          <span class="tech-tag">Windows Server</span>
+          <span class="tech-tag">Backup &amp; Recovery</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verified Production Projects -->
+    <div class="section-title-wrap">
+      <div class="section-heading">
+        <span>مشاريع عملاء حقيقية قيد التشغيل</span>
+        <span class="section-heading-tag">PRODUCTION_PLATFORMS</span>
+      </div>
+      <div class="section-sub">منصات تجارية ومجتمعية مبنية بمعايير تحويل مبيعات وأداء استثنائي</div>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="cad-card project-card">
+        <div>
+          <span class="project-badge">تجارة مستلزمات الحلويات</span>
+          <h3 class="project-name">متجر الملكي (Almalaki Store)</h3>
+          <p class="project-desc">
+            المنصة الأولى والرائدة في فلسطين لمستلزمات وتزيين الكيك والحلويات، تدعم التجارة متعددة العملات، تصفحاً فائق السلاسة لكتالوج المنتجات، وتكاملاً مع تطبيقات الهواتف.
+          </p>
+        </div>
+        <div class="project-footer">
+          <span class="ltr-text">almalakistore.ps</span>
+          <span>◂ رابط المنصة</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="cad-card project-card">
+        <div>
+          <span class="project-badge">خدمات بلدية وحكومية</span>
+          <h3 class="project-name">مجلس بلدي بزاريا (Bazaria Council)</h3>
+          <p class="project-desc">
+            البوابة الرقمية الرسمية للمجلس البلدي لتقديم الخدمات العامة الإلكترونية للمواطنين، الإعلانات الرسمية، متابعة المعاملات والتفاعل المجتمعي السريع.
+          </p>
+        </div>
+        <div class="project-footer">
+          <span class="ltr-text">bazariacouncil.pages.dev</span>
+          <span>◂ رابط المنصة</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="cad-card project-card">
+        <div>
+          <span class="project-badge">حرف يدوية فاخرة</span>
+          <h3 class="project-name">متجر هاندميد (handmade.ps)</h3>
+          <p class="project-desc">
+            بوتيك رقمي راقٍ للقطع الخزفية المصنوعة يدوياً، الهدايا المخصصة والديكورات المنزلية، بتصفح سلس وتصميم عصري وتجربة شراء سريعة ومباشرة.
+          </p>
+        </div>
+        <div class="project-footer">
+          <span class="ltr-text">handmade.ps</span>
+          <span>◂ رابط المنصة</span>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="cad-card project-card">
+        <div>
+          <span class="project-badge">طلب سريع وفوري</span>
+          <h3 class="project-name">فستق حلبي (Pistachio)</h3>
+          <p class="project-desc">
+            واجهة عصرية لطلب الحلويات والمخبوزات الفاخرة، مهندسة للتصفية السريعة والطلب الفوري المباشر عبر واتساب لتجربة زبائن فائقة السلاسة والسرعة.
+          </p>
+        </div>
+        <div class="project-footer">
+          <span class="ltr-text">postachio.pages.dev</span>
+          <span>◂ رابط المنصة</span>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="cad-card project-card">
+        <div>
+          <span class="project-badge">ديكور ومستلزمات منزلية</span>
+          <h3 class="project-name">لمى هوم (Lama Home)</h3>
+          <p class="project-desc">
+            متجر إلكتروني متكامل للتحف والمستلزمات المنزلية الراقية، يعتمد على استعراض المنتجات بدقة بصرية عالية وتجربة تسوق آمنة وسريعة وموثوقة.
+          </p>
+        </div>
+        <div class="project-footer">
+          <span class="ltr-text">lamastorev2.pages.dev</span>
+          <span>◂ رابط المنصة</span>
+        </div>
+      </div>
+
+      <!-- Project 6: Architecture & AI -->
+      <div class="cad-card project-card">
+        <div>
+          <span class="project-badge">ذكاء اصطناعي وأتمتة</span>
+          <h3 class="project-name">MNE Brain v2</h3>
+          <p class="project-desc">
+            بنية ذكاء اصطناعي وتوأم رقمي للبنية التحتية، تعتمد على تنسيق وكلاء مستقلين ومهارات مخصصة لتنفيذ مهام الرصد والتشخيص الآلي وسد الثغرات.
+          </p>
+        </div>
+        <div class="project-footer">
+          <span class="ltr-text">Autonomous AI Architecture</span>
+          <span>◂ بنية مستقلة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete Technical Matrix -->
+    <div class="section-title-wrap">
+      <div class="section-heading">
+        <span>مصفوفة التكنولوجيا والأنظمة المؤسسية</span>
+        <span class="section-heading-tag">TECHNICAL_MATRIX</span>
+      </div>
+      <div class="section-sub">المهارات والتقنيات المجربة ميدانياً في أعتى بيئات العمل الحكومية والتجارية</div>
+    </div>
+
+    <div class="skills-matrix">
+      <!-- Col 1 -->
+      <div class="cad-card skill-cat-card">
+        <div class="skill-cat-header">
+          <span>🛡</span>
+          <span>جدران الحماية وحماية المحيط</span>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">FortiGate NGFW</span>
+          <span class="skill-chip">F5 BIG-IP (WAF/ASM)</span>
+          <span class="skill-chip">Cisco FMC</span>
+          <span class="skill-chip">Cisco FTD</span>
+          <span class="skill-chip">Sophos Security</span>
+          <span class="skill-chip">SSL Inspection</span>
+          <span class="skill-chip">Zero-Trust Network Access</span>
+        </div>
+      </div>
+
+      <!-- Col 2 -->
+      <div class="cad-card skill-cat-card">
+        <div class="skill-cat-header">
+          <span>🌐</span>
+          <span>الشبكات المركزية والتوجيه</span>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">محولات سيسكو كور</span>
+          <span class="skill-chip">Cisco Catalyst</span>
+          <span class="skill-chip">Cisco Nexus</span>
+          <span class="skill-chip">VLAN Segmentation</span>
+          <span class="skill-chip">OSPF / BGP</span>
+          <span class="skill-chip">High-Availability HA</span>
+          <span class="skill-chip">Multi-Site VPN</span>
+        </div>
+      </div>
+
+      <!-- Col 3 -->
+      <div class="cad-card skill-cat-card">
+        <div class="skill-cat-header">
+          <span>🏢</span>
+          <span>أنظمة مايكروسوفت وإدارة الهوية</span>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">Active Directory (AD DS)</span>
+          <span class="skill-chip">Group Policy (GPO)</span>
+          <span class="skill-chip">Microsoft Exchange</span>
+          <span class="skill-chip">Microsoft SCCM</span>
+          <span class="skill-chip">Windows Server</span>
+          <span class="skill-chip">Kerberos / LDAP</span>
+          <span class="skill-chip">RBAC Security</span>
+        </div>
+      </div>
+
+      <!-- Col 4 -->
+      <div class="cad-card skill-cat-card">
+        <div class="skill-cat-header">
+          <span>🤖</span>
+          <span>الذكاء الاصطناعي والأنظمة المستقلة</span>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">معمارية مهارات الوكلاء Skills</span>
+          <span class="skill-chip">حلقات التنفيذ الذاتية</span>
+          <span class="skill-chip">إدارة نافذة السياق والتوكنات</span>
+          <span class="skill-chip">تنسيق أسراب الوكلاء</span>
+          <span class="skill-chip">MNE Brain v2</span>
+          <span class="skill-chip">أدوات الفحص الذاتي</span>
+        </div>
+      </div>
+
+      <!-- Col 5 -->
+      <div class="cad-card skill-cat-card">
+        <div class="skill-cat-header">
+          <span>⚛️</span>
+          <span>تطوير وهندسة الويب الحديث</span>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">React 18</span>
+          <span class="skill-chip">TypeScript</span>
+          <span class="skill-chip">Three.js &amp; WebGL</span>
+          <span class="skill-chip">Tailwind CSS</span>
+          <span class="skill-chip">تطبيقات PWA</span>
+          <span class="skill-chip">Vite / Next.js</span>
+          <span class="skill-chip">أعلى سرعة تحويل مبيعات</span>
+        </div>
+      </div>
+
+      <!-- Col 6 -->
+      <div class="cad-card skill-cat-card">
+        <div class="skill-cat-header">
+          <span>📜</span>
+          <span>المعايير والمنهجيات</span>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">معايير إتاحة الويب WCAG</span>
+          <span class="skill-chip">الأمان الشامل Defend-in-Depth</span>
+          <span class="skill-chip">التشخيص الاستباقي للأعطال</span>
+          <span class="skill-chip">هندسة المتطلبات الصارمة</span>
+          <span class="skill-chip">إدارة السيرفرات والشبكات</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Card -->
+    <div class="cad-card edu-card">
+      <div>
+        <div class="edu-title">بكالوريوس في هندسة أنظمة الحاسوب (Computer Systems Engineering)</div>
+        <div class="edu-school">كلية الهندسة والتكنولوجيا • تخصص معتمد وشامل في الأنظمة والشبكات والبرمجيات</div>
+      </div>
+      <div>
+        <span class="pill pill-purple">درجة البكالوريوس الرسمية في هندسة الحاسوب</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

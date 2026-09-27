@@ -45,12 +45,41 @@
     }
   }
 
-  body {
+    body {
     background-color: var(--bg-black);
     color: #FFFFFF;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     min-height: 100vh;
     overflow-x: hidden;
+  }
+
+  /* Arabic & RTL Specific Base Styles */
+  [dir="rtl"] {
+    font-family: 'IBM Plex Sans Arabic', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  [dir="rtl"] .font-display {
+    font-family: 'Cairo', 'Syne', sans-serif;
+  }
+
+  [dir="rtl"] .font-mono {
+    font-family: 'IBM Plex Sans Arabic', 'Space Grotesk', monospace;
+  }
+
+  [dir="rtl"] .font-sans {
+    font-family: 'IBM Plex Sans Arabic', 'Space Grotesk', sans-serif;
+  }
+
+  /* Prevent disconnected Arabic cursive letters from wide letter-spacing */
+  [dir="rtl"] [class*="tracking-"] {
+    letter-spacing: normal !important;
+  }
+
+  /* Preserve LTR for phone numbers, emails, and raw technical metrics */
+  .ltr-text, [dir="rtl"] .ltr-text {
+    direction: ltr !important;
+    unicode-bidi: isolate;
+    display: inline-block;
   }
 }
 

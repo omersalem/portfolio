@@ -7,7 +7,7 @@ export interface Project {
   description: string;
   ariaLabel: string;
   tags: string[];
-  category?: 'All' | 'E-Commerce' | 'Civic & Gov' | 'Fast Ordering';
+  category?: 'All' | 'E-Commerce' | 'Civic & Gov' | 'Fast Ordering' | 'متاجر إلكترونية' | 'خدمات بلدية وحكومية' | 'طلب سريع' | string;
   accentColor?: string;
   glowColor?: string;
   gradientClass?: string;

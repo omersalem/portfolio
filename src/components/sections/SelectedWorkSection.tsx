@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
-import { PROJECTS } from '../../data/portfolioData';
+import React, { useState, useEffect } from 'react';
+import { getPortfolioData } from '../../data/portfolioData';
+import { useLanguage } from '../../context/LanguageContext';
 import { ProjectCard3D } from '../cards/ProjectCard3D';
 import { Sparkles } from 'lucide-react';
 
-const CATEGORIES = ['All', 'E-Commerce', 'Civic & Gov', 'Fast Ordering'] as const;
+const CATEGORIES_EN = ['All', 'E-Commerce', 'Civic & Gov', 'Fast Ordering'] as const;
+const CATEGORIES_AR = ['الكل', 'متاجر إلكترونية', 'خدمات بلدية وحكومية', 'طلب سريع'] as const;
 
 export const SelectedWorkSection: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const { language } = useLanguage();
+  const { projects, ui } = getPortfolioData(language);
+  
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>(0);
 
-  const filteredProjects = selectedCategory === 'All'
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.category === selectedCategory);
+  // When language switches, ensure index is safe
+  useEffect(() => {
+    setSelectedCategoryIndex(0);
+  }, [language]);
+
+  const categories = language === 'ar' ? CATEGORIES_AR : CATEGORIES_EN;
+  const currentCategory = categories[selectedCategoryIndex];
+
+  const filteredProjects = selectedCategoryIndex === 0
+    ? projects
+    : projects.filter((p) => p.category === currentCategory);
 
   return (
     <section
@@ -42,43 +55,43 @@ export const SelectedWorkSection: React.FC = () => {
       <div className="layout-container relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-widest text-cyber-cyan uppercase mb-3 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
-              <Sparkles className="w-3.5 h-3.5 text-cyber-cyan" />
-              <span>SELECTED PRODUCTION PLATFORMS</span>
+          <div className="max-w-2xl text-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-widest text-cyber-cyan uppercase mb-3 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+              <Sparkles className="w-3.5 h-3.5 text-cyber-cyan shrink-0" />
+              <span>{ui.work.eyebrow}</span>
             </div>
 
             <h2
               id="work-heading"
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight text-white mb-4"
             >
-              SOLD. LAUNCHED.{' '}
+              {ui.work.titlePrefix}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-purple-300 to-chrome-orange">
-                WORKING.
+                {ui.work.titleHighlight}
               </span>
             </h2>
 
             <p className="text-neutral-300 font-sans text-sm sm:text-base leading-relaxed">
-              Real high-performing client platforms engineered for multi-currency commerce, municipal governance, and fast mobile ordering. Built for extreme conversion and scale.
+              {ui.work.subtitle}
             </p>
           </div>
 
           {/* Interactive Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
-            {CATEGORIES.map((cat) => {
-              const isActive = selectedCategory === cat;
+            {categories.map((cat, idx) => {
+              const isActive = selectedCategoryIndex === idx;
               return (
                 <button
                   key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-200 ${
+                  onClick={() => setSelectedCategoryIndex(idx)}
+                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'bg-gradient-to-r from-cyber-cyan to-cyber-purple text-black font-bold shadow-[0_0_20px_rgba(0,240,255,0.4)]'
                       : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                   }`}
                   aria-pressed={isActive}
                 >
-                  {cat === 'All' ? 'ALL (5)' : cat}
+                  {idx === 0 ? (language === 'ar' ? 'الكل (5)' : 'ALL (5)') : cat}
                 </button>
               );
             })}

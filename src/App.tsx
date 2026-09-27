@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { EffectSettingsProvider } from './context/EffectSettingsContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { SkipLink } from './components/common/SkipLink';
 import { Navbar } from './components/navigation/Navbar';
 import { HeroSection } from './components/sections/HeroSection';
@@ -11,8 +12,9 @@ import { Footer } from './components/navigation/Footer';
 
 export const App: React.FC = () => {
   return (
-    <EffectSettingsProvider>
-      <div className="relative min-h-screen bg-chrome-black text-white selection:bg-chrome-orange selection:text-black flex flex-col">
+    <LanguageProvider>
+      <EffectSettingsProvider>
+        <div className="relative min-h-screen bg-chrome-black text-white selection:bg-chrome-orange selection:text-black flex flex-col font-sans">
         {/* Accessible Skip Link */}
         <SkipLink />
 
@@ -43,6 +45,7 @@ export const App: React.FC = () => {
         <Footer />
       </div>
     </EffectSettingsProvider>
+  </LanguageProvider>
   );
 };
 

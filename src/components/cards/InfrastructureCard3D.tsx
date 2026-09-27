@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Network, ShieldCheck, KeyRound, Mail, Layers, Bot, Activity } from 'lucide-react';
 import { InfrastructureNode } from '../../types';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface InfrastructureCard3DProps {
   node: InfrastructureNode;
@@ -42,6 +43,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const { reducedMotion, reducedEffects } = useEffectSettings();
+  const { language, isRTL } = useLanguage();
 
   const IconComponent = NODE_ICONS[index % NODE_ICONS.length];
   const domainCode = node.domainCode || DOMAIN_CODES[index % DOMAIN_CODES.length];
@@ -163,7 +165,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
           onBlur={handleBlur}
           role="region"
           aria-label={`${node.number} ${node.label}`}
-          className={`group relative flex flex-col justify-between h-full p-5 sm:p-6 rounded-2xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none ${
+          className={`group relative flex flex-col justify-between h-full p-5 sm:p-6 rounded-2xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none text-start ${
             isHighlighted
               ? 'bg-gradient-to-b from-[#181c30] via-[#101322] to-[#080914]'
               : 'border-white/10 bg-gradient-to-b from-[#121526] via-[#0d0f1b] to-[#070814] hover:border-white/20'
@@ -206,21 +208,21 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
 
           {/* Precision CAD Corner Brackets */}
           <div
-            className="absolute top-2 left-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute top-2 start-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? accentColor : 'rgba(255,255,255,0.2)' }}
           >
             ┌
           </div>
           <div
-            className="absolute top-2 right-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute top-2 end-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? accentColor : 'rgba(255,255,255,0.2)' }}
           >
             ┐
           </div>
-          <div className="absolute bottom-2 left-2 text-[9px] font-mono text-neutral-600 pointer-events-none select-none">
+          <div className="absolute bottom-2 start-2 text-[9px] font-mono text-neutral-600 pointer-events-none select-none">
             └
           </div>
-          <div className="absolute bottom-2 right-2 text-[9px] font-mono text-neutral-600 pointer-events-none select-none">
+          <div className="absolute bottom-2 end-2 text-[9px] font-mono text-neutral-600 pointer-events-none select-none">
             ┘
           </div>
 
@@ -230,9 +232,9 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
               className="flex items-center justify-between mb-3.5"
               style={disable3D ? {} : { transform: 'translateZ(24px)', transformStyle: 'preserve-3d' }}
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center gap-2">
                 <span
-                  className="px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-colors shadow-sm"
+                  className="px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-colors shadow-sm ltr-text"
                   style={{
                     color: accentColor,
                     borderColor: `${accentColor}55`,
@@ -248,9 +250,9 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
               </div>
 
               {/* Status LED & Core Sync Pulse */}
-              <div className="flex items-center space-x-1.5">
+              <div className="flex items-center gap-1.5">
                 <span
-                  className="w-2 h-2 rounded-full transition-all duration-300"
+                  className="w-2 h-2 rounded-full transition-all duration-300 shrink-0"
                   style={{
                     backgroundColor: isHighlighted ? accentColor : '#10B981',
                     boxShadow: isHighlighted ? `0 0 10px ${accentColor}` : '0 0 4px rgba(16,185,129,0.5)',
@@ -261,14 +263,14 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
                   className="text-[9px] font-mono uppercase font-bold transition-colors"
                   style={{ color: isHighlighted ? accentColor : '#94A3B8' }}
                 >
-                  {isHighlighted ? 'SYNCED' : 'ACTIVE'}
+                  {isHighlighted ? (language === 'ar' ? 'متزامن' : 'SYNCED') : (language === 'ar' ? 'نشط' : 'ACTIVE')}
                 </span>
               </div>
             </div>
 
             {/* Title & Hardware Domain Icon (translateZ: 30px) */}
             <div
-              className="flex items-start space-x-3 mb-2.5"
+              className="flex items-start gap-3 mb-2.5"
               style={disable3D ? {} : { transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}
             >
               <div
@@ -293,7 +295,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
 
             {/* Description Text (translateZ: 18px) */}
             <p
-              className="text-xs font-sans text-neutral-300 leading-relaxed mb-4 pl-0.5"
+              className="text-xs font-sans text-neutral-300 leading-relaxed mb-4 px-0.5"
               style={disable3D ? {} : { transform: 'translateZ(18px)' }}
             >
               {node.description}
@@ -325,14 +327,14 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
               style={disable3D ? {} : { transform: 'translateZ(16px)' }}
             >
               <span
-                className="flex items-center space-x-1.5 font-semibold transition-colors"
+                className="flex items-center gap-1.5 font-semibold transition-colors ltr-text"
                 style={{ color: accentColor }}
               >
-                <Activity className="w-3 h-3" />
+                <Activity className="w-3 h-3 shrink-0" />
                 <span>3D_CONDUIT_{node.number}</span>
               </span>
               <span className="text-neutral-400 group-hover:text-white transition-colors">
-                HOVER TO PULSE CORE →
+                {language === 'ar' ? (isRTL ? 'مرر للتفاعل مع النواة ←' : 'مرر للتفاعل مع النواة →') : 'HOVER TO PULSE CORE →'}
               </span>
             </div>
           </div>

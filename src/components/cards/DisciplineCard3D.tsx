@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Layout, ShoppingCart, Bot, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { CapabilityGroup } from '../../types';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface DisciplineCard3DProps {
   group: CapabilityGroup;
@@ -76,6 +77,8 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const { reducedMotion, reducedEffects } = useEffectSettings();
+  const { language } = useLanguage();
+  const IconComponent = DISCIPLINE_ICONS[index % DISCIPLINE_ICONS.length];
 
   const theme = DISCIPLINE_THEMES[index % DISCIPLINE_THEMES.length];
   const disable3D = reducedMotion || reducedEffects;
@@ -99,7 +102,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
   const spotlightBg = useTransform(
     [mousePixelX, mousePixelY],
     ([x, y]) =>
-      `radial-gradient(340px circle at ${x}px ${y}px, ${theme.spotlight}, transparent 75%)`
+      `radial-gradient(320px circle at ${x}px ${y}px, ${theme.spotlight}, transparent 70%)`
   );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -134,7 +137,6 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
     mouseY.set(0);
   };
 
-  const IconComponent = DISCIPLINE_ICONS[index % DISCIPLINE_ICONS.length];
   const isHighlighted = isHovered || isFocused;
 
   return (
@@ -146,7 +148,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
         onMouseLeave={handleMouseLeave}
         initial={disable3D ? undefined : { opacity: 0, y: 25, rotateX: 6 }}
         whileInView={disable3D ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
-        viewport={{ once: true, amount: 0.05 }}
+        viewport={{ once: true, margin: '-20px' }}
         transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
         style={
           disable3D
@@ -180,7 +182,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
           onBlur={handleBlur}
           role="region"
           aria-label={`${group.number} ${group.title}`}
-          className={`relative h-full p-6 sm:p-7 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between ${
+          className={`relative h-full p-6 sm:p-7 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between text-start ${
             isHighlighted
               ? 'border-white/30 bg-[#0d1028] shadow-2xl'
               : 'border-white/10 bg-[#080b1e]/90 hover:border-white/20'
@@ -219,25 +221,25 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
 
           {/* Corner CAD Accents */}
           <div
-            className="absolute top-2.5 left-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute top-2.5 start-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
           >
             ┌
           </div>
           <div
-            className="absolute top-2.5 right-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute top-2.5 end-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
           >
             ┐
           </div>
           <div
-            className="absolute bottom-2.5 left-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute bottom-2.5 start-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.15)' }}
           >
             └
           </div>
           <div
-            className="absolute bottom-2.5 right-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute bottom-2.5 end-2.5 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.15)' }}
           >
             ┘
@@ -249,34 +251,34 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
               className="flex items-center justify-between mb-4 pb-2.5 border-b border-white/10"
               style={disable3D ? {} : { transform: 'translateZ(22px)', transformStyle: 'preserve-3d' }}
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center gap-2">
                 <span
-                  className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold ${theme.badgeBg} border ${theme.badgeBorder} ${theme.badgeText}`}
+                  className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold ${theme.badgeBg} border ${theme.badgeBorder} ${theme.badgeText} ltr-text`}
                   style={{ boxShadow: `0 0 10px ${theme.glowColor}` }}
                 >
                   {group.number}
                 </span>
                 <span className="text-[10px] font-mono tracking-widest text-neutral-400 uppercase font-semibold">
-                  CAPABILITY DOMAIN
+                  {language === 'ar' ? 'مجال هندسي تخصصي' : 'CAPABILITY DOMAIN'}
                 </span>
               </div>
 
-              <div className="flex items-center space-x-1.5">
+              <div className="flex items-center gap-1.5">
                 <span
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 shrink-0 ${
                     isHighlighted ? `${theme.ledColor} scale-110 animate-pulse` : 'bg-neutral-600'
                   }`}
                   style={{ boxShadow: isHighlighted ? `0 0 10px ${theme.accent}` : undefined }}
                 />
                 <span className="text-[9px] font-mono text-neutral-400 uppercase font-semibold">
-                  {isHighlighted ? 'ACTIVE' : 'READY'}
+                  {isHighlighted ? (language === 'ar' ? 'نشط' : 'ACTIVE') : (language === 'ar' ? 'جاهز' : 'READY')}
                 </span>
               </div>
             </div>
 
             {/* Title & Domain Icon (translateZ: 28px) */}
             <div
-              className="flex items-start space-x-3 mb-3"
+              className="flex items-start gap-3 mb-3"
               style={disable3D ? {} : { transform: 'translateZ(28px)', transformStyle: 'preserve-3d' }}
             >
               <div
@@ -290,14 +292,14 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
                 <IconComponent className="w-4 h-4" />
               </div>
 
-              <h4 className="text-base sm:text-lg font-mono font-bold text-white leading-snug">
+              <h4 className="text-base sm:text-lg font-display font-bold text-white leading-snug">
                 {group.title}
               </h4>
             </div>
 
             {/* Description (translateZ: 16px) */}
             <p
-              className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed mb-5 pl-0.5"
+              className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed mb-5 px-0.5"
               style={disable3D ? {} : { transform: 'translateZ(16px)' }}
             >
               {group.description}
@@ -311,7 +313,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
               style={disable3D ? {} : { transform: 'translateZ(24px)', transformStyle: 'preserve-3d' }}
             >
               {group.highlights.map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-2 text-xs font-sans text-neutral-200 font-medium">
+                <li key={idx} className="flex items-start gap-2 text-xs font-sans text-neutral-200 font-medium">
                   <CheckCircle2 className={`w-3.5 h-3.5 ${theme.checkColor} shrink-0 mt-0.5`} />
                   <span>{item}</span>
                 </li>
@@ -323,4 +325,3 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
     </div>
   );
 };
-

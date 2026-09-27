@@ -153,7 +153,7 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
           onBlur={handleBlur}
           role="region"
           aria-label={`${metric.label}: ${metric.value}`}
-          className={`relative h-full p-5 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between ${
+          className={`relative h-full p-5 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between text-start ${
             isHighlighted
               ? 'border-white/30 bg-[#0d1127] shadow-xl'
               : 'border-white/10 bg-[#090c1e]/90 hover:border-white/20'
@@ -180,13 +180,13 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
 
           {/* Corner CAD Accents */}
           <div
-            className="absolute top-2 left-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute top-2 start-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
           >
             ┌
           </div>
           <div
-            className="absolute top-2 right-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
+            className="absolute top-2 end-2 text-[9px] font-mono pointer-events-none select-none transition-colors"
             style={{ color: isHighlighted ? theme.accent : 'rgba(255,255,255,0.2)' }}
           >
             ┐
@@ -203,7 +203,7 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
 
             {/* Metric Label (translateZ: 20px) */}
             <div
-              className={`text-xs font-mono font-bold uppercase tracking-wider mb-2 flex items-center space-x-1.5 ${theme.colorClass}`}
+              className={`text-xs font-mono font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5 ${theme.colorClass}`}
               style={disable3D ? {} : { transform: 'translateZ(20px)' }}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${theme.dotColor} shrink-0 animate-pulse`} />
@@ -223,4 +223,3 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
     </div>
   );
 };
-
