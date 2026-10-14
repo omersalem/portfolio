@@ -259,7 +259,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
                   {group.number}
                 </span>
                 <span className="text-[10px] font-mono tracking-widest text-neutral-400 uppercase font-semibold">
-                  {language === 'ar' ? 'مجال هندسي تخصصي' : 'CAPABILITY DOMAIN'}
+                  {language === 'ar' ? 'مجال التخصص' : 'CAPABILITY DOMAIN'}
                 </span>
               </div>
 

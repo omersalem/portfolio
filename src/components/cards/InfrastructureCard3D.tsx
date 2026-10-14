@@ -334,7 +334,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
                 <span>3D_CONDUIT_{node.number}</span>
               </span>
               <span className="text-neutral-400 group-hover:text-white transition-colors">
-                {language === 'ar' ? (isRTL ? 'مرر للتفاعل مع النواة ←' : 'مرر للتفاعل مع النواة →') : 'HOVER TO PULSE CORE →'}
+                {language === 'ar' ? (isRTL ? 'مرّر المؤشر لتنشيط النواة ←' : 'مرّر المؤشر لتنشيط النواة →') : 'HOVER TO PULSE CORE →'}
               </span>
             </div>
           </div>

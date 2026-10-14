@@ -10,16 +10,7 @@ export const EngineeringSection: React.FC = () => {
   const { language } = useLanguage();
   const { infrastructureNodes, ui } = getPortfolioData(language);
 
-  const stackPills = language === 'ar' ? [
-    { name: 'جدران حماية فورتي جيت (FortiGate NGFW)', color: 'text-amber-400 border-amber-500/30 bg-amber-500/10' },
-    { name: 'أجهزة F5 BIG-IP (WAF/LTM)', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10' },
-    { name: 'سيسكو FMC و FTD', color: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10' },
-    { name: 'محولات سيسكو المركزية (Core)', color: 'text-blue-400 border-blue-500/30 bg-blue-500/10' },
-    { name: 'الدليل النشط وسياسات المجموعة (AD DS/GPO)', color: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' },
-    { name: 'خوادم إكستشينج و SCCM', color: 'text-pink-400 border-pink-500/30 bg-pink-500/10' },
-    { name: 'حماية سوفوس (Sophos Security)', color: 'text-orange-400 border-orange-500/30 bg-orange-500/10' },
-    { name: 'حلقات الذكاء الاصطناعي الذاتية لـ MNE', color: 'text-cyber-cyan border-cyber-cyan/40 bg-cyber-cyan/10 font-bold' },
-  ] : [
+  const stackPills = [
     { name: 'FortiGate NGFW', color: 'text-amber-400 border-amber-500/30 bg-amber-500/10' },
     { name: 'F5 BIG-IP (WAF/LTM)', color: 'text-purple-400 border-purple-500/30 bg-purple-500/10' },
     { name: 'Cisco FMC & FTD', color: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10' },

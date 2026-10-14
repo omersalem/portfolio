@@ -55,12 +55,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     root.dir = isRTL ? 'rtl' : 'ltr';
 
     if (language === 'ar') {
-      document.title = 'عمر سالم — مهندس حاسوب | مواقع مهندسة للبيع وبنية تحتية عالية الأداء';
+      document.title = 'عمر سالم — مهندس حاسوب | مواقع تُبنى لتبيع وأنظمة تُصمَّم لتصمد';
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(
           'content',
-          'عمر سالم — مهندس حاسوب. مواقع ويب مهندسة لزيادة المبيعات والتحويل، وتصميم وتطوير متكامل، وبنية تحتية وأمان عالي الأداء.'
+          'عمر سالم — مهندس حاسوب يبني مواقع ومتاجر إلكترونية عالية التحويل، ويدير بنية تحتية مؤسسية آمنة (FortiGate و Cisco و Active Directory)، ويطوّر حلول AI Agents.'
         );
       }
     } else {

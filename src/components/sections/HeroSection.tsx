@@ -116,7 +116,7 @@ export const HeroSection: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="touch-target group inline-flex items-center justify-center gap-2.5 px-6 py-4 btn-soft text-white font-display font-semibold text-sm tracking-wide rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-purple-light"
-                aria-label={language === 'ar' ? 'محادثة مباشرة عبر واتساب مع المهندس عمر سالم' : 'Direct WhatsApp Chat with Omer Salem'}
+                aria-label={language === 'ar' ? 'تواصل مباشرة مع م. عمر سالم عبر WhatsApp' : 'Direct WhatsApp Chat with Omer Salem'}
               >
                 <MessageSquare className="w-4 h-4 text-cyber-emerald group-hover:scale-110 transition-transform shrink-0" />
                 <span>{ui.hero.chatBtn}</span>

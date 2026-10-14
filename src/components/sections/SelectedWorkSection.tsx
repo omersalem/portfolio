@@ -5,7 +5,7 @@ import { ProjectCard3D } from '../cards/ProjectCard3D';
 import { Sparkles } from 'lucide-react';
 
 const CATEGORIES_EN = ['All', 'E-Commerce', 'Civic & Gov', 'Fast Ordering'] as const;
-const CATEGORIES_AR = ['الكل', 'متاجر إلكترونية', 'خدمات بلدية وحكومية', 'طلب سريع'] as const;
+const CATEGORIES_AR = ['الكل', 'متاجر إلكترونية', 'جهات حكومية وبلدية', 'طلبات سريعة'] as const;
 
 export const SelectedWorkSection: React.FC = () => {
   const { language } = useLanguage();
