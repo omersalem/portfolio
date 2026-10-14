@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   return (
     <LanguageProvider>
       <EffectSettingsProvider>
-        <div className="relative min-h-screen bg-chrome-black text-white selection:bg-chrome-orange selection:text-black flex flex-col font-sans">
+        <div className="relative min-h-screen text-white selection:bg-cyber-purple/40 selection:text-white flex flex-col font-sans">
         {/* Accessible Skip Link */}
         <SkipLink />
 

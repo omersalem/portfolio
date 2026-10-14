@@ -31,7 +31,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
       aria-modal="true"
       aria-label={`${projectName} case study`}
     >
-      <div className="relative w-full max-w-5xl my-auto bg-gradient-to-b from-[#11142e] via-[#0b0e24] to-[#070818] border border-cyber-cyan/30 rounded-2xl p-6 sm:p-10 text-white shadow-[0_0_50px_rgba(0,240,255,0.15)] overflow-hidden text-start">
+      <div className="relative w-full max-w-5xl my-auto bg-gradient-to-b from-[#2A2550] via-[#1E1B3A] to-[#17142D] border border-white/[0.08] rounded-[2rem] p-6 sm:p-10 text-white shadow-soft-3 overflow-hidden text-start">
         {/* Top Rainbow Horizon Line */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyber-cyan via-cyber-purple via-cyber-pink to-chrome-orange" />
         
@@ -63,7 +63,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
 
         {/* Challenge & Solution Grid */}
         <div className="relative z-10 grid md:grid-cols-2 gap-6 mb-8">
-          <div className="p-6 rounded-xl border border-orange-500/30 bg-[#161224]/80 shadow-[0_0_20px_rgba(255,85,0,0.08)]">
+          <div className="p-6 rounded-xl border border-orange-500/30 bg-[#161224]/80 shadow-[0_12px_32px_-12px_rgba(255,158,125,0.08)]">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-chrome-orange uppercase tracking-wider mb-2">
               <Cpu className="w-4 h-4 text-chrome-orange shrink-0" />
               <span>{ui.caseStudy.challenge}</span>
@@ -71,7 +71,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
             <p className="text-sm font-sans text-neutral-300 leading-relaxed">{study.challenge}</p>
           </div>
 
-          <div className="p-6 rounded-xl border border-emerald-500/30 bg-[#0c1c24]/80 shadow-[0_0_20px_rgba(16,185,129,0.08)]">
+          <div className="p-6 rounded-xl border border-emerald-500/30 bg-[#0c1c24]/80 shadow-[0_12px_32px_-12px_rgba(127,224,184,0.08)]">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>{ui.caseStudy.solution}</span>
@@ -82,7 +82,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
 
         {/* Triple Specifications Grid */}
         <div className="relative z-10 grid md:grid-cols-3 gap-6 mb-8">
-          <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+          <div className="p-5 rounded-2xl soft-chip">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-cyber-cyan uppercase tracking-wider mb-3">
               <Layers className="w-4 h-4 text-cyber-cyan shrink-0" />
               <span>{ui.caseStudy.architecture}</span>
@@ -97,21 +97,21 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
             </div>
           </div>
 
-          <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+          <div className="p-5 rounded-2xl soft-chip">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-cyber-purple uppercase tracking-wider mb-3">
               <Cpu className="w-4 h-4 text-cyber-purple shrink-0" />
               <span>{ui.caseStudy.coreStack}</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
               {study.technologies.map((item) => (
-                <span key={item} className="px-2.5 py-1 text-[11px] font-mono rounded bg-white/10 border border-white/10 text-neutral-200">
+                <span key={item} className="px-3 py-1 text-[11px] font-mono rounded-full soft-chip text-neutral-200">
                   {item}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+          <div className="p-5 rounded-2xl soft-chip">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-3">
               <Award className="w-4 h-4 text-amber-400 shrink-0" />
               <span>{ui.caseStudy.impact}</span>

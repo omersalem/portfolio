@@ -47,8 +47,8 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
 
   const IconComponent = NODE_ICONS[index % NODE_ICONS.length];
   const domainCode = node.domainCode || DOMAIN_CODES[index % DOMAIN_CODES.length];
-  const accentColor = node.accentColor || '#00F0FF';
-  const glowColor = node.glowColor || 'rgba(0, 240, 255, 0.35)';
+  const accentColor = node.accentColor || '#8ee3f5';
+  const glowColor = node.glowColor || 'rgba(142, 227, 245, 0.35)';
 
   const disable3D = reducedMotion || reducedEffects;
 
@@ -144,12 +144,12 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
                 transformStyle: 'preserve-3d',
               }
         }
-        className="relative w-full h-full rounded-2xl transition-shadow duration-300"
+        className="relative w-full h-full rounded-3xl transition-shadow duration-300"
       >
         {/* 1. Dynamic 3D Floor Shadow & Glow Layer */}
         {!disable3D && (
           <motion.div
-            className="absolute -inset-1 rounded-2xl bg-black/90 filter blur-lg pointer-events-none -z-10 transition-all duration-300"
+            className="absolute -inset-1 rounded-[2rem] bg-[#06041a]/80 filter blur-2xl pointer-events-none -z-10 transition-all duration-300"
             style={{
               opacity: isHighlighted ? 0.95 : 0.35,
               transform: isHighlighted ? 'translateY(18px) scale(0.95)' : 'translateY(6px) scale(0.92)',
@@ -165,10 +165,10 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
           onBlur={handleBlur}
           role="region"
           aria-label={`${node.number} ${node.label}`}
-          className={`group relative flex flex-col justify-between h-full p-5 sm:p-6 rounded-2xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none text-start ${
+          className={`group relative flex flex-col justify-between h-full p-5 sm:p-6 rounded-3xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none text-start ${
             isHighlighted
-              ? 'bg-gradient-to-b from-[#181c30] via-[#101322] to-[#080914]'
-              : 'border-white/10 bg-gradient-to-b from-[#121526] via-[#0d0f1b] to-[#070814] hover:border-white/20'
+              ? 'bg-gradient-to-b from-[#302A5A] via-[#221E42] to-[#1A1733] shadow-soft-3'
+              : 'border-white/[0.08] bg-gradient-to-b from-[#2A2550] via-[#1E1B3A] to-[#17142D] shadow-soft-3'
           }`}
           style={
             disable3D
@@ -176,7 +176,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
               : {
                   transformStyle: 'preserve-3d',
                   borderColor: isHighlighted ? accentColor : undefined,
-                  boxShadow: isHighlighted ? `0 0 25px ${glowColor}` : undefined,
+                  boxShadow: isHighlighted ? `0 18px 50px -20px ${glowColor}` : undefined,
                 }
           }
         >
@@ -200,7 +200,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
               className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
               style={{
                 background:
-                  'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.08) 48%, rgba(0,240,255,0.18) 52%, transparent 65%)',
+                  'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.08) 48%, rgba(142,227,245,0.18) 52%, transparent 65%)',
                 x: sheenTranslateX,
               }}
             />
@@ -239,7 +239,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
                     color: accentColor,
                     borderColor: `${accentColor}55`,
                     backgroundColor: `${accentColor}15`,
-                    boxShadow: `0 0 10px ${glowColor}`,
+                    boxShadow: `0 7px 20px -8px ${glowColor}`,
                   }}
                 >
                   NODE_{node.number}
@@ -254,8 +254,8 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
                 <span
                   className="w-2 h-2 rounded-full transition-all duration-300 shrink-0"
                   style={{
-                    backgroundColor: isHighlighted ? accentColor : '#10B981',
-                    boxShadow: isHighlighted ? `0 0 10px ${accentColor}` : '0 0 4px rgba(16,185,129,0.5)',
+                    backgroundColor: isHighlighted ? accentColor : '#7fe0b8',
+                    boxShadow: isHighlighted ? `0 7px 20px -8px ${accentColor}` : '0 0 4px rgba(127,224,184,0.5)',
                     transform: isHighlighted ? 'scale(1.2)' : 'scale(1)',
                   }}
                 />
@@ -279,7 +279,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
                   backgroundColor: isHighlighted ? `${accentColor}25` : 'rgba(255,255,255,0.04)',
                   borderColor: isHighlighted ? accentColor : 'rgba(255,255,255,0.12)',
                   color: isHighlighted ? accentColor : '#FFFFFF',
-                  boxShadow: isHighlighted ? `0 0 14px ${glowColor}` : 'none',
+                  boxShadow: isHighlighted ? `0 10px 28px -11px ${glowColor}` : 'none',
                 }}
               >
                 <IconComponent className="w-4 h-4" />
@@ -311,7 +311,7 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
               {node.technologies.map((t, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-0.5 text-[10px] font-mono text-neutral-300 bg-white/[0.04] border border-white/10 rounded-md shadow-sm transition-colors"
+                  className="px-2.5 py-0.5 text-[10px] font-mono text-[#D4CFEE] soft-chip rounded-full transition-colors"
                   style={{
                     borderColor: isHighlighted ? `${accentColor}44` : undefined,
                   }}

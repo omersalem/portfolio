@@ -19,9 +19,9 @@ const DISCIPLINE_ICONS = [
 
 const DISCIPLINE_THEMES = [
   {
-    accent: '#00F0FF',
-    glowColor: 'rgba(0, 240, 255, 0.35)',
-    spotlight: 'rgba(0, 240, 255, 0.18)',
+    accent: '#8ee3f5',
+    glowColor: 'rgba(142, 227, 245, 0.35)',
+    spotlight: 'rgba(142, 227, 245, 0.18)',
     badgeBg: 'bg-cyan-500/15',
     badgeBorder: 'border-cyan-500/40',
     badgeText: 'text-cyan-400',
@@ -32,9 +32,9 @@ const DISCIPLINE_THEMES = [
     checkColor: 'text-cyan-400',
   },
   {
-    accent: '#FF5500',
-    glowColor: 'rgba(255, 85, 0, 0.35)',
-    spotlight: 'rgba(255, 85, 0, 0.18)',
+    accent: '#FF9E7D',
+    glowColor: 'rgba(255, 158, 125, 0.35)',
+    spotlight: 'rgba(255, 158, 125, 0.18)',
     badgeBg: 'bg-orange-500/15',
     badgeBorder: 'border-orange-500/40',
     badgeText: 'text-orange-400',
@@ -45,9 +45,9 @@ const DISCIPLINE_THEMES = [
     checkColor: 'text-orange-400',
   },
   {
-    accent: '#8B5CF6',
-    glowColor: 'rgba(139, 92, 246, 0.35)',
-    spotlight: 'rgba(139, 92, 246, 0.18)',
+    accent: '#a595ff',
+    glowColor: 'rgba(165, 149, 255, 0.35)',
+    spotlight: 'rgba(165, 149, 255, 0.18)',
     badgeBg: 'bg-purple-500/15',
     badgeBorder: 'border-purple-500/40',
     badgeText: 'text-purple-400',
@@ -58,9 +58,9 @@ const DISCIPLINE_THEMES = [
     checkColor: 'text-purple-400',
   },
   {
-    accent: '#10B981',
-    glowColor: 'rgba(16, 185, 129, 0.35)',
-    spotlight: 'rgba(16, 185, 129, 0.18)',
+    accent: '#7fe0b8',
+    glowColor: 'rgba(127, 224, 184, 0.35)',
+    spotlight: 'rgba(127, 224, 184, 0.18)',
     badgeBg: 'bg-emerald-500/15',
     badgeBorder: 'border-emerald-500/40',
     badgeText: 'text-emerald-400',
@@ -166,7 +166,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
         {/* Dynamic Floor Shadow */}
         {!disable3D && (
           <motion.div
-            className="absolute -inset-1 rounded-2xl filter blur-lg pointer-events-none -z-10 transition-all duration-300"
+            className="absolute -inset-1 rounded-3xl filter blur-lg pointer-events-none -z-10 transition-all duration-300"
             style={{
               opacity: isHighlighted ? 0.95 : 0.2,
               transform: isHighlighted ? 'translateY(16px) scale(0.96)' : 'translateY(4px) scale(0.94)',
@@ -184,12 +184,12 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
           aria-label={`${group.number} ${group.title}`}
           className={`relative h-full p-6 sm:p-7 rounded-xl overflow-hidden border transition-all duration-300 cursor-default focus-visible:ring-2 focus-visible:outline-none flex flex-col justify-between text-start ${
             isHighlighted
-              ? 'border-white/30 bg-[#0d1028] shadow-2xl'
+              ? 'border-white/30 bg-[#1a1734] shadow-2xl'
               : 'border-white/10 bg-[#080b1e]/90 hover:border-white/20'
           }`}
           style={{
             borderColor: isHighlighted ? theme.accent : undefined,
-            boxShadow: isHighlighted ? `0 0 30px ${theme.glowColor}` : undefined,
+            boxShadow: isHighlighted ? `0 21px 60px -24px ${theme.glowColor}` : undefined,
             ...(disable3D ? {} : { transformStyle: 'preserve-3d' }),
           }}
         >
@@ -254,7 +254,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
               <div className="flex items-center gap-2">
                 <span
                   className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold ${theme.badgeBg} border ${theme.badgeBorder} ${theme.badgeText} ltr-text`}
-                  style={{ boxShadow: `0 0 10px ${theme.glowColor}` }}
+                  style={{ boxShadow: `0 7px 20px -8px ${theme.glowColor}` }}
                 >
                   {group.number}
                 </span>
@@ -268,7 +268,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
                   className={`w-2 h-2 rounded-full transition-all duration-300 shrink-0 ${
                     isHighlighted ? `${theme.ledColor} scale-110 animate-pulse` : 'bg-neutral-600'
                   }`}
-                  style={{ boxShadow: isHighlighted ? `0 0 10px ${theme.accent}` : undefined }}
+                  style={{ boxShadow: isHighlighted ? `0 7px 20px -8px ${theme.accent}` : undefined }}
                 />
                 <span className="text-[9px] font-mono text-neutral-400 uppercase font-semibold">
                   {isHighlighted ? (language === 'ar' ? 'نشط' : 'ACTIVE') : (language === 'ar' ? 'جاهز' : 'READY')}
@@ -287,7 +287,7 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
                     ? `${theme.iconBg} ${theme.iconBorder} ${theme.iconText}`
                     : 'bg-white/5 border-white/10 text-neutral-300'
                 }`}
-                style={{ boxShadow: isHighlighted ? `0 0 15px ${theme.glowColor}` : undefined }}
+                style={{ boxShadow: isHighlighted ? `0 10px 30px -12px ${theme.glowColor}` : undefined }}
               >
                 <IconComponent className="w-4 h-4" />
               </div>

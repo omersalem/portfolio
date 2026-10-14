@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-chrome-black/90 backdrop-blur-md border-b border-chrome-border/80 shadow-lg'
+          ? 'bg-chrome-black/65 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/[0.06] shadow-[0_18px_40px_-20px_rgba(5,3,18,0.8)]'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -113,7 +113,7 @@ export const Navbar: React.FC = () => {
           className="group flex items-center gap-3 text-white focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none rounded-sm px-1 py-1"
           aria-label={language === 'ar' ? 'عمر سالم — الصفحة الرئيسية' : 'Omer Salem — Home'}
         >
-          <span className="w-2.5 h-2.5 bg-chrome-orange rounded-full group-hover:scale-125 transition-transform shrink-0" />
+          <span className="w-3 h-3 rounded-full bg-gradient-to-br from-chrome-orange-light to-cyber-pink shadow-[0_4px_10px_-2px_rgba(247,161,184,0.7),inset_0_1px_0_rgba(255,255,255,0.6)] group-hover:scale-125 transition-transform duration-300 shrink-0" />
           <span className="font-display text-sm tracking-widest text-neutral-200 font-bold uppercase">
             {ui.brandName}
           </span>
@@ -147,7 +147,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={toggleLanguage}
-            className="touch-target px-3 py-1.5 text-xs font-mono rounded-lg border border-cyber-cyan/40 hover:border-cyber-cyan bg-cyber-cyan/10 hover:bg-cyber-cyan/20 text-cyber-cyan hover:text-white transition-all duration-200 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,240,255,0.12)] cursor-pointer"
+            className="touch-target px-3.5 py-1.5 text-xs font-mono rounded-full btn-soft text-cyber-cyan hover:text-white focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none flex items-center gap-1.5 shadow-[0_9px_24px_-9px_rgba(142,227,245,0.12)] cursor-pointer"
             aria-label={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
             title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
           >
@@ -161,7 +161,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={toggleReducedEffects}
-            className="touch-target px-3 py-1.5 text-xs font-mono rounded-lg border border-chrome-border hover:border-chrome-orange/60 text-neutral-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none cursor-pointer"
+            className="touch-target px-3.5 py-1.5 text-xs font-mono rounded-full btn-soft text-neutral-300 hover:text-white focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none cursor-pointer"
             aria-label={reducedEffects ? ui.fullEffectsTitle : ui.reducedEffectsTitle}
             title={reducedEffects ? ui.fullEffectsTitle : ui.reducedEffectsTitle}
           >
@@ -184,7 +184,7 @@ export const Navbar: React.FC = () => {
               ref={menuButtonRef}
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="touch-target px-3.5 py-2 bg-chrome-charcoal border border-chrome-border hover:border-chrome-orange text-white text-xs font-mono tracking-wider uppercase transition-colors rounded-lg focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none flex items-center gap-2 cursor-pointer"
+              className="touch-target px-3.5 py-2 btn-soft text-white text-xs font-mono tracking-wider uppercase rounded-full focus-visible:ring-2 focus-visible:ring-chrome-orange focus-visible:outline-none flex items-center gap-2 cursor-pointer"
               aria-expanded={isOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={isOpen ? ui.close : ui.menu}
@@ -213,7 +213,7 @@ export const Navbar: React.FC = () => {
           role="dialog"
           aria-modal="true"
           aria-label={language === 'ar' ? 'قائمة التنقل' : 'Navigation Menu'}
-          className="fixed inset-0 top-20 bg-chrome-black/98 backdrop-blur-xl border-t border-chrome-border z-50 flex flex-col justify-between p-6 sm:p-10 lg:hidden overflow-y-auto"
+          className="fixed inset-0 top-20 bg-chrome-black/95 backdrop-blur-2xl border-t border-white/[0.06] z-50 flex flex-col justify-between p-6 sm:p-10 lg:hidden overflow-y-auto"
         >
           {/* Top Quick Language Switcher inside Drawer */}
           <div className="flex items-center justify-between pb-4 border-b border-chrome-border/60">
@@ -226,7 +226,7 @@ export const Navbar: React.FC = () => {
                 toggleLanguage();
                 closeMenu(false);
               }}
-              className="px-3.5 py-1.5 rounded-lg border border-cyber-cyan/50 bg-cyber-cyan/15 text-cyber-cyan font-mono text-xs font-bold flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-full btn-soft text-cyber-cyan font-mono text-xs font-bold flex items-center gap-1.5"
             >
               <Languages className="w-3.5 h-3.5" />
               <span>{language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}</span>

@@ -33,19 +33,19 @@ export const ContactSection: React.FC = () => {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative py-24 lg:py-36 bg-[#050611] text-white border-t border-cyber-cyan/15 overflow-hidden"
+      className="relative py-24 lg:py-36 text-white overflow-hidden"
     >
       {/* Background Chromatic Aurora Glows */}
       <div className="absolute top-1/3 -left-48 w-96 h-96 bg-cyber-cyan/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 -right-48 w-96 h-96 bg-cyber-purple/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:32px_32px] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 monolithic-noise opacity-60 pointer-events-none" />
 
       <div className="layout-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Text & Contact Options Column */}
           <div className="lg:col-span-7 flex flex-col justify-center text-start">
             {/* Section Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-chrome-orange/10 border border-chrome-orange/30 text-xs font-mono tracking-widest text-chrome-orange uppercase mb-4 shadow-[0_0_15px_rgba(255,85,0,0.2)] w-fit">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full soft-chip text-xs font-mono tracking-widest text-chrome-orange uppercase mb-4 w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-chrome-orange opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-chrome-orange" />
@@ -56,14 +56,14 @@ export const ContactSection: React.FC = () => {
             {/* Headline */}
             <h2
               id="contact-heading"
-              className="text-4xl sm:text-5xl md:text-6xl font-display font-black uppercase tracking-tight text-white mb-4 leading-[1.05]"
+              className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight text-white mb-4 leading-[1.05]"
             >
               {ui.contact.titlePrefix} <br />
               <span className="text-gradient-aurora">{ui.contact.titleHighlight}</span>
             </h2>
 
             {/* Supporting Copy */}
-            <p className="text-base sm:text-lg font-mono text-neutral-300 font-light mb-8 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg font-sans text-[#C9C4E3] mb-8 max-w-xl leading-relaxed">
               {ui.contact.description}
             </p>
 
@@ -72,7 +72,7 @@ export const ContactSection: React.FC = () => {
               <a
                 href="#contact-options"
                 onClick={handleScrollToOptions}
-                className="touch-target group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-chrome-orange via-orange-500 to-amber-500 hover:from-amber-500 hover:to-chrome-orange text-black font-mono font-bold text-sm tracking-wider uppercase rounded-xl shadow-[0_0_30px_rgba(255,85,0,0.4)] hover:shadow-[0_0_40px_rgba(255,85,0,0.6)] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                className="touch-target group inline-flex items-center gap-3 px-8 py-4 btn-plush font-display font-semibold text-sm tracking-wide uppercase rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-chrome-black"
               >
                 <span>{ui.contact.ctaBtn}</span>
                 <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-1 shrink-0" />
@@ -82,7 +82,7 @@ export const ContactSection: React.FC = () => {
             {/* Target Region: contact-options */}
             <div
               id="contact-options"
-              className="pt-8 border-t border-white/10 space-y-4 max-w-lg"
+              className="pt-8 border-t border-white/[0.06] space-y-4 max-w-lg"
             >
               <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-neutral-400 uppercase mb-4">
                 <Sparkles className="w-3.5 h-3.5 text-cyber-cyan shrink-0" />
@@ -90,9 +90,9 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* 1. Verified GitHub Link */}
-              <div className="relative group p-4 rounded-xl border border-purple-500/25 bg-[#0e1026]/80 hover:border-purple-500/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.18)] transition-all duration-300 flex items-center justify-between">
+              <div className="relative group p-4 rounded-3xl soft-surface hover:-translate-y-1 hover:border-purple-300/30 transition-all duration-300 flex items-center justify-between">
                 <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 shrink-0">
+                  <div className="p-2.5 rounded-2xl bg-purple-400/10 border border-purple-300/20 shadow-soft-1 text-purple-400 shrink-0">
                     <Github className="w-5 h-5" />
                   </div>
                   <div>
@@ -116,9 +116,9 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* 2. Direct WhatsApp Link */}
-              <div className="relative group p-4 rounded-xl border border-emerald-500/25 bg-[#0a1820]/80 hover:border-emerald-500/60 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] transition-all duration-300 flex items-center justify-between">
+              <div className="relative group p-4 rounded-3xl soft-surface hover:-translate-y-1 hover:border-emerald-300/30 transition-all duration-300 flex items-center justify-between">
                 <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shrink-0">
+                  <div className="p-2.5 rounded-2xl bg-emerald-400/10 border border-emerald-300/20 shadow-soft-1 text-emerald-400 shrink-0">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <div>
@@ -143,9 +143,9 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* 3. Direct Email Link */}
-              <div className="relative group p-4 rounded-xl border border-cyan-500/25 bg-[#091526]/80 hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(0,240,255,0.18)] transition-all duration-300 flex items-center justify-between">
+              <div className="relative group p-4 rounded-3xl soft-surface hover:-translate-y-1 hover:border-cyan-300/30 transition-all duration-300 flex items-center justify-between">
                 <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shrink-0">
+                  <div className="p-2.5 rounded-2xl bg-cyan-400/10 border border-cyan-300/20 shadow-soft-1 text-cyan-400 shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -178,7 +178,7 @@ export const ContactSection: React.FC = () => {
                       href={`https://wa.me/970599228979?text=${encodeURIComponent(msg)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-lg border bg-white/5 text-xs font-mono text-neutral-200 transition-all duration-200 flex items-center justify-between group ${serviceColors[idx % serviceColors.length]}`}
+                      className={`p-3 rounded-2xl border bg-white/[0.04] shadow-soft-1 hover:-translate-y-0.5 text-xs font-mono text-neutral-200 transition-all duration-200 flex items-center justify-between group ${serviceColors[idx % serviceColors.length]}`}
                     >
                       <span>{service}</span>
                       <Send className={`w-3 h-3 opacity-50 group-hover:opacity-100 transition-all shrink-0 ${isRTL ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />

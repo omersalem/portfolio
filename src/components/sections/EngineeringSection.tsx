@@ -65,7 +65,7 @@ export const EngineeringSection: React.FC = () => {
     <section
       id="engineering"
       aria-labelledby="engineering-heading"
-      className="relative py-24 lg:py-36 bg-[#070814] border-b border-cyber-cyan/15 overflow-hidden"
+      className="relative py-24 lg:py-36 overflow-hidden"
     >
       {/* Background Chromatic Aurora Glows */}
       <div className="absolute top-1/4 -left-40 w-96 h-96 bg-cyber-purple/15 rounded-full blur-[140px] pointer-events-none" />
@@ -75,7 +75,7 @@ export const EngineeringSection: React.FC = () => {
       <div className="layout-container relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-14 lg:mb-20 text-start">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-chrome-orange/10 border border-chrome-orange/30 text-xs font-mono tracking-widest text-chrome-orange uppercase mb-4 shadow-[0_0_15px_rgba(255,85,0,0.2)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-chrome-orange/10 border border-chrome-orange/30 text-xs font-mono tracking-widest text-chrome-orange uppercase mb-4 shadow-[0_9px_24px_-9px_rgba(255,158,125,0.2)]">
             <Radio className="w-3.5 h-3.5 text-chrome-orange animate-pulse shrink-0" />
             <span>{ui.engineering.eyebrow}</span>
           </div>
@@ -87,7 +87,7 @@ export const EngineeringSection: React.FC = () => {
             {ui.engineering.titlePrefix} <span className="text-gradient-aurora">{ui.engineering.titleHighlight}</span>
           </h2>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-cyber-purple/10 border border-cyber-purple/40 rounded-md text-xs sm:text-sm font-mono tracking-wider text-purple-200 uppercase mb-5 shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-cyber-purple/10 border border-cyber-purple/40 rounded-full text-xs sm:text-sm font-mono tracking-wider text-purple-200 uppercase mb-5 shadow-[0_12px_32px_-12px_rgba(165,149,255,0.15)]">
             <Cpu className="w-4 h-4 text-cyber-purple shrink-0" />
             <span>{ui.engineering.badgeBrain}</span>
           </div>
@@ -101,7 +101,7 @@ export const EngineeringSection: React.FC = () => {
             {stackPills.map((tech) => (
               <span
                 key={tech.name}
-                className={`px-3 py-1.5 text-xs font-mono rounded-md border transition-all duration-200 ${tech.color}`}
+                className={`px-3.5 py-1.5 text-xs font-mono rounded-full border shadow-soft-1 hover:-translate-y-0.5 transition-all duration-200 ${tech.color}`}
               >
                 {tech.name}
               </span>
@@ -141,7 +141,7 @@ export const EngineeringSection: React.FC = () => {
             </div>
 
             {/* Architecture Assurance Note */}
-            <div className="mt-6 flex items-center gap-3 px-4 py-3 bg-[#0d1024]/80 rounded-xl border border-cyber-cyan/20 text-xs font-mono text-neutral-300 shadow-[0_0_20px_rgba(0,240,255,0.05)] text-start">
+            <div className="mt-6 flex items-center gap-3 px-4 py-3 bg-[#191630]/80 rounded-xl border border-cyber-cyan/20 text-xs font-mono text-neutral-300 shadow-[0_12px_32px_-12px_rgba(142,227,245,0.05)] text-start">
               <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
               <span>{ui.engineering.securityGuarantee}</span>
             </div>
@@ -161,7 +161,7 @@ export const EngineeringSection: React.FC = () => {
               return (
                 <div
                   key={channel.label}
-                  className={`relative group rounded-xl border border-white/10 bg-gradient-to-b ${theme.bgGlow} bg-[#0b0e22]/80 backdrop-blur-md p-5 font-mono transition-all duration-300 ${theme.accentBorder} hover:shadow-[0_0_25px_rgba(0,240,255,0.1)]`}
+                  className={`relative group rounded-3xl border border-white/[0.08] bg-gradient-to-b ${theme.bgGlow} bg-[#221E42]/70 backdrop-blur-md shadow-soft-2 p-5 font-mono transition-all duration-300 ${theme.accentBorder} hover:shadow-[0_15px_40px_-15px_rgba(142,227,245,0.1)]`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">

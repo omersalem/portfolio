@@ -41,8 +41,30 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
+      // Soft pastel studio environment so metals read as pearl instead of black
+      const envCanvas = document.createElement('canvas');
+      envCanvas.width = 512;
+      envCanvas.height = 256;
+      const envCtx = envCanvas.getContext('2d');
+      if (envCtx) {
+        const grad = envCtx.createLinearGradient(0, 0, 0, 256);
+        grad.addColorStop(0, '#2a2550');
+        grad.addColorStop(0.3, '#f4f0ff'); // soft key softbox
+        grad.addColorStop(0.5, '#c3b8ff');
+        grad.addColorStop(0.72, '#1e1b3a');
+        grad.addColorStop(0.88, '#ffb59a');
+        grad.addColorStop(1, '#17142d');
+        envCtx.fillStyle = grad;
+        envCtx.fillRect(0, 0, 512, 256);
+        envCtx.fillStyle = 'rgba(142, 227, 245, 0.45)';
+        envCtx.fillRect(60, 50, 110, 50);
+      }
+      const envTexture = new THREE.CanvasTexture(envCanvas);
+      envTexture.mapping = THREE.EquirectangularReflectionMapping;
+      scene.environment = envTexture;
+
       // Lights
-      const ambientLight = new THREE.AmbientLight(0x16181f, 1.5);
+      const ambientLight = new THREE.AmbientLight(0x2a2550, 1.6);
       scene.add(ambientLight);
 
       const topLight = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -58,17 +80,20 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
 
       // Mirror chrome material
       const chromeMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0xcccccc,
-        metalness: 0.95,
-        roughness: 0.08,
+        color: 0xf4f0ff,
+        metalness: 0.9,
+        roughness: 0.14,
         clearcoat: 1.0,
+        clearcoatRoughness: 0.08,
       });
 
-      // Dark machined graphite material
-      const graphiteMaterial = new THREE.MeshStandardMaterial({
-        color: 0x181a1f,
-        metalness: 0.8,
-        roughness: 0.25,
+      // Soft lilac satin material
+      const graphiteMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x3a3366,
+        metalness: 0.45,
+        roughness: 0.32,
+        clearcoat: 0.7,
+        clearcoatRoughness: 0.2,
       });
 
       // Central Hub
@@ -86,12 +111,12 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
       const channelMeshes: THREE.Mesh[] = [];
       const pulseMaterials: THREE.MeshBasicMaterial[] = [];
       const nodeColors = [
-        0x00f0ff, // 01 Cisco Core: Cyan
-        0xff5500, // 02 Firewalls & WAF: Orange
-        0xa855f7, // 03 Active Directory: Purple
-        0x38bdf8, // 04 Exchange: Sky Blue
-        0x10b981, // 05 SCCM: Emerald
-        0xec4899, // 06 AI Agents: Magenta
+        0x8ee3f5, // 01 Cisco Core: Cyan
+        0xff9e7d, // 02 Firewalls & WAF: Orange
+        0xc4a8ff, // 03 Active Directory: Purple
+        0x93c9ff, // 04 Exchange: Sky Blue
+        0x7fe0b8, // 05 SCCM: Emerald
+        0xf2a7d8, // 06 AI Agents: Magenta
       ];
 
       for (let i = 0; i < 6; i++) {
@@ -205,6 +230,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         capGeo.dispose();
         chromeMaterial.dispose();
         graphiteMaterial.dispose();
+        envTexture.dispose();
         pulseMaterials.forEach((m) => m.dispose());
         renderer?.dispose();
       };

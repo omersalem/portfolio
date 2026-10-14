@@ -43,15 +43,15 @@ export const CVBridgeCanvas: React.FC = () => {
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
       scene.add(ambientLight);
 
-      const keyLight = new THREE.DirectionalLight(0x00f0ff, 2.5); // Cyan key
+      const keyLight = new THREE.DirectionalLight(0x8ee3f5, 2.5); // Cyan key
       keyLight.position.set(2, 4, 3);
       scene.add(keyLight);
 
-      const fillLight = new THREE.DirectionalLight(0xff5500, 1.8); // Orange fill
+      const fillLight = new THREE.DirectionalLight(0xff9e7d, 1.8); // Orange fill
       fillLight.position.set(-3, 2, 2);
       scene.add(fillLight);
 
-      const purpleRim = new THREE.PointLight(0x8b5cf6, 3.0, 10); // Purple rim
+      const purpleRim = new THREE.PointLight(0xa595ff, 3.0, 10); // Purple rim
       purpleRim.position.set(0.85, 1.2, 1);
       scene.add(purpleRim);
 
@@ -94,8 +94,8 @@ export const CVBridgeCanvas: React.FC = () => {
 
       // Accent Electric Orange Sphere at Connection Apex
       const sphereMat = new THREE.MeshStandardMaterial({
-        color: 0xff5500,
-        emissive: 0xff5500,
+        color: 0xff9e7d,
+        emissive: 0xff9e7d,
         emissiveIntensity: 1.4,
         roughness: 0.2,
         metalness: 0.3,
@@ -107,8 +107,8 @@ export const CVBridgeCanvas: React.FC = () => {
 
       // Cyan emissive neon material for inner ring
       const cyanNeonMat = new THREE.MeshStandardMaterial({
-        color: 0x00f0ff,
-        emissive: 0x00f0ff,
+        color: 0x8ee3f5,
+        emissive: 0x8ee3f5,
         emissiveIntensity: 1.2,
         roughness: 0.2,
         metalness: 0.5,
@@ -244,7 +244,7 @@ export const CVBridgeCanvas: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#0d1026]/80 shadow-[0_0_30px_rgba(0,240,255,0.08)] border border-cyber-cyan/30 pointer-events-none"
+      className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#0d1026]/80 shadow-[0_18px_48px_-18px_rgba(142,227,245,0.08)] border border-cyber-cyan/30 pointer-events-none"
       aria-hidden="true"
     >
       {shouldRenderStatic ? (

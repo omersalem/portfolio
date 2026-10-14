@@ -55,7 +55,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
   const spotlightBg = useTransform(
     [mousePixelX, mousePixelY],
     ([x, y]) =>
-      `radial-gradient(460px circle at ${x}px ${y}px, ${project.glowColor || 'rgba(0, 240, 255, 0.28)'}, rgba(255, 255, 255, 0.08) 25%, transparent 68%)`
+      `radial-gradient(460px circle at ${x}px ${y}px, ${project.glowColor || 'rgba(142, 227, 245, 0.28)'}, rgba(255, 255, 255, 0.08) 25%, transparent 68%)`
   );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -93,8 +93,8 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
     mouseY.set(0);
   };
 
-  const accentColor = project.accentColor || '#00F0FF';
-  const glowColor = project.glowColor || 'rgba(0, 240, 255, 0.35)';
+  const accentColor = project.accentColor || '#8ee3f5';
+  const glowColor = project.glowColor || 'rgba(142, 227, 245, 0.35)';
 
   return (
     <>
@@ -124,16 +124,16 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
                   transformStyle: 'preserve-3d',
                 }
           }
-          className="relative w-full h-full rounded-2xl transition-shadow duration-300"
+          className="relative w-full h-full rounded-3xl transition-shadow duration-300"
         >
           {/* Dynamic 3D Floor Shadow Layer with Brand Accent Glow */}
           {!disable3D && (
             <motion.div
-              className="absolute -inset-2 rounded-2xl bg-black/90 filter blur-xl pointer-events-none -z-10 transition-all duration-300"
+              className="absolute -inset-2 rounded-[2rem] bg-[#06041a]/80 filter blur-2xl pointer-events-none -z-10 transition-all duration-300"
               style={{
-                opacity: isHovered || isFocused ? 0.95 : 0.4,
-                transform: isHovered || isFocused ? 'translateY(22px) scale(0.96)' : 'translateY(8px) scale(0.92)',
-                boxShadow: isHovered || isFocused ? `0 30px 60px -12px ${glowColor}` : 'none',
+                opacity: isHovered || isFocused ? 0.85 : 0.45,
+                transform: isHovered || isFocused ? 'translateY(30px) scale(0.94)' : 'translateY(14px) scale(0.92)',
+                boxShadow: isHovered || isFocused ? `0 40px 70px -20px ${glowColor}` : 'none',
               }}
             />
           )}
@@ -145,14 +145,14 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
             aria-label={project.ariaLabel}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            className="group relative block w-full h-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#151829] via-[#0d0f1b] to-[#070814] border border-white/10 hover:border-white/30 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none transition-all duration-300 shadow-[0_1px_0_0_rgba(255,255,255,0.09)_inset]"
+            className="group relative block w-full h-full rounded-3xl overflow-hidden bg-gradient-to-b from-[#2A2550] via-[#1E1B3A] to-[#17142D] border border-white/[0.08] focus-visible:ring-2 focus-visible:ring-cyber-purple-light focus-visible:outline-none transition-all duration-300 shadow-soft-3"
             style={
               disable3D
                 ? { borderColor: isHovered ? accentColor : undefined }
                 : {
                     transformStyle: 'preserve-3d',
-                    borderColor: isHovered ? accentColor : undefined,
-                    boxShadow: isHovered ? `0 0 30px ${glowColor}` : undefined,
+                    borderColor: isHovered ? `${accentColor}55` : undefined,
+                    boxShadow: isHovered ? `var(--shadow-soft-3), 0 24px 60px -26px ${glowColor}` : undefined,
                   }
             }
           >
@@ -172,7 +172,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
 
             {/* 1. Browser Slab Header (Pops out in 3D: translateZ: 28px) */}
             <div
-              className="h-10 px-4 bg-[#0d0f1b]/95 border-b border-white/[0.08] flex items-center justify-between relative z-10 backdrop-blur-md"
+              className="h-11 px-4 bg-white/[0.035] border-b border-white/[0.06] flex items-center justify-between relative z-10 backdrop-blur-md"
               style={disable3D ? {} : { transform: 'translateZ(28px)', transformStyle: 'preserve-3d' }}
             >
               {/* Mac-style Window Controls with 3D depth and hover glow */}
@@ -182,24 +182,24 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
               >
                 <span
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    isHovered ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)]' : 'bg-neutral-600'
+                    isHovered ? 'bg-red-500 shadow-[0_5px_13px_-5px_rgba(239,68,68,0.9)]' : 'bg-neutral-600'
                   }`}
                 />
                 <span
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    isHovered ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.9)]' : 'bg-neutral-600'
+                    isHovered ? 'bg-amber-500 shadow-[0_5px_13px_-5px_rgba(247,207,134,0.9)]' : 'bg-neutral-600'
                   }`}
                 />
                 <span
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    isHovered ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)]' : 'bg-neutral-600'
+                    isHovered ? 'bg-emerald-500 shadow-[0_5px_13px_-5px_rgba(127,224,184,0.9)]' : 'bg-neutral-600'
                   }`}
                 />
               </div>
 
               {/* Display URL Pill with Brand Accent Hover */}
               <div
-                className="px-3 py-0.5 rounded-full bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors truncate max-w-[180px] sm:max-w-[220px] ltr-text"
+                className="px-3 py-0.5 rounded-full bg-[#110F24]/70 shadow-soft-inset border border-white/[0.06] text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors truncate max-w-[180px] sm:max-w-[220px] ltr-text"
                 style={
                   disable3D
                     ? {}
@@ -223,7 +223,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
 
             {/* 2. Screenshot Media Area with 3D Depth Aperture (translateZ: 36px) */}
             <div
-              className="relative w-full aspect-[16/10] bg-neutral-950 overflow-hidden border-b border-white/[0.08]"
+              className="relative w-[calc(100%-1.25rem)] mx-auto mt-2.5 rounded-2xl aspect-[16/10] bg-[#0D0B1D] overflow-hidden shadow-[0_14px_30px_-16px_rgba(5,3,18,0.9)] ring-1 ring-white/[0.06]"
               style={disable3D ? {} : { transform: 'translateZ(36px)', transformStyle: 'preserve-3d' }}
             >
               <motion.img
@@ -247,11 +247,11 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
               />
 
               {/* Ambient Vignette & Shadow Frame */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070814] via-transparent to-black/30 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B3A]/70 via-transparent to-transparent pointer-events-none" />
 
               {/* Badge overlay on top corner */}
               {project.badgeText && (
-                <div className="absolute top-3 start-3 px-2.5 py-1 rounded-md bg-black/75 border border-white/20 backdrop-blur-md text-[10px] font-mono font-bold tracking-wider uppercase text-white shadow-md">
+                <div className="absolute top-3 start-3 px-3 py-1 rounded-full bg-[#110F24]/60 border border-white/15 backdrop-blur-md text-[10px] font-mono font-bold tracking-wider uppercase text-white shadow-md">
                   {project.badgeText}
                 </div>
               )}
@@ -262,7 +262,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
                   className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
                     background:
-                      'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.18) 48%, rgba(0,240,255,0.25) 52%, transparent 65%)',
+                      'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.14) 48%, rgba(195,184,255,0.16) 52%, transparent 65%)',
                     x: sheenTranslateX,
                   }}
                 />
@@ -271,7 +271,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
 
             {/* 3. Card Content & Metadata (translateZ: 30px) */}
             <div
-              className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-[#0e101f]/95 text-start"
+              className="p-5 sm:p-6 flex flex-col flex-grow justify-between text-start"
               style={disable3D ? {} : { transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}
             >
               <div>
@@ -287,12 +287,12 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
                     {project.name}
                   </h3>
                   <span
-                    className="text-[11px] font-mono font-bold px-2 py-0.5 rounded border shadow-sm transition-colors ltr-text"
+                    className="text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full border transition-colors ltr-text"
                     style={{
                       color: accentColor,
                       borderColor: `${accentColor}55`,
                       backgroundColor: `${accentColor}15`,
-                      boxShadow: `0 0 10px ${glowColor}`,
+                      boxShadow: `0 7px 20px -8px ${glowColor}`,
                     }}
                   >
                     0{index + 1}
@@ -301,7 +301,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
 
                 {/* Description */}
                 <p
-                  className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed mb-4"
+                  className="text-xs sm:text-sm font-sans text-[#C9C4E3] leading-relaxed mb-4"
                   style={disable3D ? {} : { transform: 'translateZ(10px)' }}
                 >
                   {project.description}
@@ -311,13 +311,13 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
               <div>
                 {/* Tags */}
                 <div
-                  className="flex flex-wrap gap-2 pt-3 border-t border-white/[0.08]"
+                  className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]"
                   style={disable3D ? {} : { transform: 'translateZ(12px)' }}
                 >
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-white/[0.04] text-neutral-300 rounded-md border border-white/10 group-hover:border-white/20 transition-colors"
+                      className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider soft-chip text-[#D4CFEE] rounded-full transition-colors"
                     >
                       {tag}
                     </span>

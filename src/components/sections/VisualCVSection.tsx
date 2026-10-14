@@ -16,7 +16,7 @@ export const VisualCVSection: React.FC = () => {
     <section
       id="profile"
       aria-labelledby="profile-heading"
-      className="relative py-24 lg:py-36 bg-[#060816] text-white transition-colors duration-500 overflow-hidden border-b border-cyber-purple/20"
+      className="relative py-24 lg:py-36 text-white overflow-hidden"
     >
       {/* Background Chromatic Aurora Glows */}
       <div className="absolute top-1/4 -right-48 w-96 h-96 bg-cyber-purple/15 rounded-full blur-[140px] pointer-events-none" />
@@ -72,7 +72,7 @@ export const VisualCVSection: React.FC = () => {
                 href={cvHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 mb-6 px-5 py-3 rounded-xl bg-gradient-to-r from-cyber-cyan/15 via-cyber-purple/15 to-cyber-pink/15 border border-cyber-cyan/40 text-white font-mono text-xs uppercase tracking-wider hover:border-cyber-cyan hover:shadow-[0_0_25px_rgba(0,240,255,0.35)] transition-all duration-300 group"
+                className="inline-flex items-center gap-2.5 mb-6 px-5 py-3 rounded-xl bg-gradient-to-r from-cyber-cyan/15 via-cyber-purple/15 to-cyber-pink/15 border border-cyber-cyan/40 text-white font-mono text-xs uppercase tracking-wider hover:border-cyber-cyan hover:shadow-[0_15px_40px_-15px_rgba(142,227,245,0.35)] transition-all duration-300 group"
               >
                 <FileText className="w-4 h-4 text-cyber-cyan group-hover:scale-110 transition-transform shrink-0" />
                 <span>{ui.profile.viewCvBtn}</span>
@@ -88,7 +88,7 @@ export const VisualCVSection: React.FC = () => {
               </p>
 
               {/* Language Proficiency Badge */}
-              <div className="p-5 bg-[#0b0e24]/90 rounded-xl border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.3)] mb-6">
+              <div className="p-5 soft-surface rounded-3xl mb-6">
                 <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-white/10">
                   <Globe2 className="w-4 h-4 text-cyber-cyan shrink-0" />
                   <span className="text-xs font-mono font-bold uppercase text-white tracking-wider">
@@ -145,9 +145,9 @@ export const VisualCVSection: React.FC = () => {
               <div className="space-y-6">
                 {careerTimeline.map((item, itemIdx) => {
                   const isMNE = itemIdx === 0;
-                  const borderGlow = isMNE ? 'border-amber-500/30 hover:border-amber-500/60 shadow-[0_0_25px_rgba(255,85,0,0.1)]' : 'border-cyan-500/30 hover:border-cyan-500/60 shadow-[0_0_25px_rgba(0,240,255,0.1)]';
+                  const borderGlow = isMNE ? 'border-amber-500/30 hover:border-amber-500/60 shadow-[0_15px_40px_-15px_rgba(255,158,125,0.1)]' : 'border-cyan-500/30 hover:border-cyan-500/60 shadow-[0_15px_40px_-15px_rgba(142,227,245,0.1)]';
                   const stripeColor = isMNE ? 'bg-gradient-to-b from-amber-400 to-orange-500' : 'bg-gradient-to-b from-cyan-400 to-blue-500';
-                  const badgeColor = isMNE ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold shadow-[0_0_12px_rgba(255,85,0,0.4)]' : 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold shadow-[0_0_12px_rgba(0,240,255,0.4)]';
+                  const badgeColor = isMNE ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold shadow-[0_7px_19px_-7px_rgba(255,158,125,0.4)]' : 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold shadow-[0_7px_19px_-7px_rgba(142,227,245,0.4)]';
                   const orgColor = isMNE ? 'text-amber-400' : 'text-cyan-400';
                   const checkColor = isMNE ? 'text-amber-400' : 'text-cyan-400';
 
@@ -190,7 +190,7 @@ export const VisualCVSection: React.FC = () => {
                         {item.technologies.map((t, idx) => (
                           <span
                             key={idx}
-                            className="px-2.5 py-1 text-[11px] font-mono text-neutral-200 bg-white/5 border border-white/10 rounded-md font-medium hover:border-white/30 transition-colors"
+                            className="px-3 py-1 text-[11px] font-mono text-neutral-200 soft-chip rounded-full font-medium hover:border-white/25 transition-colors"
                           >
                             {t}
                           </span>
@@ -203,7 +203,7 @@ export const VisualCVSection: React.FC = () => {
             </div>
 
             {/* 4. Complete Technology Matrix by Domain */}
-            <div className="bg-[#090c20]/90 p-6 sm:p-7 rounded-2xl border border-white/10 shadow-2xl">
+            <div className="soft-surface p-6 sm:p-7 rounded-[2rem]">
               <div className="flex items-center gap-2 mb-5 pb-3 border-b border-white/10">
                 <Shield className="w-4 h-4 text-cyber-cyan shrink-0" />
                 <h3 className="text-xs font-mono font-bold tracking-widest text-neutral-300 uppercase">
@@ -232,7 +232,7 @@ export const VisualCVSection: React.FC = () => {
                         {cat.skills.map((s, sIdx) => (
                           <span
                             key={sIdx}
-                            className="px-2 py-0.5 text-[10px] font-mono bg-white/5 border border-white/10 text-neutral-200 rounded font-medium"
+                            className="px-2.5 py-0.5 text-[10px] font-mono soft-chip text-neutral-200 rounded-full font-medium"
                           >
                             {s}
                           </span>
@@ -245,7 +245,7 @@ export const VisualCVSection: React.FC = () => {
             </div>
 
             {/* 5. AI & Autonomous Agent Systems Engineering Showcase */}
-            <div className="bg-gradient-to-br from-[#161233]/90 via-[#0d1028]/90 to-[#070919]/90 text-white p-6 sm:p-8 rounded-2xl border border-cyber-purple/40 shadow-[0_0_35px_rgba(139,92,246,0.18)] relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#161233]/90 via-[#1a1734]/90 to-[#110f26]/90 text-white p-6 sm:p-8 rounded-3xl border border-white/[0.08] shadow-soft-3 relative overflow-hidden">
               <div className="absolute top-0 end-0 w-64 h-64 bg-cyber-purple/20 rounded-full blur-3xl pointer-events-none" />
 
               <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cyber-purple uppercase mb-3">
@@ -285,7 +285,7 @@ export const VisualCVSection: React.FC = () => {
             </div>
 
             {/* Factual Integrity Badge */}
-            <div className="p-4 bg-[#0a0d26]/80 rounded-xl border border-cyber-cyan/20 flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-neutral-300 gap-2 shadow-[0_0_20px_rgba(0,240,255,0.05)]">
+            <div className="p-4 bg-[#0a0d26]/80 rounded-xl border border-cyber-cyan/20 flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-neutral-300 gap-2 shadow-[0_12px_32px_-12px_rgba(142,227,245,0.05)]">
               <span className="font-semibold text-white flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>{ui.profile.factualBadgeTitle}</span>

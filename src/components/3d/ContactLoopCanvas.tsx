@@ -45,13 +45,13 @@ export const ContactLoopCanvas: React.FC = () => {
       const ctx = envCanvas.getContext('2d');
       if (ctx) {
         const grad = ctx.createLinearGradient(0, 0, 0, 256);
-        grad.addColorStop(0, '#040507');
+        grad.addColorStop(0, '#0d0b1d');
         grad.addColorStop(0.18, '#1e2129');
         grad.addColorStop(0.32, '#ffffff'); // bright studio softbox
         grad.addColorStop(0.45, '#242834');
-        grad.addColorStop(0.7, '#08090b');
-        grad.addColorStop(0.85, '#ff5500'); // orange horizon reflection
-        grad.addColorStop(1.0, '#040507');
+        grad.addColorStop(0.7, '#100e21');
+        grad.addColorStop(0.85, '#ff9e7d'); // orange horizon reflection
+        grad.addColorStop(1.0, '#0d0b1d');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 512, 256);
       }
@@ -74,7 +74,7 @@ export const ContactLoopCanvas: React.FC = () => {
       scene.add(whiteRim);
 
       // Warm electric-orange bounce light from below/horizon
-      const orangeBounce = new THREE.PointLight(0xff5500, 7.0, 16);
+      const orangeBounce = new THREE.PointLight(0xff9e7d, 7.0, 16);
       orangeBounce.position.set(0, -2.5, 1.5);
       scene.add(orangeBounce);
 

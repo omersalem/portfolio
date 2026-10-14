@@ -29,7 +29,7 @@ export const SelectedWorkSection: React.FC = () => {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="relative py-24 lg:py-36 bg-[#070814] border-b border-white/[0.08] overflow-hidden"
+      className="relative py-24 lg:py-36 overflow-hidden"
     >
       {/* Dynamic Ambient Aurora Backlight */}
       <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] rounded-full bg-cyber-purple/15 blur-[140px] pointer-events-none" />
@@ -42,7 +42,7 @@ export const SelectedWorkSection: React.FC = () => {
           perspective: 600,
           transform: 'rotateX(68deg)',
           backgroundImage:
-            'linear-gradient(to right, rgba(0,240,255,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(139,92,246,0.15) 1px, transparent 1px)',
+            'linear-gradient(to right, rgba(142,227,245,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(165,149,255,0.15) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
           maskImage: 'radial-gradient(ellipse 60% 60% at 50% 30%, black 20%, transparent 80%)',
           WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 30%, black 20%, transparent 80%)',
@@ -56,7 +56,7 @@ export const SelectedWorkSection: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-6">
           <div className="max-w-2xl text-start">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-widest text-cyber-cyan uppercase mb-3 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full soft-chip text-xs font-mono tracking-widest text-cyber-cyan uppercase mb-3 shadow-[0_9px_24px_-9px_rgba(142,227,245,0.15)]">
               <Sparkles className="w-3.5 h-3.5 text-cyber-cyan shrink-0" />
               <span>{ui.work.eyebrow}</span>
             </div>
@@ -77,16 +77,16 @@ export const SelectedWorkSection: React.FC = () => {
           </div>
 
           {/* Interactive Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-full bg-[#110F24]/60 shadow-soft-inset border border-white/[0.06] backdrop-blur-md">
             {categories.map((cat, idx) => {
               const isActive = selectedCategoryIndex === idx;
               return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategoryIndex(idx)}
-                  className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-r from-cyber-cyan to-cyber-purple text-black font-bold shadow-[0_0_20px_rgba(0,240,255,0.4)]'
+                      ? 'bg-gradient-to-br from-cyber-cyan-light via-cyber-purple-light to-cyber-pink text-[#1A1433] font-bold shadow-[0_10px_24px_-10px_rgba(165,149,255,0.7),inset_0_1px_0_rgba(255,255,255,0.6)]'
                       : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
                   }`}
                   aria-pressed={isActive}

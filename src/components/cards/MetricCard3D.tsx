@@ -10,40 +10,40 @@ interface MetricCard3DProps {
 
 const METRIC_THEMES = [
   {
-    accent: '#FF5500',
+    accent: '#FF9E7D',
     colorClass: 'text-amber-400',
     dotColor: 'bg-amber-400',
-    glowColor: 'rgba(255, 85, 0, 0.35)',
+    glowColor: 'rgba(255, 158, 125, 0.35)',
     borderHover: 'hover:border-amber-400/70',
     gradientValue: 'from-amber-200 via-orange-400 to-amber-300',
-    bgSpotlight: 'rgba(255, 85, 0, 0.2)',
+    bgSpotlight: 'rgba(255, 158, 125, 0.2)',
   },
   {
-    accent: '#10B981',
+    accent: '#7fe0b8',
     colorClass: 'text-emerald-400',
     dotColor: 'bg-emerald-400',
-    glowColor: 'rgba(16, 185, 129, 0.35)',
+    glowColor: 'rgba(127, 224, 184, 0.35)',
     borderHover: 'hover:border-emerald-400/70',
     gradientValue: 'from-emerald-200 via-teal-300 to-emerald-300',
-    bgSpotlight: 'rgba(16, 185, 129, 0.2)',
+    bgSpotlight: 'rgba(127, 224, 184, 0.2)',
   },
   {
-    accent: '#8B5CF6',
+    accent: '#a595ff',
     colorClass: 'text-purple-400',
     dotColor: 'bg-purple-400',
-    glowColor: 'rgba(139, 92, 246, 0.35)',
+    glowColor: 'rgba(165, 149, 255, 0.35)',
     borderHover: 'hover:border-purple-400/70',
     gradientValue: 'from-purple-200 via-pink-400 to-indigo-300',
-    bgSpotlight: 'rgba(139, 92, 246, 0.2)',
+    bgSpotlight: 'rgba(165, 149, 255, 0.2)',
   },
   {
-    accent: '#00F0FF',
+    accent: '#8ee3f5',
     colorClass: 'text-cyber-cyan',
     dotColor: 'bg-cyber-cyan',
-    glowColor: 'rgba(0, 240, 255, 0.35)',
+    glowColor: 'rgba(142, 227, 245, 0.35)',
     borderHover: 'hover:border-cyber-cyan/70',
     gradientValue: 'from-cyan-200 via-sky-300 to-blue-300',
-    bgSpotlight: 'rgba(0, 240, 255, 0.2)',
+    bgSpotlight: 'rgba(142, 227, 245, 0.2)',
   },
 ];
 
@@ -137,7 +137,7 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
         {/* Dynamic Floor Shadow */}
         {!disable3D && (
           <motion.div
-            className="absolute -inset-1 rounded-2xl filter blur-md pointer-events-none -z-10 transition-all duration-300"
+            className="absolute -inset-1 rounded-3xl filter blur-md pointer-events-none -z-10 transition-all duration-300"
             style={{
               opacity: isHighlighted ? 0.9 : 0.2,
               transform: isHighlighted ? 'translateY(12px) scale(0.96)' : 'translateY(4px) scale(0.94)',
@@ -160,7 +160,7 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
           }`}
           style={{
             borderColor: isHighlighted ? theme.accent : undefined,
-            boxShadow: isHighlighted ? `0 0 25px ${theme.glowColor}` : undefined,
+            boxShadow: isHighlighted ? `0 18px 50px -20px ${theme.glowColor}` : undefined,
             ...(disable3D ? {} : { transformStyle: 'preserve-3d' }),
           }}
         >

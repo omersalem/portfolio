@@ -48,25 +48,25 @@ export const HeroCanvas: React.FC = () => {
       const ctx = envCanvas.getContext('2d');
       if (ctx) {
         const grad = ctx.createLinearGradient(0, 0, 0, 512);
-        grad.addColorStop(0, '#050714');
+        grad.addColorStop(0, '#0f0d22');
         grad.addColorStop(0.18, '#1e1035'); // deep violet
         grad.addColorStop(0.32, '#ffffff'); // bright softbox slit
-        grad.addColorStop(0.48, '#00f0ff'); // vivid cyber-cyan band
+        grad.addColorStop(0.48, '#8ee3f5'); // vivid cyber-cyan band
         grad.addColorStop(0.65, '#070918');
-        grad.addColorStop(0.82, '#ff5500'); // electric orange horizon band
-        grad.addColorStop(0.92, '#ec4899'); // magenta glow
-        grad.addColorStop(1.0, '#050714');
+        grad.addColorStop(0.82, '#ff9e7d'); // electric orange horizon band
+        grad.addColorStop(0.92, '#f2a7d8'); // magenta glow
+        grad.addColorStop(1.0, '#0f0d22');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1024, 512);
 
         // Add specular softbox reflections with color
-        ctx.fillStyle = 'rgba(0, 240, 255, 0.45)';
+        ctx.fillStyle = 'rgba(142, 227, 245, 0.45)';
         ctx.fillRect(160, 90, 180, 90);
-        ctx.fillStyle = 'rgba(168, 85, 247, 0.45)';
+        ctx.fillStyle = 'rgba(196, 168, 255, 0.45)';
         ctx.fillRect(680, 80, 200, 100);
 
         // Add orange & rose side accents
-        ctx.fillStyle = 'rgba(255, 85, 0, 0.5)';
+        ctx.fillStyle = 'rgba(255, 158, 125, 0.5)';
         ctx.fillRect(400, 360, 240, 70);
       }
       const envTexture = new THREE.CanvasTexture(envCanvas);
@@ -83,27 +83,27 @@ export const HeroCanvas: React.FC = () => {
       scene.add(topKey);
 
       // Electric Cyan edge rim light (Left side)
-      const cyanRim = new THREE.DirectionalLight(0x00f0ff, 6.0);
+      const cyanRim = new THREE.DirectionalLight(0x8ee3f5, 6.0);
       cyanRim.position.set(-4.5, 2.5, -2.5);
       scene.add(cyanRim);
 
       // Controlled electric orange rim light (Right side)
-      const orangeRim = new THREE.PointLight(0xff5500, 8.5, 22);
+      const orangeRim = new THREE.PointLight(0xff9e7d, 8.5, 22);
       orangeRim.position.set(4.2, 0.6, -1.2);
       scene.add(orangeRim);
 
       // Neon Purple top highlight
-      const purpleRim = new THREE.PointLight(0xa855f7, 5.0, 18);
+      const purpleRim = new THREE.PointLight(0xc4a8ff, 5.0, 18);
       purpleRim.position.set(-1.0, 3.5, -1.5);
       scene.add(purpleRim);
 
       // Subtle Cyber Emerald underglow
-      const emeraldBounce = new THREE.PointLight(0x10b981, 3.0, 14);
+      const emeraldBounce = new THREE.PointLight(0x7fe0b8, 3.0, 14);
       emeraldBounce.position.set(0, -2.5, 1.0);
       scene.add(emeraldBounce);
 
       // Dynamic Interactive Mouse Spotlight (sweeps across chrome surfaces)
-      const mouseSpot = new THREE.PointLight(0x00f0ff, 5.0, 10);
+      const mouseSpot = new THREE.PointLight(0x8ee3f5, 5.0, 10);
       mouseSpot.position.set(0, 0, 3);
       scene.add(mouseSpot);
 
@@ -121,8 +121,8 @@ export const HeroCanvas: React.FC = () => {
 
       // Molten Glowing Orange Neon Material (for the inner core rim)
       const moltenOrangeMaterial = new THREE.MeshStandardMaterial({
-        color: 0xff5500,
-        emissive: 0xff5500,
+        color: 0xff9e7d,
+        emissive: 0xff9e7d,
         emissiveIntensity: 1.6,
         roughness: 0.3,
         metalness: 0.8,
@@ -196,12 +196,12 @@ export const HeroCanvas: React.FC = () => {
       const particleColors = new Float32Array(particleCount * 3);
 
       const colorPalette = [
-        new THREE.Color(0x00f0ff), // cyber-cyan
-        new THREE.Color(0xa855f7), // neon purple
-        new THREE.Color(0xff5500), // electric orange
-        new THREE.Color(0xf43f5e), // cyber pink
-        new THREE.Color(0x10b981), // cyber emerald
-        new THREE.Color(0xf59e0b), // golden amber
+        new THREE.Color(0x8ee3f5), // cyber-cyan
+        new THREE.Color(0xc4a8ff), // neon purple
+        new THREE.Color(0xff9e7d), // electric orange
+        new THREE.Color(0xf7a1b8), // cyber pink
+        new THREE.Color(0x7fe0b8), // cyber emerald
+        new THREE.Color(0xf7cf86), // golden amber
       ];
 
       for (let i = 0; i < particleCount; i++) {
@@ -438,11 +438,11 @@ export const HeroCanvas: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1/1] max-w-[580px] xl:max-w-[640px] mx-auto flex items-end justify-center pointer-events-auto select-none"
+      className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1/1] max-w-[580px] xl:max-w-[640px] mx-auto flex items-end justify-center pointer-events-auto select-none [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
       aria-hidden="true"
     >
       {/* Background Architectural Glow and Orange Horizon Line */}
-      <div className="absolute top-0 right-[28%] w-[2px] h-full bg-gradient-to-b from-transparent via-[#FF5500] to-transparent blur-[0.5px] pointer-events-none opacity-85 z-0" />
+      <div className="absolute top-0 right-[28%] w-[2px] h-full bg-gradient-to-b from-transparent via-[#FF9E7D]/60 to-transparent blur-[2px] pointer-events-none opacity-50 z-0" />
       <div className="absolute inset-0 bg-radial-gradient from-chrome-orange/15 via-transparent to-transparent pointer-events-none blur-3xl opacity-60" />
 
       {shouldRenderStatic ? (
@@ -473,7 +473,7 @@ export const HeroCanvas: React.FC = () => {
               <img
                 src="/assets/omer-portrait-cutout.png"
                 alt="Omer Salem — Computer Engineer"
-                className="w-full h-auto object-contain select-none drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] filter contrast-[1.02]"
+                className="w-full h-auto object-contain select-none drop-shadow-[0_30px_40px_rgba(5,3,18,0.6)] filter contrast-[1.02]"
                 loading="eager"
                 width={640}
                 height={780}

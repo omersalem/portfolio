@@ -49,13 +49,13 @@ export const ContactLaptopCanvas: React.FC = () => {
       const envCtx = envCanvas.getContext('2d');
       if (envCtx) {
         const grad = envCtx.createLinearGradient(0, 0, 0, 256);
-        grad.addColorStop(0, '#040507');
+        grad.addColorStop(0, '#0d0b1d');
         grad.addColorStop(0.2, '#161820');
         grad.addColorStop(0.35, '#6a7282'); // balanced soft studio lighting
         grad.addColorStop(0.5, '#1e212a');
-        grad.addColorStop(0.72, '#08090b');
-        grad.addColorStop(0.86, '#ff5500'); // warm electric orange horizon streak
-        grad.addColorStop(1.0, '#040507');
+        grad.addColorStop(0.72, '#100e21');
+        grad.addColorStop(0.86, '#ff9e7d'); // warm electric orange horizon streak
+        grad.addColorStop(1.0, '#0d0b1d');
         envCtx.fillStyle = grad;
         envCtx.fillRect(0, 0, 512, 256);
       }
@@ -78,22 +78,22 @@ export const ContactLaptopCanvas: React.FC = () => {
       scene.add(rimLight);
 
       // Cyber Cyan Edge Rim Light
-      const cyanRimLight = new THREE.DirectionalLight(0x00f0ff, 2.8);
+      const cyanRimLight = new THREE.DirectionalLight(0x8ee3f5, 2.8);
       cyanRimLight.position.set(4, 2.5, -2);
       scene.add(cyanRimLight);
 
       // Cyber Purple Accent Backlight
-      const purpleAccent = new THREE.PointLight(0x8b5cf6, 4.5, 12);
+      const purpleAccent = new THREE.PointLight(0xa595ff, 4.5, 12);
       purpleAccent.position.set(-2, 3, 2);
       scene.add(purpleAccent);
 
       // Warm Electric Orange Underglow Light
-      const orangeUnderglow = new THREE.PointLight(0xff5500, 7.5, 12);
+      const orangeUnderglow = new THREE.PointLight(0xff9e7d, 7.5, 12);
       orangeUnderglow.position.set(0, -1.0, 0.2);
       scene.add(orangeUnderglow);
 
       // Screen Glow Projection Light (illuminates keyboard)
-      const screenGlow = new THREE.PointLight(0x00f0ff, 4.5, 5);
+      const screenGlow = new THREE.PointLight(0x8ee3f5, 4.5, 5);
       screenGlow.position.set(0, 1.1, 0.3);
       scene.add(screenGlow);
 
@@ -127,7 +127,7 @@ export const ContactLaptopCanvas: React.FC = () => {
       });
 
       const accentKeyMaterial = new THREE.MeshStandardMaterial({
-        color: 0xff5500, // Electric orange accent keycap (Esc / Enter)
+        color: 0xff9e7d, // Electric orange accent keycap (Esc / Enter)
         roughness: 0.45,
         metalness: 0.2,
       });
@@ -293,7 +293,7 @@ export const ContactLaptopCanvas: React.FC = () => {
 
       // Inner electric orange accent ring
       const orbitRing2Geo = new THREE.TorusGeometry(1.45, 0.010, 32, 100);
-      const orangeRingMat = new THREE.MeshBasicMaterial({ color: 0xff5500 });
+      const orangeRingMat = new THREE.MeshBasicMaterial({ color: 0xff9e7d });
       const orbitRing2 = new THREE.Mesh(orbitRing2Geo, orangeRingMat);
       orbitRing2.rotation.x = Math.PI * 0.58;
       orbitRing2.rotation.y = -Math.PI * 0.22;
@@ -321,7 +321,7 @@ export const ContactLaptopCanvas: React.FC = () => {
       if (shCtx) {
         const shGrad = shCtx.createRadialGradient(128, 128, 20, 128, 128, 120);
         shGrad.addColorStop(0, 'rgba(0, 0, 0, 0.9)');
-        shGrad.addColorStop(0.5, 'rgba(255, 85, 0, 0.15)');
+        shGrad.addColorStop(0.5, 'rgba(255, 158, 125, 0.15)');
         shGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         shCtx.fillStyle = shGrad;
         shCtx.fillRect(0, 0, 256, 256);
@@ -429,14 +429,14 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.fillText('OMER SALEM // MNE RAMALLAH // INFRA & WEB BRAIN', 115, 32);
 
         // Status Badge
-        sCtx.fillStyle = 'rgba(0, 240, 255, 0.12)';
-        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.5)';
+        sCtx.fillStyle = 'rgba(142, 227, 245, 0.12)';
+        sCtx.strokeStyle = 'rgba(142, 227, 245, 0.5)';
         sCtx.lineWidth = 1;
         sCtx.beginPath();
         sCtx.roundRect(805, 12, 190, 28, 6);
         sCtx.fill();
         sCtx.stroke();
-        sCtx.fillStyle = '#00f0ff';
+        sCtx.fillStyle = '#8ee3f5';
         sCtx.font = 'bold 12px monospace';
         sCtx.fillText('● SYSTEM STATUS: ONLINE', 818, 31);
 
@@ -444,17 +444,17 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.font = '15px monospace';
         const lines = [
           { text: '> INITIALIZING MNE RAMALLAH NODE...', color: '#60a5fa' },
-          { text: 'const engineer = "OMER SALEM";', color: '#00f0ff' },
+          { text: 'const engineer = "OMER SALEM";', color: '#8ee3f5' },
           { text: 'const org = "MINISTRY OF NATIONAL ECONOMY";', color: '#e2e8f0' },
-          { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#f59e0b' },
+          { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#f7cf86' },
           { text: 'perimeter_defense: [', color: '#94a3b8' },
-          { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff5500' },
-          { text: '  "CISCO FMC & FTD", "SOPHOS"', color: '#ff7733' },
+          { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff9e7d' },
+          { text: '  "CISCO FMC & FTD", "SOPHOS"', color: '#ffb59a' },
           { text: '];', color: '#94a3b8' },
-          { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#a78bfa' },
-          { text: 'network_fabric: ["CISCO CORE L3", "CATALYST HA"];', color: '#38bdf8' },
+          { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#c3b8ff' },
+          { text: 'network_fabric: ["CISCO CORE L3", "CATALYST HA"];', color: '#93c9ff' },
           { text: 'ai_systems: ["AGENT SKILLS", "LOOPING", "CONTEXT"];', color: '#34d399' },
-          { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#00f0ff' },
+          { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#8ee3f5' },
         ];
 
         let startY = 92;
@@ -469,14 +469,14 @@ export const ContactLaptopCanvas: React.FC = () => {
 
         // Right Column: Live Telemetry Oscilloscope Box
         sCtx.fillStyle = '#0b0e1e';
-        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.35)';
+        sCtx.strokeStyle = 'rgba(142, 227, 245, 0.35)';
         sCtx.lineWidth = 1.5;
         sCtx.beginPath();
         sCtx.roundRect(580, 80, 405, 305, 10);
         sCtx.fill();
         sCtx.stroke();
 
-        sCtx.fillStyle = '#00f0ff';
+        sCtx.fillStyle = '#8ee3f5';
         sCtx.font = 'bold 12px monospace';
         sCtx.fillText('REALTIME PACKET FLOW & WAVEFORM', 605, 112);
 
@@ -491,7 +491,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         }
 
         // Animated Primary Waveform (Cyan)
-        sCtx.strokeStyle = '#00f0ff';
+        sCtx.strokeStyle = '#8ee3f5';
         sCtx.lineWidth = 2.5;
         sCtx.beginPath();
         for (let px = 0; px < 355; px++) {
@@ -506,7 +506,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.stroke();
 
         // Animated Secondary Waveform (Electric Orange)
-        sCtx.strokeStyle = '#ff5500';
+        sCtx.strokeStyle = '#ff9e7d';
         sCtx.lineWidth = 1.8;
         sCtx.beginPath();
         for (let px = 0; px < 355; px++) {
@@ -521,7 +521,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.stroke();
 
         // Animated Multi-Color Frequency Spectrum Bars
-        const barColors = ['#00f0ff', '#38bdf8', '#818cf8', '#a855f7', '#ec4899', '#ff5500', '#f59e0b', '#10b981'];
+        const barColors = ['#8ee3f5', '#93c9ff', '#818cf8', '#c4a8ff', '#f2a7d8', '#ff9e7d', '#f7cf86', '#7fe0b8'];
         for (let b = 0; b < 24; b++) {
           const barH = 12 + Math.sin(time * 5 + b * 0.6) * 14 + Math.cos(time * 3 + b) * 8;
           sCtx.fillStyle = barColors[b % barColors.length];
@@ -529,17 +529,17 @@ export const ContactLaptopCanvas: React.FC = () => {
         }
 
         // Bottom Engineering Credo Banner
-        sCtx.fillStyle = '#0d1024';
+        sCtx.fillStyle = '#191630';
         sCtx.fillRect(35, 420, 950, 195);
-        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.2)';
+        sCtx.strokeStyle = 'rgba(142, 227, 245, 0.2)';
         sCtx.strokeRect(35, 420, 950, 195);
 
         // Top Rainbow Horizon Stripe
         const stripeGrad = sCtx.createLinearGradient(35, 420, 985, 420);
-        stripeGrad.addColorStop(0, '#00f0ff');
-        stripeGrad.addColorStop(0.35, '#8b5cf6');
-        stripeGrad.addColorStop(0.7, '#ec4899');
-        stripeGrad.addColorStop(1, '#ff5500');
+        stripeGrad.addColorStop(0, '#8ee3f5');
+        stripeGrad.addColorStop(0.35, '#a595ff');
+        stripeGrad.addColorStop(0.7, '#f2a7d8');
+        stripeGrad.addColorStop(1, '#ff9e7d');
         sCtx.fillStyle = stripeGrad;
         sCtx.fillRect(35, 420, 950, 3);
 
@@ -550,7 +550,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         sCtx.fillStyle = '#94a3b8';
         sCtx.font = '14px monospace';
         sCtx.fillText('Ministry of National Economy (7 yrs) • Kuwait (1 yr) • Firewalls • Active Directory • AI Agents', 65, 506);
-        sCtx.fillStyle = '#00f0ff';
+        sCtx.fillStyle = '#8ee3f5';
         sCtx.fillText('Direct connection: omersalem@mne.gov.ps • +970 599 228 979', 65, 546);
 
         screenTexture.needsUpdate = true;

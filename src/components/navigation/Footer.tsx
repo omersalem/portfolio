@@ -17,9 +17,9 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative bg-[#04050d] text-white overflow-hidden text-start">
+    <footer className="relative bg-gradient-to-b from-transparent to-[#0B0919] text-white overflow-hidden text-start">
       {/* Top Rainbow Chromatic Horizon Line */}
-      <div className="h-[2px] w-full bg-gradient-to-r from-cyber-cyan via-cyber-purple via-cyber-pink to-chrome-orange shadow-[0_0_15px_rgba(0,240,255,0.4)]" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-cyber-purple-light/40 to-transparent" />
 
       {/* Subtle Aurora Glow in Footer */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-32 bg-cyber-purple/10 rounded-full blur-[100px] pointer-events-none" />
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
             <button
               type="button"
               onClick={handleScrollToTop}
-              className="touch-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-neutral-300 hover:text-white hover:border-cyber-cyan/50 hover:shadow-[0_0_15px_rgba(0,240,255,0.2)] transition-all duration-200 focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none cursor-pointer"
+              className="touch-target inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full btn-soft text-neutral-300 hover:text-white focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:outline-none cursor-pointer"
               aria-label={ui.backToTop}
             >
               <span>{ui.backToTop}</span>
