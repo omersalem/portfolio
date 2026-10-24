@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useNearViewport } from '../../hooks/useNearViewport';
 
 export const HeroCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -9,13 +10,20 @@ export const HeroCanvas: React.FC = () => {
   const [useFallback, setUseFallback] = useState(false);
   const [is3DReady, setIs3DReady] = useState(false);
 
-  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback;
+  const nearViewport = useNearViewport(containerRef);
+  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback || !nearViewport;
 
   useEffect(() => {
     if (shouldRenderStatic || !canvasRef.current || !containerRef.current) return;
 
     let animationFrameId: number;
+    let disposed = false;
+    let portraitTexture: THREE.Texture | null = null;
     let isVisible = true;
+    let inView = true;
+    const updateVisible = () => {
+      isVisible = inView && !document.hidden;
+    };
     let renderer: THREE.WebGLRenderer | null = null;
 
     try {
@@ -260,6 +268,11 @@ export const HeroCanvas: React.FC = () => {
       textureLoader.load(
         '/assets/omer-portrait-cutout.png',
         (texture) => {
+          if (disposed) {
+            texture.dispose();
+            return;
+          }
+          portraitTexture = texture;
           texture.colorSpace = THREE.SRGBColorSpace;
           texture.minFilter = THREE.LinearFilter;
           texture.magFilter = THREE.LinearFilter;
@@ -285,6 +298,7 @@ export const HeroCanvas: React.FC = () => {
         },
         undefined,
         (err) => {
+          if (disposed) return;
           console.warn('Could not load 3D portrait texture, relying on DOM overlay:', err);
           setIs3DReady(false);
         }
@@ -308,7 +322,8 @@ export const HeroCanvas: React.FC = () => {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            isVisible = entry.isIntersecting && !document.hidden;
+            inView = entry.isIntersecting;
+            updateVisible();
           });
         },
         { threshold: 0.05 }
@@ -316,7 +331,7 @@ export const HeroCanvas: React.FC = () => {
       observer.observe(container);
 
       const handleVisibilityChange = () => {
-        isVisible = !document.hidden;
+        updateVisible();
       };
       document.addEventListener('visibilitychange', handleVisibilityChange);
 
@@ -400,6 +415,8 @@ export const HeroCanvas: React.FC = () => {
       animate();
 
       return () => {
+        disposed = true;
+        setIs3DReady(false);
         cancelAnimationFrame(animationFrameId);
         window.removeEventListener('pointermove', handlePointerMove);
         window.removeEventListener('resize', handleResize);
@@ -421,6 +438,7 @@ export const HeroCanvas: React.FC = () => {
 
         if (portraitGeo) portraitGeo.dispose();
         if (portraitMat) portraitMat.dispose();
+        if (portraitTexture) portraitTexture.dispose();
 
         envTexture.dispose();
         pTexture.dispose();
@@ -448,7 +466,7 @@ export const HeroCanvas: React.FC = () => {
       {shouldRenderStatic ? (
         /* Static Optimized Fallback */
         <picture className="w-full h-full object-contain relative z-10 flex items-end justify-center">
-          <source srcSet="/assets/portfolio-hero-with-portrait.png" type="image/png" />
+          <source srcSet="/assets/portfolio-hero-with-portrait.webp" type="image/webp" />
           <img
             src="/assets/portfolio-hero-with-portrait.png"
             alt="Omer Salem — Computer Engineer"

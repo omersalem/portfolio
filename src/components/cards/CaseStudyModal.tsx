@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { ProjectCaseStudy } from '../../types';
 import { X, CheckCircle2, Cpu, Layers, Award, Terminal } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { getPortfolioData } from '../../data/portfolioData';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 interface CaseStudyModalProps {
   study: ProjectCaseStudy;
@@ -14,18 +16,29 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
   const { language } = useLanguage();
   const { ui } = getPortfolioData(language);
 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useFocusTrap(dialogRef, true);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        onCloseRef.current();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, []);
 
-  return (
+  return createPortal(
     <div
+      ref={dialogRef}
+      tabIndex={-1}
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
       className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md p-4 sm:p-8 overflow-y-auto flex items-center justify-center animate-fade-in"
       role="dialog"
       aria-modal="true"
@@ -147,6 +160,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ study, projectNa
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useHoverLift } from '../../hooks/useHoverLift';
 import { CoreMetric } from '../../types';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
 
@@ -67,8 +68,8 @@ export const MetricCard3D: React.FC<MetricCard3DProps> = ({ metric, index }) => 
 
   const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [10, -10]);
   const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-12, 12]);
-  const cardScale = useSpring(isHovered || isFocused ? 1.03 : 1.0, springConfig);
-  const cardZ = useSpring(isHovered || isFocused ? 24 : 0, springConfig);
+  const cardScale = useHoverLift(isHovered || isFocused, 1, 1.03, springConfig);
+  const cardZ = useHoverLift(isHovered || isFocused, 0, 24, springConfig);
 
   const spotlightBg = useTransform(
     [mousePixelX, mousePixelY],

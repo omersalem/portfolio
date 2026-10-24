@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useNearViewport } from '../../hooks/useNearViewport';
 
 interface EngineeringCoreCanvasProps {
   activeNodeIndex?: number | null;
@@ -11,15 +12,23 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { reducedMotion, reducedEffects, webGLSupported, saveData } = useEffectSettings();
   const [useFallback, setUseFallback] = useState(false);
+  const activeNodeRef = useRef<number | null | undefined>(activeNodeIndex);
+  activeNodeRef.current = activeNodeIndex;
 
-  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback;
+  const nearViewport = useNearViewport(containerRef);
+  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback || !nearViewport;
 
   useEffect(() => {
     if (shouldRenderStatic || !canvasRef.current || !containerRef.current) return;
 
     let animationFrameId: number;
     let isVisible = true;
+    let inView = true;
+    const updateVisible = () => {
+      isVisible = inView && !document.hidden;
+    };
     let renderer: THREE.WebGLRenderer | null = null;
+    const armDisposables: { dispose: () => void }[] = [];
 
     try {
       const container = containerRef.current;
@@ -126,6 +135,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
 
         // Arm
         const armGeo = new THREE.BoxGeometry(0.2, 1.8, 0.15);
+        armDisposables.push(armGeo);
         const armMesh = new THREE.Mesh(armGeo, graphiteMaterial);
         armMesh.position.y = 1.6;
         channelGroup.add(armMesh);
@@ -138,6 +148,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
           opacity: 0.6,
         });
         pulseMaterials.push(pulseMat);
+        armDisposables.push(conduitGeo);
         const conduitMesh = new THREE.Mesh(conduitGeo, pulseMat);
         conduitMesh.position.y = 1.6;
         conduitMesh.position.z = 0.06;
@@ -145,6 +156,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
 
         // Peripheral Node with Chrome & Color Accent
         const nodeGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.25, 24);
+        armDisposables.push(nodeGeo);
         const nodeMesh = new THREE.Mesh(nodeGeo, chromeMaterial);
         nodeMesh.position.y = 2.6;
         channelGroup.add(nodeMesh);
@@ -152,6 +164,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         // Glowing Core LED on each node
         const ledGeo = new THREE.SphereGeometry(0.1, 16, 16);
         const ledMat = new THREE.MeshBasicMaterial({ color: nodeColors[i] });
+        armDisposables.push(ledGeo, ledMat);
         const ledMesh = new THREE.Mesh(ledGeo, ledMat);
         ledMesh.position.set(0, 2.75, 0.05);
         channelGroup.add(ledMesh);
@@ -166,7 +179,8 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            isVisible = entry.isIntersecting && !document.hidden;
+            inView = entry.isIntersecting;
+            updateVisible();
           });
         },
         { threshold: 0.05 }
@@ -174,7 +188,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
       observer.observe(container);
 
       const handleVisibilityChange = () => {
-        isVisible = !document.hidden;
+        updateVisible();
       };
       document.addEventListener('visibilitychange', handleVisibilityChange);
 
@@ -203,7 +217,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
 
         // Controlled multi-spectral signal pulse traveling through channels
         pulseMaterials.forEach((mat, idx) => {
-          if (activeNodeIndex === idx) {
+          if (activeNodeRef.current === idx) {
             mat.opacity = 1.0;
             mat.color.setHex(0xffffff); // White-hot blaze on active
           } else {
@@ -232,6 +246,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         graphiteMaterial.dispose();
         envTexture.dispose();
         pulseMaterials.forEach((m) => m.dispose());
+        armDisposables.forEach((d) => d.dispose());
         renderer?.dispose();
       };
     } catch (err) {
@@ -241,7 +256,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
         (renderer as THREE.WebGLRenderer).dispose();
       }
     }
-  }, [shouldRenderStatic, activeNodeIndex]);
+  }, [shouldRenderStatic]);
 
   return (
     <div
@@ -253,7 +268,7 @@ export const EngineeringCoreCanvas: React.FC<EngineeringCoreCanvasProps> = ({ ac
 
       {shouldRenderStatic ? (
         <picture className="w-full h-full object-contain relative z-10 flex items-center justify-center">
-          <source srcSet="/assets/03-infrastructure-core.png" type="image/png" />
+          <source srcSet="/assets/03-infrastructure-core.webp" type="image/webp" />
           <img
             src="/assets/03-infrastructure-core.png"
             alt=""

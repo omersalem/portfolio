@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useHoverLift } from '../../hooks/useHoverLift';
 import { Layout, ShoppingCart, Bot, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { CapabilityGroup } from '../../types';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
@@ -94,8 +95,8 @@ export const DisciplineCard3D: React.FC<DisciplineCard3DProps> = ({ group, index
 
   const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [11, -11]);
   const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-13, 13]);
-  const cardScale = useSpring(isHovered || isFocused ? 1.025 : 1.0, springConfig);
-  const cardZ = useSpring(isHovered || isFocused ? 28 : 0, springConfig);
+  const cardScale = useHoverLift(isHovered || isFocused, 1, 1.025, springConfig);
+  const cardZ = useHoverLift(isHovered || isFocused, 0, 28, springConfig);
 
   const sheenTranslateX = useTransform(smoothMouseX, [-0.5, 0.5], [-90, 90]);
 

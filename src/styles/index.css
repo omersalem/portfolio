@@ -32,6 +32,8 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
+    /* Keep anchored sections clear of the fixed h-20 navbar */
+    scroll-padding-top: 5rem;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
