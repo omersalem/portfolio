@@ -378,6 +378,53 @@ export const ContactLaptopCanvas: React.FC = () => {
       };
       window.addEventListener('pointermove', handlePointerMove, { passive: true });
 
+      // 7b. Drag-to-Rotate (clamped, eases back to rest after idle)
+      const DRAG_SENSITIVITY = 0.01;
+      const MAX_DRAG_YAW = 1.3;
+      const MAX_DRAG_PITCH = 0.35;
+      const DRAG_IDLE_RESET_MS = 4000;
+      let isDragging = false;
+      let lastDragX = 0;
+      let lastDragY = 0;
+      let lastDragTime = 0;
+      let targetDragYaw = 0;
+      let targetDragPitch = 0;
+      let currentDragYaw = 0;
+      let currentDragPitch = 0;
+
+      const clamp = (value: number, limit: number) => Math.max(-limit, Math.min(limit, value));
+
+      const handleDragStart = (e: PointerEvent) => {
+        isDragging = true;
+        lastDragX = e.clientX;
+        lastDragY = e.clientY;
+        lastDragTime = performance.now();
+        canvas.setPointerCapture(e.pointerId);
+      };
+
+      const handleDragMove = (e: PointerEvent) => {
+        if (!isDragging) return;
+        targetDragYaw = clamp(targetDragYaw + (e.clientX - lastDragX) * DRAG_SENSITIVITY, MAX_DRAG_YAW);
+        targetDragPitch = clamp(targetDragPitch + (e.clientY - lastDragY) * DRAG_SENSITIVITY, MAX_DRAG_PITCH);
+        lastDragX = e.clientX;
+        lastDragY = e.clientY;
+        lastDragTime = performance.now();
+      };
+
+      const handleDragEnd = (e: PointerEvent) => {
+        if (!isDragging) return;
+        isDragging = false;
+        lastDragTime = performance.now();
+        if (canvas.hasPointerCapture(e.pointerId)) {
+          canvas.releasePointerCapture(e.pointerId);
+        }
+      };
+
+      canvas.addEventListener('pointerdown', handleDragStart);
+      canvas.addEventListener('pointermove', handleDragMove);
+      canvas.addEventListener('pointerup', handleDragEnd);
+      canvas.addEventListener('pointercancel', handleDragEnd);
+
       // 8. Observer & Resize
       const observer = new IntersectionObserver(
         (entries) => {
@@ -620,8 +667,16 @@ export const ContactLaptopCanvas: React.FC = () => {
         currentMouseX += (targetMouseX - currentMouseX) * 0.05;
         currentMouseY += (targetMouseY - currentMouseY) * 0.05;
 
-        laptopGroup.rotation.y = targetRotY + currentMouseX * 0.5;
-        laptopGroup.rotation.x = targetRotX + currentMouseY * 0.35;
+        // 3b. Drag Rotation: ease back to rest after a period of no interaction
+        if (!isDragging && performance.now() - lastDragTime > DRAG_IDLE_RESET_MS) {
+          targetDragYaw += (0 - targetDragYaw) * 0.04;
+          targetDragPitch += (0 - targetDragPitch) * 0.04;
+        }
+        currentDragYaw += (targetDragYaw - currentDragYaw) * 0.1;
+        currentDragPitch += (targetDragPitch - currentDragPitch) * 0.1;
+
+        laptopGroup.rotation.y = targetRotY + currentMouseX * 0.5 + currentDragYaw;
+        laptopGroup.rotation.x = targetRotX + currentMouseY * 0.35 + currentDragPitch;
         laptopGroup.rotation.z = targetRotZ - currentMouseX * 0.08;
 
         // 4. Subtle Lid Breathing (-0.32 rad base)
@@ -648,6 +703,10 @@ export const ContactLaptopCanvas: React.FC = () => {
       return () => {
         cancelAnimationFrame(animationFrameId);
         window.removeEventListener('pointermove', handlePointerMove);
+        canvas.removeEventListener('pointerdown', handleDragStart);
+        canvas.removeEventListener('pointermove', handleDragMove);
+        canvas.removeEventListener('pointerup', handleDragEnd);
+        canvas.removeEventListener('pointercancel', handleDragEnd);
         window.removeEventListener('resize', handleResize);
         document.removeEventListener('visibilitychange', handleVisibilityChange);
         observer.disconnect();
@@ -713,6 +772,7 @@ export const ContactLaptopCanvas: React.FC = () => {
       </div>
       <div className="absolute bottom-3 left-3 text-[10px] font-mono text-neutral-600 pointer-events-none select-none flex items-center space-x-1">
         <span>└</span>
+        <span>ROTATE_DRAG</span>
       </div>
       <div className="absolute bottom-3 right-3 text-[10px] font-mono text-neutral-600 pointer-events-none select-none flex items-center space-x-1">
         <span>PARALLAX_ACTIVE</span>
@@ -736,7 +796,8 @@ export const ContactLaptopCanvas: React.FC = () => {
       ) : (
         <canvas
           ref={canvasRef}
-          className="w-full h-full block select-none"
+          className="w-full h-full block select-none cursor-grab active:cursor-grabbing"
+          style={{ touchAction: 'pan-y' }}
           tabIndex={-1}
         />
       )}
