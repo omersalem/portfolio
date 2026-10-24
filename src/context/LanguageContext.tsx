@@ -13,6 +13,22 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const STORAGE_KEY = 'portfolio_language';
 
+const readStoredLanguage = (): string | null => {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+};
+
+const writeStoredLanguage = (lang: Language) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, lang);
+  } catch {
+    // Storage blocked (private mode, embedded webview); keep the choice in memory only.
+  }
+};
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     // 1. URL Query Parameter: ?lang=ar or ?lang=en
@@ -24,7 +40,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
 
       // 2. LocalStorage preference
-      const savedLang = localStorage.getItem(STORAGE_KEY);
+      const savedLang = readStoredLanguage();
       if (savedLang === 'ar' || savedLang === 'en') {
         return savedLang;
       }
@@ -38,7 +54,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, lang);
+      writeStoredLanguage(lang);
       const url = new URL(window.location.href);
       url.searchParams.set('lang', lang);
       window.history.replaceState({}, '', url.toString());

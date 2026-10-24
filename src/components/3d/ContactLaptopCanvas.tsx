@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useNearViewport } from '../../hooks/useNearViewport';
 
 export const ContactLaptopCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -8,13 +9,18 @@ export const ContactLaptopCanvas: React.FC = () => {
   const { reducedMotion, reducedEffects, webGLSupported, saveData } = useEffectSettings();
   const [useFallback, setUseFallback] = useState(false);
 
-  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback;
+  const nearViewport = useNearViewport(containerRef);
+  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback || !nearViewport;
 
   useEffect(() => {
     if (shouldRenderStatic || !canvasRef.current || !containerRef.current) return;
 
     let animationFrameId: number;
     let isVisible = true;
+    let inView = true;
+    const updateVisible = () => {
+      isVisible = inView && !document.hidden;
+    };
     let renderer: THREE.WebGLRenderer | null = null;
 
     try {
@@ -200,6 +206,9 @@ export const ContactLaptopCanvas: React.FC = () => {
       const startKeyX = -((cols - 1) * keySpacingX) / 2;
       const startKeyZ = -((rows - 1) * keySpacingZ) / 2;
 
+      // Keycaps are instanced: one draw call per material instead of one per key
+      const normalKeyPositions: THREE.Vector3[] = [];
+      const accentKeyPositions: THREE.Vector3[] = [];
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           // Spacebar skip in bottom row
@@ -207,11 +216,24 @@ export const ContactLaptopCanvas: React.FC = () => {
 
           // Orange accent key at Enter / Esc
           const isAccent = (r === 2 && c === 13) || (r === 0 && c === 0);
-          const kMesh = new THREE.Mesh(keyGeo, isAccent ? accentKeyMaterial : keycapMaterial);
-          kMesh.position.set(startKeyX + c * keySpacingX, 0, startKeyZ + r * keySpacingZ);
-          keyGroup.add(kMesh);
+          (isAccent ? accentKeyPositions : normalKeyPositions).push(
+            new THREE.Vector3(startKeyX + c * keySpacingX, 0, startKeyZ + r * keySpacingZ)
+          );
         }
       }
+      const keyMatrix = new THREE.Matrix4();
+      [
+        { positions: normalKeyPositions, material: keycapMaterial },
+        { positions: accentKeyPositions, material: accentKeyMaterial },
+      ].forEach(({ positions, material }) => {
+        const instanced = new THREE.InstancedMesh(keyGeo, material, positions.length);
+        positions.forEach((pos, i) => {
+          keyMatrix.setPosition(pos);
+          instanced.setMatrixAt(i, keyMatrix);
+        });
+        instanced.instanceMatrix.needsUpdate = true;
+        keyGroup.add(instanced);
+      });
 
       // Spacebar
       const spaceGeo = new THREE.BoxGeometry(1.15, 0.02, 0.18);
@@ -360,7 +382,8 @@ export const ContactLaptopCanvas: React.FC = () => {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            isVisible = entry.isIntersecting && !document.hidden;
+            inView = entry.isIntersecting;
+            updateVisible();
           });
         },
         { threshold: 0.05 }
@@ -368,7 +391,7 @@ export const ContactLaptopCanvas: React.FC = () => {
       observer.observe(container);
 
       const handleVisibilityChange = () => {
-        isVisible = !document.hidden;
+        updateVisible();
       };
       document.addEventListener('visibilitychange', handleVisibilityChange);
 
@@ -385,8 +408,27 @@ export const ContactLaptopCanvas: React.FC = () => {
       window.addEventListener('resize', handleResize);
 
       // 9. Dynamic Screen Rendering Function (Interactive Terminal & Waveform)
-      let lastScreenUpdate = 0;
-      const renderScreenContent = (time: number) => {
+      // Static layer (background, header, code lines, scope frame, banner) is drawn once; only the live parts redraw each tick.
+      const staticCanvas = document.createElement('canvas');
+      staticCanvas.width = 1024;
+      staticCanvas.height = 660;
+      const staticCtx = staticCanvas.getContext('2d')!;
+      const lines = [
+        { text: '> INITIALIZING MNE RAMALLAH NODE...', color: '#60a5fa' },
+        { text: 'const engineer = "OMER SALEM";', color: '#8ee3f5' },
+        { text: 'const org = "MINISTRY OF NATIONAL ECONOMY";', color: '#e2e8f0' },
+        { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#f7cf86' },
+        { text: 'perimeter_defense: [', color: '#94a3b8' },
+        { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff9e7d' },
+        { text: '  "CISCO FMC & FTD", "SOPHOS"', color: '#ffb59a' },
+        { text: '];', color: '#94a3b8' },
+        { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#c3b8ff' },
+        { text: 'network_fabric: ["CISCO CORE L3", "CATALYST HA"];', color: '#93c9ff' },
+        { text: 'ai_systems: ["AGENT SKILLS", "LOOPING", "CONTEXT"];', color: '#34d399' },
+        { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#8ee3f5' },
+      ];
+      const drawStaticLayer = () => {
+        const sCtx = staticCtx;
         // Deep obsidian background
         sCtx.fillStyle = '#0a0c10';
         sCtx.fillRect(0, 0, 1024, 660);
@@ -442,29 +484,9 @@ export const ContactLaptopCanvas: React.FC = () => {
 
         // Left Column: Semantic Telemetry & Engineering Identity
         sCtx.font = '15px monospace';
-        const lines = [
-          { text: '> INITIALIZING MNE RAMALLAH NODE...', color: '#60a5fa' },
-          { text: 'const engineer = "OMER SALEM";', color: '#8ee3f5' },
-          { text: 'const org = "MINISTRY OF NATIONAL ECONOMY";', color: '#e2e8f0' },
-          { text: 'const experience = "7 YRS MNE + 1 YR KUWAIT";', color: '#f7cf86' },
-          { text: 'perimeter_defense: [', color: '#94a3b8' },
-          { text: '  "FORTIGATE NGFW", "F5 BIG-IP WAF",', color: '#ff9e7d' },
-          { text: '  "CISCO FMC & FTD", "SOPHOS"', color: '#ffb59a' },
-          { text: '];', color: '#94a3b8' },
-          { text: 'core_systems: ["ACTIVE DIRECTORY", "EXCHANGE", "SCCM"];', color: '#c3b8ff' },
-          { text: 'network_fabric: ["CISCO CORE L3", "CATALYST HA"];', color: '#93c9ff' },
-          { text: 'ai_systems: ["AGENT SKILLS", "LOOPING", "CONTEXT"];', color: '#34d399' },
-          { text: '> READY TO ARCHITECT YOUR PLATFORM_', color: '#8ee3f5' },
-        ];
-
-        let startY = 92;
-        lines.forEach((l, idx) => {
+        lines.slice(0, -1).forEach((l, idx) => {
           sCtx.fillStyle = l.color;
-          if (idx === lines.length - 1 && Math.sin(time * 6) < 0) {
-            sCtx.fillText(l.text.replace('_', ' '), 35, startY + idx * 27);
-          } else {
-            sCtx.fillText(l.text, 35, startY + idx * 27);
-          }
+          sCtx.fillText(l.text, 35, 92 + idx * 27);
         });
 
         // Right Column: Live Telemetry Oscilloscope Box
@@ -489,6 +511,44 @@ export const ContactLaptopCanvas: React.FC = () => {
           sCtx.lineTo(965, gy);
           sCtx.stroke();
         }
+
+        // Bottom Engineering Credo Banner
+        sCtx.fillStyle = '#191630';
+        sCtx.fillRect(35, 420, 950, 195);
+        sCtx.strokeStyle = 'rgba(142, 227, 245, 0.2)';
+        sCtx.strokeRect(35, 420, 950, 195);
+
+        // Top Rainbow Horizon Stripe
+        const stripeGrad = sCtx.createLinearGradient(35, 420, 985, 420);
+        stripeGrad.addColorStop(0, '#8ee3f5');
+        stripeGrad.addColorStop(0.35, '#a595ff');
+        stripeGrad.addColorStop(0.7, '#f2a7d8');
+        stripeGrad.addColorStop(1, '#ff9e7d');
+        sCtx.fillStyle = stripeGrad;
+        sCtx.fillRect(35, 420, 950, 3);
+
+        sCtx.fillStyle = '#ffffff';
+        sCtx.font = 'bold 20px monospace';
+        sCtx.fillText('GOVERNMENT-GRADE RELIABILITY. COMMERCIAL SPEED.', 65, 468);
+
+        sCtx.fillStyle = '#94a3b8';
+        sCtx.font = '14px monospace';
+        sCtx.fillText('Ministry of National Economy (7 yrs) • Kuwait (1 yr) • Firewalls • Active Directory • AI Agents', 65, 506);
+        sCtx.fillStyle = '#8ee3f5';
+        sCtx.fillText('Direct connection: omersalem@mne.gov.ps • +970 599 228 979', 65, 546);
+
+      };
+      drawStaticLayer();
+
+      let lastScreenUpdate = 0;
+      const renderScreenContent = (time: number) => {
+        sCtx.drawImage(staticCanvas, 0, 0);
+
+        // Blinking cursor on the last line
+        const lastLine = lines[lines.length - 1];
+        sCtx.font = '15px monospace';
+        sCtx.fillStyle = lastLine.color;
+        sCtx.fillText(Math.sin(time * 6) < 0 ? lastLine.text.replace('_', ' ') : lastLine.text, 35, 92 + (lines.length - 1) * 27);
 
         // Animated Primary Waveform (Cyan)
         sCtx.strokeStyle = '#8ee3f5';
@@ -528,31 +588,6 @@ export const ContactLaptopCanvas: React.FC = () => {
           sCtx.fillRect(605 + b * 15, 365 - barH, 10, barH);
         }
 
-        // Bottom Engineering Credo Banner
-        sCtx.fillStyle = '#191630';
-        sCtx.fillRect(35, 420, 950, 195);
-        sCtx.strokeStyle = 'rgba(142, 227, 245, 0.2)';
-        sCtx.strokeRect(35, 420, 950, 195);
-
-        // Top Rainbow Horizon Stripe
-        const stripeGrad = sCtx.createLinearGradient(35, 420, 985, 420);
-        stripeGrad.addColorStop(0, '#8ee3f5');
-        stripeGrad.addColorStop(0.35, '#a595ff');
-        stripeGrad.addColorStop(0.7, '#f2a7d8');
-        stripeGrad.addColorStop(1, '#ff9e7d');
-        sCtx.fillStyle = stripeGrad;
-        sCtx.fillRect(35, 420, 950, 3);
-
-        sCtx.fillStyle = '#ffffff';
-        sCtx.font = 'bold 20px monospace';
-        sCtx.fillText('GOVERNMENT-GRADE RELIABILITY. COMMERCIAL SPEED.', 65, 468);
-
-        sCtx.fillStyle = '#94a3b8';
-        sCtx.font = '14px monospace';
-        sCtx.fillText('Ministry of National Economy (7 yrs) • Kuwait (1 yr) • Firewalls • Active Directory • AI Agents', 65, 506);
-        sCtx.fillStyle = '#8ee3f5';
-        sCtx.fillText('Direct connection: omersalem@mne.gov.ps • +970 599 228 979', 65, 546);
-
         screenTexture.needsUpdate = true;
       };
 
@@ -567,7 +602,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         const elapsedTime = clock.getElapsedTime();
 
         // Update screen content at ~30fps
-        if (elapsedTime - lastScreenUpdate > 0.033) {
+        if (elapsedTime - lastScreenUpdate > 0.066) {
           renderScreenContent(elapsedTime);
           lastScreenUpdate = elapsedTime;
         }
@@ -647,6 +682,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         orangeRingMat.dispose();
         shadowMat.dispose();
         screenTexture.dispose();
+        envTexture.dispose();
         shadowTexture.dispose();
         renderer?.dispose();
       };
@@ -677,7 +713,6 @@ export const ContactLaptopCanvas: React.FC = () => {
       </div>
       <div className="absolute bottom-3 left-3 text-[10px] font-mono text-neutral-600 pointer-events-none select-none flex items-center space-x-1">
         <span>└</span>
-        <span>ROTATE_DRAG</span>
       </div>
       <div className="absolute bottom-3 right-3 text-[10px] font-mono text-neutral-600 pointer-events-none select-none flex items-center space-x-1">
         <span>PARALLAX_ACTIVE</span>
@@ -701,7 +736,7 @@ export const ContactLaptopCanvas: React.FC = () => {
       ) : (
         <canvas
           ref={canvasRef}
-          className="w-full h-full block cursor-grab active:cursor-grabbing select-none"
+          className="w-full h-full block select-none"
           tabIndex={-1}
         />
       )}

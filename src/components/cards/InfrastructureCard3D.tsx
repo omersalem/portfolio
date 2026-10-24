@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useHoverLift } from '../../hooks/useHoverLift';
 import { Network, ShieldCheck, KeyRound, Mail, Layers, Bot, Activity } from 'lucide-react';
 import { InfrastructureNode } from '../../types';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
@@ -68,8 +69,8 @@ export const InfrastructureCard3D: React.FC<InfrastructureCard3DProps> = ({
   // 3D Tilt angles: up to 11 deg on X, 13 deg on Y for tactile physical sensation
   const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [11, -11]);
   const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-13, 13]);
-  const cardScale = useSpring(isHovered || isFocused || isActive ? 1.025 : 1.0, springConfig);
-  const cardZ = useSpring(isHovered || isFocused || isActive ? 28 : 0, springConfig);
+  const cardScale = useHoverLift(isHovered || isFocused || isActive, 1, 1.025, springConfig);
+  const cardZ = useHoverLift(isHovered || isFocused || isActive, 0, 28, springConfig);
 
   // Specular sheen shift across the metallic surface
   const sheenTranslateX = useTransform(smoothMouseX, [-0.5, 0.5], [-100, 100]);

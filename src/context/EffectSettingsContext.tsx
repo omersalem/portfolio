@@ -6,14 +6,18 @@ const EffectSettingsContext = createContext<EffectSettings | null>(null);
 function checkWebGLSupport(): boolean {
   try {
     const canvas = document.createElement('canvas');
-    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    if (!window.WebGLRenderingContext) return false;
+    const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
+    if (!gl) return false;
+    gl.getExtension('WEBGL_lose_context')?.loseContext();
+    return true;
   } catch {
     return false;
   }
 }
 
 export const EffectSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [reducedMotion, setReducedMotion] = useState<boolean>(false);
+  const [reducedMotion, setReducedMotion] = useState<boolean>(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [reducedEffects, setReducedEffects] = useState<boolean>(() => {
     try {
       const stored = localStorage.getItem('omer_portfolio_reduced_effects');
@@ -22,23 +26,16 @@ export const EffectSettingsProvider: React.FC<{ children: React.ReactNode }> = (
       return false;
     }
   });
-  const [webGLSupported, setWebGLSupported] = useState<boolean>(true);
-  const [saveData, setSaveData] = useState<boolean>(false);
+  const [webGLSupported] = useState<boolean>(() => typeof document !== 'undefined' && checkWebGLSupport());
+  const [saveData] = useState<boolean>(() => {
+    if (typeof navigator === 'undefined') return false;
+    const connection = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
+    return !!connection?.saveData;
+  });
 
   useEffect(() => {
-    // Check WebGL
-    setWebGLSupported(checkWebGLSupport());
-
-    // Check Save-Data
-    const connection = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
-    if (connection && typeof connection.saveData === 'boolean') {
-      setSaveData(connection.saveData);
-    }
-
-    // Check prefers-reduced-motion
+    // Initial values are read in the state initializers; only live changes are tracked here
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mediaQuery.matches);
-
     const handler = (e: MediaQueryListEvent) => {
       setReducedMotion(e.matches);
     };

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useHoverLift } from '../../hooks/useHoverLift';
 import { ExternalLink } from 'lucide-react';
 import { Project } from '../../types';
-import { useState as useLocalState } from 'react';
 import { getPortfolioData } from '../../data/portfolioData';
 import { CaseStudyModal } from './CaseStudyModal';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
@@ -15,7 +15,7 @@ interface ProjectCard3DProps {
 }
 
 export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, isFifth = false }) => {
-  const [showCaseStudy, setShowCaseStudy] = useLocalState(false);
+  const [showCaseStudy, setShowCaseStudy] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -41,8 +41,8 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({ project, index, is
   // 3D Tilt angles: up to 12 deg on X, 14 deg on Y for tactile physicality
   const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [12, -12]);
   const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-14, 14]);
-  const cardScale = useSpring(isHovered || isFocused ? 1.035 : 1.0, springConfig);
-  const cardZ = useSpring(isHovered || isFocused ? 36 : 0, springConfig);
+  const cardScale = useHoverLift(isHovered || isFocused, 1, 1.035, springConfig);
+  const cardZ = useHoverLift(isHovered || isFocused, 0, 36, springConfig);
 
   // Parallax translation for the inner screenshot image
   const imagePanX = useTransform(smoothMouseX, [-0.5, 0.5], [10, -10]);

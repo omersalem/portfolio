@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useEffectSettings } from '../../context/EffectSettingsContext';
+import { useNearViewport } from '../../hooks/useNearViewport';
 
 export const CVBridgeCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -8,13 +9,18 @@ export const CVBridgeCanvas: React.FC = () => {
   const { reducedMotion, reducedEffects, webGLSupported, saveData } = useEffectSettings();
   const [useFallback, setUseFallback] = useState(false);
 
-  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback;
+  const nearViewport = useNearViewport(containerRef);
+  const shouldRenderStatic = reducedMotion || reducedEffects || !webGLSupported || saveData || useFallback || !nearViewport;
 
   useEffect(() => {
     if (shouldRenderStatic || !canvasRef.current || !containerRef.current) return;
 
     let animationFrameId: number;
     let isVisible = true;
+    let inView = true;
+    const updateVisible = () => {
+      isVisible = inView && !document.hidden;
+    };
     let renderer: THREE.WebGLRenderer | null = null;
 
     try {
@@ -154,7 +160,8 @@ export const CVBridgeCanvas: React.FC = () => {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            isVisible = entry.isIntersecting && !document.hidden;
+            inView = entry.isIntersecting;
+            updateVisible();
           });
         },
         { threshold: 0.05 }
@@ -162,7 +169,7 @@ export const CVBridgeCanvas: React.FC = () => {
       observer.observe(container);
 
       const handleVisibilityChange = () => {
-        isVisible = !document.hidden;
+        updateVisible();
       };
       document.addEventListener('visibilitychange', handleVisibilityChange);
 
@@ -249,7 +256,7 @@ export const CVBridgeCanvas: React.FC = () => {
     >
       {shouldRenderStatic ? (
         <picture className="w-full h-full object-cover block">
-          <source srcSet="/assets/04-cv-object.png" type="image/png" />
+          <source srcSet="/assets/04-cv-object.webp" type="image/webp" />
           <img
             src="/assets/04-cv-object.png"
             alt=""
