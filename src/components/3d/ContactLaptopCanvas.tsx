@@ -303,37 +303,6 @@ export const ContactLaptopCanvas: React.FC = () => {
       lidGroup.rotation.x = -0.32;
       laptopGroup.add(lidGroup);
 
-      // ================= ORBITAL CHROME RINGS & PARTICLES =================
-      const ringGroup = new THREE.Group();
-
-      // Outer sweeping chrome orbital ring (compactly framing the laptop)
-      const orbitRing1Geo = new THREE.TorusGeometry(1.82, 0.014, 32, 120);
-      const orbitRing1 = new THREE.Mesh(orbitRing1Geo, polishedChromeMaterial);
-      orbitRing1.rotation.x = Math.PI * 0.38;
-      orbitRing1.rotation.y = Math.PI * 0.12;
-      ringGroup.add(orbitRing1);
-
-      // Inner electric orange accent ring
-      const orbitRing2Geo = new THREE.TorusGeometry(1.45, 0.010, 32, 100);
-      const orangeRingMat = new THREE.MeshBasicMaterial({ color: 0xff9e7d });
-      const orbitRing2 = new THREE.Mesh(orbitRing2Geo, orangeRingMat);
-      orbitRing2.rotation.x = Math.PI * 0.58;
-      orbitRing2.rotation.y = -Math.PI * 0.22;
-      ringGroup.add(orbitRing2);
-
-      // Floating Mirror Chrome Spheres
-      const sphereGeo = new THREE.SphereGeometry(0.14, 32, 32);
-      const sphereMesh = new THREE.Mesh(sphereGeo, polishedChromeMaterial);
-      sphereMesh.position.set(1.62, 0.68, -0.35);
-      ringGroup.add(sphereMesh);
-
-      const sphereGeo2 = new THREE.SphereGeometry(0.09, 24, 24);
-      const sphereMesh2 = new THREE.Mesh(sphereGeo2, polishedChromeMaterial);
-      sphereMesh2.position.set(-1.50, -0.28, 0.38);
-      ringGroup.add(sphereMesh2);
-
-      laptopGroup.add(ringGroup);
-
       // Floor Shadow Plane
       const shadowGeo = new THREE.PlaneGeometry(3.3, 2.5);
       const shadowCanvas = document.createElement('canvas');
@@ -682,15 +651,7 @@ export const ContactLaptopCanvas: React.FC = () => {
         // 4. Subtle Lid Breathing (-0.32 rad base)
         lidGroup.rotation.x = -0.32 + Math.sin(elapsedTime * 0.8) * 0.01;
 
-        // 5. Counter-rotating Chrome Orbital Rings
-        orbitRing1.rotation.z = elapsedTime * 0.14;
-        orbitRing2.rotation.z = -elapsedTime * 0.18;
-
-        // 6. Floating Mirror Chrome Spheres
-        sphereMesh.position.y = 0.68 + Math.sin(elapsedTime * 1.4) * 0.07;
-        sphereMesh2.position.y = -0.28 + Math.cos(elapsedTime * 1.2) * 0.05;
-
-        // 7. Dynamic Pulsing Underglow
+        // 5. Dynamic Pulsing Underglow
         orangeUnderglow.intensity = 6.0 + Math.sin(elapsedTime * 2.0) * 1.5;
 
         if (renderer) {
@@ -724,10 +685,6 @@ export const ContactLaptopCanvas: React.FC = () => {
         lidRimGeo.dispose();
         bezelGeo.dispose();
         screenGeo.dispose();
-        orbitRing1Geo.dispose();
-        orbitRing2Geo.dispose();
-        sphereGeo.dispose();
-        sphereGeo2.dispose();
         shadowGeo.dispose();
 
         spaceBlackMaterial.dispose();
@@ -738,7 +695,6 @@ export const ContactLaptopCanvas: React.FC = () => {
         trackpadMaterial.dispose();
         matteBezelMaterial.dispose();
         screenMaterial.dispose();
-        orangeRingMat.dispose();
         shadowMat.dispose();
         screenTexture.dispose();
         envTexture.dispose();
